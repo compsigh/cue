@@ -1,10 +1,13 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+
   padding: 6rem;
   min-height: 100vh;
+  background-color: white;
+  color: black;
+  font-size: 5rem;
+  align-items: center;
 }
 
 .description {
@@ -16,6 +19,7 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+  color: black;
 }
 
 .description a {
@@ -23,6 +27,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  color: black;
 }
 
 .description p {
@@ -32,11 +37,13 @@
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
+  color: black;
 }
 
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
+  color: black;
 }
 
 .grid {
@@ -44,6 +51,7 @@
   grid-template-columns: repeat(4, minmax(25%, auto));
   width: var(--max-width);
   max-width: 100%;
+  color: black;
 }
 
 .card {
@@ -51,17 +59,19 @@
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  color: black;
 }
 
 .card span {
   display: inline-block;
   transition: transform 200ms;
+  color: black;
 }
 
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
+  color: black;
 }
 
 .card p {
@@ -78,6 +88,7 @@
   align-items: center;
   position: relative;
   padding: 4rem 0;
+  text-align: center; 
 }
 
 .center::before {
@@ -104,12 +115,13 @@
   transform: translateZ(0);
 }
 
-.logo,
+/*.logo,
 .thirteen {
   position: relative;
 }
+*/
 
-.thirteen {
+/*.thirteen {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,9 +132,8 @@
   transform: translateZ(0);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0px 2px 8px -1px #0000001a;
 }
-
+*/
 .thirteen::before,
 .thirteen::after {
   content: '';
@@ -257,7 +268,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
   .vercelLogo {
     filter: invert(1);
   }
@@ -267,6 +278,7 @@
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
 }
+*/
 
 @keyframes rotate {
   from {
