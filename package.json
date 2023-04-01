@@ -1,6 +1,15 @@
 {
   "name": "cue",
+  "author": "compsigh",
+  "bugs": "https://github.com/compsigh/cue/issues",
+  "homepage": "https://github.com/compsigh/cue",
   "version": "0.1.0",
+  "license": "UNLICENSED",
+  "description": "Study with AI-powered active recall",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/compsigh/cue.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,12 +17,27 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "eslintConfig": {
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
   "dependencies": {
     "@next/font": "13.2.4",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "mongoose": "^6.9.2",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.5",
+    "sass": "^1.58.3"
   }
 }
