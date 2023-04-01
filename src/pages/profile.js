@@ -1,6 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next'
 import Image from 'next/image';
+import ProfileCard from '@/components/ProfileCard';
 
 export default function Profile() {
   const { data: session, status } = useSession();
@@ -11,16 +12,7 @@ export default function Profile() {
 
   if (status === 'authenticated')
     return (
-      <>
-        <Image
-          src={session.user.image}
-          alt="Profile Picture"
-          width={55}
-          height={55}
-        />
-        <p>Signed in as {userEmail}</p>
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
+      <ProfileCard session={session} signOut={signOut} />
     );
 
   return (
