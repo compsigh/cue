@@ -1,8 +1,14 @@
+// Next imports
 import Head from 'next/head'
 import Image from 'next/image'
-import { Patrick_Hand } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
+
+// Component imports
 import Sidebar from '@/components/Sidebar'
+
+// Style imports
+import styles from '@/styles/Home.module.css'
+import { Patrick_Hand } from '@next/font/google'
 const patrickHand = Patrick_Hand({ subsets: ['latin'], weight: '400' });
 
 export default function Home() {
@@ -14,47 +20,21 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar></Sidebar>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <div>
-            <a
-              href="https://cue.study"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {}
-              <Image
-                src="/cue.svg"
-                alt="Cue Logo"
-                className={styles.vercelLogo}
-                width={25}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
 
+      <Sidebar />
+      <main>
         <div className={styles.center}>
-        <h2 className={patrickHand.className}>
-              Cue
-            </h2>
-            <hr/>
-        <div className={styles.thirteen}>
-        <a href="https://cue.study" className={styles.button}>
-
-          <Image
-            src="/cue.svg"
-            alt="Cue Logo"
-            width={90}
-            height={90}
-            priority
-          />
-          </a>
+          <h1 className={patrickHand.className}>Cue</h1>
         </div>
-
-</div>
+          <Link href='/api/auth/signin'>
+            <Image
+              src="logo.svg"
+              alt="Cue Logo"
+              width={90}
+              height={90}
+              priority
+            />
+          </Link>
 
       </main>
     </>
