@@ -1,7 +1,8 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next'
 import Image from 'next/image';
 
-const Profile = () => {
+export default function Profile() {
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || null;
 
@@ -25,9 +26,25 @@ const Profile = () => {
   return (
     <>
       <p>Not signed in</p>
-      <button onClick={() => signIn("google")}>Sign in</button>
+      <button onClick={() => signIn('google')}>Sign in</button>
     </>
   );
 }
 
-export default Profile;
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res);
+
+  if (!session)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      }
+    };
+
+  return {
+    props: {
+      session
+    }
+  };
+}

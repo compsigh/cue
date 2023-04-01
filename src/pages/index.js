@@ -2,9 +2,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-
-// Component imports
-import Sidebar from '@/components/Sidebar'
+import { signIn } from 'next-auth/react'
+import { getServerSession } from 'next-auth/next'
 
 // Style imports
 import styles from '@/styles/Home.module.css'
@@ -21,12 +20,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Sidebar />
       <main>
         <div className={styles.center}>
           <h1 className={patrickHand.className}>Cue</h1>
         </div>
-          <Link href='/api/auth/signin'>
+          <Link href='#' onClick={() => signIn('google', { callbackUrl: '/profile' })}>
             <Image
               src="logo.svg"
               alt="Cue Logo"
@@ -39,4 +37,22 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res);
+
+  if (session)
+    return {
+      redirect: {
+        destination: '/profile',
+        permanent: false
+      }
+    };
+
+  return {
+    props: {
+      session
+    }
+  };
 }
