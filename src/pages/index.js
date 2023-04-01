@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Patrick_Hand } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-
+import Sidebar from '@/components/Sidebar'
 const patrickHand = Patrick_Hand({ subsets: ['latin'], weight: '400' });
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Sidebar></Sidebar>
       <main className={styles.main}>
         <div className={styles.description}>
           <div>
