@@ -1,6 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 import Sidebar from '@/components/Sidebar'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 export default function App({
   Component,
