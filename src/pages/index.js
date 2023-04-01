@@ -38,7 +38,7 @@ export default function Home() {
 
         <div className={styles.center}>
         <h2 className={patrickHand.className}>
-              Cue 
+              Cue
             </h2>
             <hr/>
         <div className={styles.thirteen}>
@@ -60,5 +60,3 @@ export default function Home() {
     </>
   )
 }
-
-
