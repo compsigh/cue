@@ -86,5 +86,7 @@ Second set of active recall prompts:
 
 Requested notes to generate prompts for:
 ${notes}
+
+Suggested active recall prompts:
 `;
 }
