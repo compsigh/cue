@@ -9,11 +9,18 @@ export default function App({
   pageProps: { session, ...pageProps }
 }) {
   return (
-    <main className={patrickHand.className}>
-      <SessionProvider session={session}>
-        {Component.name !== 'Home' && <Sidebar />}
-        <Component {...pageProps} />
-      </SessionProvider>
-    </main>
+    <>
+      <style jsx global>{`
+        :root {
+          --font-stack: 'Patrick Hand', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        }
+      `}</style>
+      <main className={patrickHand.className}>
+        <SessionProvider session={session}>
+          {Component.name !== 'Home' && <Sidebar />}
+          <Component {...pageProps} />
+        </SessionProvider>
+      </main>
+    </>
   )
 }

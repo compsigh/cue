@@ -1,10 +1,7 @@
 @use 'colors';
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-$font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
 /* Cue/Header 1 */
 @mixin h1 {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 4rem;
   font-weight: 700;
@@ -13,7 +10,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Header 2 */
 @mixin h2 {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 2.5rem;
   font-weight: 700;
@@ -23,7 +19,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Header 3 */
 @mixin h3 {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 1.5rem;
   font-weight: 700;
@@ -33,7 +28,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Subtitle */
 @mixin subtitle {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 1.25rem;
   font-weight: 300;
@@ -42,7 +36,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Body */
 @mixin body {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 1rem;
   font-weight: 400;
@@ -51,7 +44,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Pre-Title */
 @mixin pretitle {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 0.75rem;
   font-weight: 800;
@@ -62,7 +54,6 @@ $font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, 
 
 /* Cue/Button Text */
 @mixin buttontext {
-  font-family: $font-stack;
   font-style: normal;
   font-size: 1rem;
   font-weight: 800;
