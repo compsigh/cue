@@ -1,9 +1,12 @@
 import { useState } from "react";
 import styles from './TextCard.module.scss';
 
-const TextCard = () => {
+const TextCard = ({ onUpdateResult }) => {
   const [notesInput, setNotesInput] = useState("");
-  const [result, setResult] = useState();
+
+  const handleChange = (result) => {
+    onUpdateResult(result);
+  };
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -20,8 +23,7 @@ const TextCard = () => {
       if (response.status !== 200)
         throw data.error || new Error(`Request failed with status ${response.status}`);
 
-      setResult(data.result);
-      alert(data.result);
+      handleChange(data.result);
       setNotesInput("");
     }
     catch(error) {
