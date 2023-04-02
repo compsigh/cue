@@ -7,8 +7,6 @@ import { getServerSession } from 'next-auth/next'
 
 // Style imports
 import styles from '@/styles/Home.module.scss'
-import { Patrick_Hand } from '@next/font/google'
-const patrickHand = Patrick_Hand({ subsets: ['latin'], weight: '400' });
 
 export default function Home() {
   return (
@@ -22,7 +20,7 @@ export default function Home() {
 
       <main>
         <div className={styles.center}>
-          <h1 className={patrickHand.className}>Cue</h1>
+          <h1>Cue</h1>
           <Link href='#' onClick={() => signIn('google', { callbackUrl: '/profile' })}>
             <Image
               src="logo.svg"
