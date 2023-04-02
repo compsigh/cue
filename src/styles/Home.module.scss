@@ -1,0 +1,24 @@
+.center {
+  margin-top: 6.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px;
+  gap: 50px;
+
+  h1 {
+    font-size: 16rem;
+  }
+
+  img:hover {
+    transform: rotate(7deg);
+  }
+
+  a:active {
+    img {
+      content: url(/icons/Cue_Selected.svg);
+    }
+  }
+}
