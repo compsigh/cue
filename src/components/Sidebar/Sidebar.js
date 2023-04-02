@@ -9,21 +9,21 @@ const Sidebar = () => {
       <ul>
 
         <li className={styles.cue}>
-          <Link href='/'>
-          {useRouter().pathname === '/' ? (
-            <Image
-              src="/icons/Cue_Selected.svg"
-              alt="Cue"
-              width={55}
-              height={55}
-            />
-            ) : (
-            <Image
-              src="/icons/Cue.svg"
-              alt="Cue"
-              width={55}
-              height={55}
-            />
+          <Link href='/cue'>
+            {useRouter().pathname === '/cue' ? (
+              <Image
+                src="/icons/Cue_Selected.svg"
+                alt="Cue"
+                width={55}
+                height={55}
+              />
+              ) : (
+              <Image
+                src="/icons/Cue.svg"
+                alt="Cue"
+                width={55}
+                height={55}
+              />
             )}
           </Link>
         </li>
