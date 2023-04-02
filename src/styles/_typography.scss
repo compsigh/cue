@@ -1,0 +1,120 @@
+@use 'colors';
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+$font-stack: Patrick Hand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+/* Cue/Header 1 */
+@mixin h1 {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 90%;
+}
+
+/* Cue/Header 2 */
+@mixin h2 {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+}
+
+/* Cue/Header 3 */
+@mixin h3 {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 170%;
+  letter-spacing: -0.02em;
+}
+
+/* Cue/Subtitle */
+@mixin subtitle {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 160%;
+}
+
+/* Cue/Body */
+@mixin body {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+/* Cue/Pre-Title */
+@mixin pretitle {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 160%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Cue/Button Text */
+@mixin buttontext {
+  font-family: $font-stack;
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 100%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Stylistic Blocks */
+
+/* Cue/Bold */
+@mixin bold {
+  font-size: inherit;
+  font-weight: 800;
+  line-height: 160%;
+  letter-spacing: 0.02em;
+}
+
+/* Cue/Italic */
+@mixin italic {
+  font-style: italic;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+/* Cue/Small */
+@mixin small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+/* Cue/Link */
+@mixin link {
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 160%;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* Cue/Code */
+@mixin code {
+  font-family: Recursive, monospace;
+  font-size: 0.875em;
+  font-weight: inherit;
+  line-height: 160%;
+  letter-spacing: 0.03em;
+  background: #EEEEEE;
+  border-radius: 0.375em;
+  padding: 0.25rem;
+}

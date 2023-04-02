@@ -1,0 +1,94 @@
+@use '_colors';
+@use '_typography';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  font-family: typography.$font-stack;
+}
+
+/* Cue/Header 1 */
+h1 {
+  @include typography.h1;
+}
+
+/* Cue/Header 2 */
+h2 {
+  @include typography.h2;
+}
+
+/* Cue/Header 3 */
+h3 {
+  @include typography.h3;
+}
+
+/* Cue/Subtitle */
+.subtitle {
+  @include typography.subtitle;
+}
+
+/* Cue/Body */
+p {
+  @include typography.body;
+}
+
+/* Cue/Pre-Title */
+.pretitle {
+  @include typography.pretitle;
+}
+
+/* Cue/Button Text */
+button {
+  a {
+    @include typography.buttontext;
+  }
+}
+
+/* Stylistic Blocks */
+
+/* Cue/Bold */
+strong {
+  @include typography.bold;
+}
+
+/* Cue/Italic */
+em {
+  @include typography.italic;
+}
+
+/* Cue/Small */
+small {
+  @include typography.small;
+}
+
+/* Cue/Link */
+a {
+  @include typography.link;
+}
+
+nav {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+footer {
+  a {
+    text-decoration: none;
+  }
+}
+
+/* Cue/Code */
+code {
+  @include typography.code;
+}

@@ -1,0 +1,60 @@
+.sidebar {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 3.125rem;
+  margin-left: 6.25rem;
+
+  /* Sidebar list styles */
+  li {
+    list-style: none;
+  }
+  li {
+    margin-bottom: 40px;
+  }
+  li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Hover states */
+  img:hover {
+    transform: rotate(7deg);
+  }
+
+  /* Active states */
+  .cue {
+    a:active {
+      img {
+        content: url(./../../../public/icons/Cue_Selected.svg);
+      }
+    }
+  }
+
+  .review {
+    a:active {
+      img {
+        content: url(./../../../public/icons/Review_Selected.svg);
+      }
+    }
+  }
+  .help {
+    a:active {
+      img {
+        content: url(./../../../public/icons/Help_Selected.svg);
+      }
+    }
+  }
+  .feedback {
+    a:active {
+      img {
+        content: url(./../../../public/icons/Feedback_Selected.svg);
+      }
+    }
+  }
+  .profile {
+    a:active {
+      img {
+        content: url(./../../../public/icons/Profile_Selected.svg);
+      }
+    }
+  }
+}
