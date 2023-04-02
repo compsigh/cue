@@ -1,0 +1,77 @@
+@use '@/styles/_colors' as colors;
+
+.primary {
+  box-sizing: border-box;
+  /* Type=Primary, State=Standard */
+
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+
+  background: colors.$black;
+  color: colors.$white;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  /* Type=Primary, State=Hover */
+
+  &:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(7deg);
+  }
+
+  /* Type=Primary, State=Active */
+
+  &:active {
+    background: colors.$white;
+    color: colors.$black;
+    box-shadow: inset 0 0 0 2px colors.$black;
+  }
+
+}
+
+.secondary {
+  box-sizing: border-box;
+  /* Type=Secondary, State=Standard */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+
+  background: colors.$white;
+  color: colors.$black;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  box-shadow: inset 0 0 0 2px colors.$black;
+  cursor: pointer;
+
+  /* Type=Secondary, State=Hover */
+
+  &:hover {
+    box-shadow: inset 0 0 0 2px colors.$black, 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(7deg);
+  }
+
+  /* Type=Secondary, State=Active */
+
+  &:active {
+    background: colors.$black;
+    color: colors.$white;
+    box-shadow: inset 0 0 0 2px colors.$black;
+  }
+
+}
