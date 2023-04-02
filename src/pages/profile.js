@@ -5,7 +5,6 @@ import styles from '@/styles/Profile.module.scss';
 
 export default function Profile() {
   const { data: session, status } = useSession();
-  const userEmail = session?.user?.email || null;
 
   if (status === 'loading')
     return <p>Loading...</p>;
