@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next'
-import Image from 'next/image';
-import ProfileCard from '@/components/ProfileCard';
+import ProfileCard from '@/components/ProfileCard/ProfileCard';
+import styles from '@/styles/Profile.module.scss';
 
 export default function Profile() {
   const { data: session, status } = useSession();
@@ -12,7 +12,9 @@ export default function Profile() {
 
   if (status === 'authenticated')
     return (
-      <ProfileCard session={session} signOut={signOut} />
+      <div className={styles.profileCard}>
+        <ProfileCard session={session} signOut={signOut} />
+      </div>
     );
 
   return (
