@@ -1,8 +1,10 @@
 .sidebar {
-
-  /* Sidebar list styles */
+  display: inline-block;
+  vertical-align: top;
   margin-top: 3.125rem;
   margin-left: 6.25rem;
+
+  /* Sidebar list styles */
   li {
     list-style: none;
   }
