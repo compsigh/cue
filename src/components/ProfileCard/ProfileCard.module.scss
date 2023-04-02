@@ -11,6 +11,17 @@ div.profileCard {
   padding: 60px;
   gap: 50px;
 
+  /* Exception in gap for actions (buttons) */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
   width: fit-content;
 
   background-color: hsl(0deg, 0%, 100%);
