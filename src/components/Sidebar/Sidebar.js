@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Sidebar.module.scss';
 import { useRouter } from 'next/router';
+import { PopupButton } from '@typeform/embed-react'
 
 const Sidebar = () => {
   return (
@@ -60,23 +61,25 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.feedback}>
-          <Link href='/feedback'>
-          {useRouter().pathname === '/feedback' ? (
-            <Image
-              src="/icons/Feedback_Selected.svg"
-              alt="Feedback"
-              width={55}
-              height={55}
-            />
-            ) : (
+          <PopupButton
+            id="kArMPVer"
+            size={80}
+            style={{
+              border: 'none',
+              background: 'none',
+              padding: 0,
+              margin: 0,
+              cursor: 'pointer',
+            }}
+            autoClose={5000}
+          >
             <Image
               src="/icons/Feedback.svg"
               alt="Feedback"
               width={55}
               height={55}
             />
-            )}
-          </Link>
+          </PopupButton>
         </li>
 
         <li className={styles.profile}>
