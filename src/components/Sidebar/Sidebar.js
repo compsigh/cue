@@ -49,22 +49,13 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.help}>
-          <Link href='/help'>
-          {useRouter().pathname === '/help' ? (
-            <Image
-              src="/icons/Help_Selected.svg"
-              alt="Help"
-              width={55}
-              height={55}
-            />
-            ) : (
+          <Link href='https://docs.cue.study'>
             <Image
               src="/icons/Help.svg"
               alt="Help"
               width={55}
               height={55}
             />
-            )}
           </Link>
         </li>
 
