@@ -4,7 +4,7 @@ import InviteCode from '@/schemas/invite-code-schema.js';
 export default function Card() {
   return (
     <div>
-      <h1>Sorry, that card doesn't exist!</h1>
+      <h1>Sorry, that card does not exist!</h1>
     </div>
   );
 }
