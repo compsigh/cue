@@ -30,7 +30,7 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.review}>
-          <Link href='/review'>
+          <Link href='#'>
           {useRouter().pathname === '/review' ? (
             <Image
               src="/icons/Review_Selected.svg"
@@ -44,6 +44,7 @@ const Sidebar = () => {
               alt="Review"
               width={55}
               height={55}
+              style={{opacity: 0.5, cursor: 'not-allowed'}}
             />
             )}
           </Link>
