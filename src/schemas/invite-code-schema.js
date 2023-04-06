@@ -35,6 +35,6 @@ const inviteCodeSchema = new Schema({
   }
 }, { collection: 'inviteCodes' });
 
-const InviteCode = model('inviteCode', inviteCodeSchema);
+const InviteCode = mongoose.models.InviteCode || model('InviteCode', inviteCodeSchema);
 
 export default InviteCode;
