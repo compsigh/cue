@@ -2,7 +2,12 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const inviteCodeSchema = new Schema({
-  id: {
+  inviteId: {
+    type: Number,
+    required: true,
+    immutable: true
+  },
+  code: {
     type: String,
     required: true,
     immutable: true

@@ -15,14 +15,15 @@ async function generateInviteCodes(source, count, names) {
 
   for (let i = 0; i < count; i++) {
     // If the name is already taken, generate a new one
-    while (await InviteCode.findOne({ id: names[i] }))
+    while (await InviteCode.findOne({ code: names[i] }))
       names[i] = generateRandomRomanNames(1)[0];
 
     const inviteCode = {
-      id: names[i],
+      inviteId: (await InviteCode.countDocuments({})) + 1,
+      code: names[i],
       source
     };
-    console.log(`Adding invite code: ${inviteCode.id} | #${i + 1}`);
+    console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`);
     inviteCodes.push(inviteCode);
     await InviteCode.create(inviteCode);
   }
