@@ -57,4 +57,12 @@
       }
     }
   }
+
+  .invite {
+    button:active {
+      img {
+        content: url(./../../../public/icons/Invite_Selected.svg);
+      }
+    }
+  }
 }

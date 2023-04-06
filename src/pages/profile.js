@@ -21,6 +21,7 @@ export default function Profile({ user }) {
   );
 }
 
+// TODO: put retrieving current user data in a separate function
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res);
   const sessionData = session?.user;

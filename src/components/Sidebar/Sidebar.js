@@ -103,6 +103,27 @@ const Sidebar = () => {
           </Link>
         </li>
 
+        <li className={styles.invite}>
+          <PopupButton
+            id="httmb9Wo"
+            size={80}
+            style={{
+              border: 'none',
+              background: 'none',
+              padding: 0,
+              margin: 0,
+              cursor: 'pointer',
+            }}
+            autoClose={5000}
+          >
+            <Image
+              src="/icons/Invite.svg"
+              alt="Invite"
+              width={55}
+              height={55}
+            />
+          </PopupButton>
+        </li>
       </ul>
     </nav>
   );
