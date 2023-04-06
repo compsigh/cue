@@ -1,5 +1,5 @@
 // Next imports
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next'
 import { getToken } from 'next-auth/jwt';
 
@@ -13,30 +13,17 @@ import styles from '@/styles/Profile.module.scss';
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
 
-export default function Profile() {
-  const { data: session, status } = useSession();
-
-  if (status === 'loading')
-    return <p>Loading...</p>;
-
-  if (status === 'authenticated')
-    return (
-      <div className={styles.profileCard}>
-        <ProfileCard session={session} signOut={signOut} />
-      </div>
-    );
-
+export default function Profile({ user }) {
   return (
-    <>
-      <p>Not signed in</p>
-      <button onClick={() => signIn('google')}>Sign in</button>
-    </>
+    <div className={styles.profileCard}>
+      <ProfileCard user={user} signOut={signOut} />
+    </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res);
-  const token = await getToken({ req: context.req });
+  const sessionData = session?.user;
 
   if (!session)
     return {
@@ -48,6 +35,7 @@ export async function getServerSideProps(context) {
 
   // Search the database for the user's ID
   await connect();
+  const token = await getToken({ req: context.req });
   const user = await User.findOne({ googleId: token.sub });
 
   // If the user doesn't exist, create a new user
@@ -60,9 +48,14 @@ export async function getServerSideProps(context) {
     await newUser.save();
   }
 
+  // Associate the user's session data with the user's database data and return as one object
+  const userData = JSON.parse(JSON.stringify(user));
   return {
     props: {
-      session
+      user: {
+        ...sessionData,
+        ...userData
+      },
     }
   };
 }

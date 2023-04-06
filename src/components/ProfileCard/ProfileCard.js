@@ -3,23 +3,23 @@ import Button from "@/components/Button/Button";
 import { useRouter } from "next/router";
 import styles from './ProfileCard.module.scss';
 
-const ProfileCard = (props) => {
-  const { session, signOut } = props;
+const ProfileCard = ({ user, signOut }) => {
   const router = useRouter();
 
   return (
     <div className={styles.profileCard}>
       <div className={styles.profileCardImage}>
         <Image
-          src={session.user.image}
+          src={user.image}
           alt="Profile Picture"
           width={110}
           height={110}
         />
       </div>
       <div className={styles.profileCardInfo}>
-        <h3 className={styles.name}>{session.user.name}</h3>
-        <p className={styles.email}>{session.user.email}</p>
+        <h3 className={styles.name}>{user.name}</h3>
+        <p className={styles.email}>{user.email}</p>
+        <p className={styles.invitesRemaining}>{user.invitesRemaining} invites remaining</p>
       </div>
 
       <div className={styles.actions}>
