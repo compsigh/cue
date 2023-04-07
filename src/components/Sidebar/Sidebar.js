@@ -15,6 +15,7 @@ const Sidebar = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,8 +45,6 @@ const Sidebar = () => {
 
   if (!user)
     return <p>No user</p>;
-
-  const router = useRouter();
 
   return (
     <nav className={styles.sidebar}>
