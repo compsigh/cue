@@ -59,7 +59,8 @@
   }
 
   .invite {
-    button:active {
+    button:active,
+    a:active {
       img {
         content: url(./../../../public/icons/Invite_Selected.svg);
       }

@@ -73,21 +73,21 @@ const Sidebar = () => {
 
         <li className={styles.review}>
           <Link href='#'>
-          {router.pathname === '/review' ? (
-            <Image
-              src="/icons/Review_Selected.svg"
-              alt="Review"
-              width={55}
-              height={55}
-            />
-            ) : (
-            <Image
-              src="/icons/Review.svg"
-              alt="Review"
-              width={55}
-              height={55}
-              style={{opacity: 0.5, cursor: 'not-allowed'}}
-            />
+            {router.pathname === '/review' ? (
+              <Image
+                src="/icons/Review_Selected.svg"
+                alt="Review"
+                width={55}
+                height={55}
+              />
+              ) : (
+              <Image
+                src="/icons/Review.svg"
+                alt="Review"
+                width={55}
+                height={55}
+                style={{opacity: 0.5, cursor: 'not-allowed'}}
+              />
             )}
           </Link>
         </li>
@@ -146,43 +146,55 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.invite}>
-          <PopupButton
-            id="httmb9Wo"
-            size={80}
-            style={{
-              border: 'none',
-              background: 'none',
-              padding: 0,
-              margin: 0,
-              cursor: 'pointer',
-            }}
-            hidden={{
-              invites: user.userData.invitesRemaining,
-            }}
-            onSubmit={() => {
-              fetch('/api/manage-user', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  id: user.id,
-                  action: 'update',
-                  data: {
-                    invitesRemaining: user.userData.invitesRemaining - 1,
+          {user.userData.invitesRemaining !== 0 && (
+            <PopupButton
+              id="httmb9Wo"
+              size={80}
+              style={{
+                border: 'none',
+                background: 'none',
+                padding: 0,
+                margin: 0,
+                cursor: 'pointer',
+              }}
+              hidden={{
+                invites: user.userData.invitesRemaining,
+              }}
+              onSubmit={() => {
+                fetch('/api/manage-user', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
                   },
-                }),
-              });
-            }}
-            autoClose={5000}
-          >
-            <Image
+                  body: JSON.stringify({
+                    id: user.id,
+                    action: 'update',
+                    data: {
+                      invitesRemaining: user.userData.invitesRemaining - 1,
+                    },
+                  }),
+                });
+              }}
+              autoClose={5000}
+            >
+              <Image
+                src="/icons/Invite.svg"
+                alt="Invite"
+                width={55}
+                height={55}
+              />
+            </PopupButton>
+          ) || (
+            <Link href='#'>
+              <Image
               src="/icons/Invite.svg"
               alt="Invite"
               width={55}
               height={55}
-            />
-          </PopupButton>
+              style={{opacity: 0.5, cursor: 'not-allowed'}}
+              />
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
