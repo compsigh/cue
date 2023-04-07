@@ -1,7 +1,6 @@
 // Next imports
 import { signOut } from 'next-auth/react';
-import { getServerSession } from 'next-auth/next'
-import { getToken } from 'next-auth/jwt';
+import getUserSessionAndData from '@/functions/get-user-session-and-data.js';
 
 // Database imports
 import connect from '@/functions/db-connect.js';
@@ -21,12 +20,12 @@ export default function Profile({ user }) {
   );
 }
 
-// TODO: put retrieving current user data in a separate function
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res);
-  const sessionData = session?.user;
+  const result = await getUserSessionAndData(context.req, context.res);
+  const sessionData = result?.sessionData;
+  const userData = result?.userData;
 
-  if (!session)
+  if (!sessionData)
     return {
       redirect: {
         destination: '/',
@@ -34,15 +33,11 @@ export async function getServerSideProps(context) {
       }
     };
 
-  // Search the database for the user's ID
-  await connect();
-  const token = await getToken({ req: context.req });
-  const user = await User.findOne({ googleId: token.sub });
-
   // If the user doesn't exist, create a new user
-  if (!user) {
+  if (!userData) {
+    await connect();
     const newUser = new User({
-      googleId: token.sub,
+      googleId: result.id,
       cues: [],
       // TODO: figure out invitesRemaining based on whether the user was invited or not
     });
@@ -50,7 +45,6 @@ export async function getServerSideProps(context) {
   }
 
   // Associate the user's session data with the user's database data and return as one object
-  const userData = JSON.parse(JSON.stringify(user));
   return {
     props: {
       user: {
