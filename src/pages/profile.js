@@ -1,10 +1,8 @@
 // Next imports
 import { signOut } from 'next-auth/react';
-import getUserSessionAndData from '@/functions/get-user-session-and-data.js';
 
 // Database imports
-import connect from '@/functions/db-connect.js';
-import User from '@/schemas/user-schema.js';
+import getUserSessionAndData from '@/functions/get-user-session-and-data.js';
 
 // Style imports
 import styles from '@/styles/Profile.module.scss';
@@ -34,15 +32,17 @@ export async function getServerSideProps(context) {
     };
 
   // If the user doesn't exist, create a new user
-  if (!userData) {
-    await connect();
-    const newUser = new User({
-      googleId: result.id,
-      cues: [],
-      // TODO: figure out invitesRemaining based on whether the user was invited or not
+  if (!userData)
+    fetch('/api/manage-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: result.id,
+        action: 'create'
+      })
     });
-    await newUser.save();
-  }
 
   // Associate the user's session data with the user's database data and return as one object
   return {
