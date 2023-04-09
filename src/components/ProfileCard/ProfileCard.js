@@ -17,7 +17,7 @@ const ProfileCard = ({ user, signOut }) => {
         />
       </div>
       <div className={styles.profileCardInfo}>
-        <h3 className={styles.name}>{user.name}</h3>
+        <h1 className={styles.name}>{user.name}</h1>
         <p className={styles.email}>{user.email}</p>
         <p className={styles.invitesRemaining}>{user.invitesRemaining} {user.invitesRemaining === 1 ? 'invite' : 'invites'} remaining</p>
       </div>

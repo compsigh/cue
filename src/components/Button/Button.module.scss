@@ -1,4 +1,5 @@
 @use '@/styles/_colors' as colors;
+@use '@/styles/_typography' as typography;
 
 .primary {
   box-sizing: border-box;
@@ -16,7 +17,7 @@
 
   background: colors.$black;
   color: colors.$white;
-  font-family: inherit;
+  @include typography.buttontext;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -53,7 +54,7 @@
 
   background: colors.$white;
   color: colors.$black;
-  font-family: inherit;
+  @include typography.buttontext;
   border-radius: 10px;
   border: none;
   box-shadow: inset 0 0 0 2px colors.$black;

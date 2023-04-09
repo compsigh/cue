@@ -1,111 +1,118 @@
-@use 'colors';
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+
+/* Cue/Title */
+@mixin title {
+  font-family: 'Patrick Hand', 'Public Sans', sans-serif;
+  font-style: normal;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 120%;
+}
 
 /* Cue/Header 1 */
 @mixin h1 {
+  font-family: 'Patrick Hand', 'Public Sans', sans-serif;
   font-style: normal;
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 90%;
+  font-size: 1.875rem;
+  font-weight: 400;
+  line-height: 130%;
 }
 
 /* Cue/Header 2 */
 @mixin h2 {
+  font-family: 'Public Sans', sans-serif;
   font-style: normal;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 150%;
-  letter-spacing: -0.02em;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 130%;
 }
 
 /* Cue/Header 3 */
 @mixin h3 {
-  font-style: normal;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 170%;
-  letter-spacing: -0.02em;
-}
-
-/* Cue/Subtitle */
-@mixin subtitle {
+  font-family: 'Public Sans', sans-serif;
   font-style: normal;
   font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 160%;
+  font-weight: 600;
+  line-height: 130%;
 }
 
 /* Cue/Body */
 @mixin body {
+  font-family: 'Public Sans', sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: 400;
+  line-height: 150%;
+}
+
+/* Cue/Bold */
+@mixin bold {
+  font-family: 'Public Sans', sans-serif;
+  font-style: normal;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: inherit;
+}
+
+/* Cue/Italic */
+@mixin italic {
+  font-family: 'Public Sans', sans-serif;
+  font-style: italic;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Cue/Small */
+@mixin small {
+  font-family: 'Public Sans', sans-serif;
+  font-style: normal;
+  font-size: 0.875rem;
+  font-weight: 400;
   line-height: 160%;
+  letter-spacing: 0.02em;
+}
+
+/* Cue/Code */
+@mixin code {
+  font-family: 'Roboto Mono', monospace;
+  font-style: normal;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  letter-spacing: 0.03em;
 }
 
 /* Cue/Pre-Title */
 @mixin pretitle {
+  font-family: 'Public Sans', sans-serif;
   font-style: normal;
   font-size: 0.75rem;
   font-weight: 800;
   line-height: 160%;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 /* Cue/Button Text */
 @mixin buttontext {
+  font-family: 'Patrick Hand SC', 'Patrick Hand', 'Public Sans', sans-serif;
   font-style: normal;
   font-size: 1rem;
-  font-weight: 800;
-  line-height: 100%;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-/* Stylistic Blocks */
-
-/* Cue/Bold */
-@mixin bold {
-  font-size: inherit;
-  font-weight: 800;
-  line-height: 160%;
+  font-weight: 400;
+  line-height: 130%;
   letter-spacing: 0.02em;
-}
-
-/* Cue/Italic */
-@mixin italic {
-  font-style: italic;
-  font-size: inherit;
-  font-weight: 400;
-  line-height: 160%;
-}
-
-/* Cue/Small */
-@mixin small {
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 160%;
 }
 
 /* Cue/Link */
 @mixin link {
+  font-family: 'Public Sans', sans-serif;
   font-size: inherit;
-  font-weight: 600;
-  line-height: 160%;
-  letter-spacing: 0.02em;
-  text-decoration: underline;
-  color: inherit;
-}
-
-/* Cue/Code */
-@mixin code {
-  font-family: Recursive, monospace;
-  font-size: 0.875em;
-  font-weight: inherit;
-  line-height: 160%;
+  font-weight: 700;
+  line-height: inherit;
   letter-spacing: 0.03em;
-  background: #EEEEEE;
-  border-radius: 0.375em;
-  padding: 0.25rem;
+  text-decoration: underline;
 }
