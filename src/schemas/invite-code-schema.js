@@ -14,7 +14,7 @@ const inviteCodeSchema = new Schema({
   },
   source: {
     type: String,
-    enum: ['april-2023-invite-cards'],
+    enum: ['april-2023-invite-cards', 'friends'],
     required: true
   },
   conditions: [{

@@ -3,12 +3,13 @@ import InviteCode from '../schemas/invite-code-schema.js';
 
 /**
  * Generates a specified number of invite codes, and inserts them into the database.
- * @param {string} source    The source of the invite code, e.g. `april-2023-invite-cards`.
- * @param {number} count     The number of invite codes to generate.
- * @param {array}  names     An array of random Roman names to associate with the invite codes.
- * @returns {Promise<array>} An array of invite codes.
+ * @param {string} source     The source of the invite code, e.g. `april-2023-invite-cards`.
+ * @param {number} count      The number of invite codes to generate.
+ * @param {array}  names      An array of random Roman names to associate with the invite codes.
+ * @param {array}  conditions An array of conditions to apply to the invite codes.
+ * @returns {Promise<array>}  An array of invite codes.
  */
-async function generateInviteCodes(source, count, names) {
+async function generateInviteCodes(source, count, names, conditions) {
   await connect();
   const inviteCodes = [];
   console.log('Names:', names);
@@ -21,7 +22,7 @@ async function generateInviteCodes(source, count, names) {
     const inviteCode = {
       inviteId: (await InviteCode.countDocuments({})) + 1,
       code: names[i],
-      conditions: ['no-invite', 'expires', 'use-once'],
+      conditions,
       source
     };
     console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`);
