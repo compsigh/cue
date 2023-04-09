@@ -21,6 +21,7 @@ async function generateInviteCodes(source, count, names) {
     const inviteCode = {
       inviteId: (await InviteCode.countDocuments({})) + 1,
       code: names[i],
+      conditions: ['no-invite', 'expires', 'use-once'],
       source
     };
     console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`);

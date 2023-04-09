@@ -17,15 +17,20 @@ const inviteCodeSchema = new Schema({
     enum: ['april-2023-invite-cards'],
     required: true
   },
+  conditions: [{
+    type: String,
+    enum: ['no-invite', 'expires', 'use-once'],
+    required: true
+  }],
   expires: {
     type: Date,
     required: false,
     default: () => Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles' }).format(new Date(new Date().getFullYear() + 1, 0, 1)) // January 1, 2024
   },
-  used: {
+  valid: {
     type: Boolean,
     required: true,
-    default: false
+    default: true
   },
   createdAt: {
     type: Date,
