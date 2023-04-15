@@ -6,17 +6,20 @@ import { signIn } from 'next-auth/react';
 // Component imports
 import Button from '@/components/Button/Button';
 
+// Style imports
+import styles from './[inviteCode].module.scss';
+
 export default function Card({ invite }) {
   if (!invite)
     return (
-      <div>
+      <div className={styles.invite}>
         <h1>Sorry, that invite code does not exist!</h1>
       </div>
     );
 
   if (!invite?.valid)
     return (
-      <div>
+      <div className={styles.invite}>
         <h1>Sorry, that invite code is no longer valid!</h1>
       </div>
     );
@@ -28,14 +31,16 @@ export default function Card({ invite }) {
   };
 
   return (
-    <div>
+    <div className={styles.invite}>
       <h1>Welcome to Cue</h1>
       <h2>Invite code <code>{invite.code}</code></h2>
-      <h3>To redeem, you can either:</h3>
-      <ul>
-        <li>Sign in below to accept and associate your Google account with the invite; or</li>
-        <li>If you'd like to redeem on a different device, head to the Redeem page (https://app.cue.study/redeem) and enter code <code>{invite.code}</code>.</li>
-      </ul>
+      <div>
+        <h3>To redeem, you can either:</h3>
+        <ul>
+          <li>Sign in below to accept and associate your Google account with the invite; or</li>
+          <li>If you&apos;d like to redeem on a different device, head to the Redeem page (https://app.cue.study/redeem) and enter code <code>{invite.code}</code>.</li>
+        </ul>
+      </div>
 
       {invite.conditions && invite.conditions.length > 0 && (
         <div>
