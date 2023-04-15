@@ -18,7 +18,7 @@ export default function App({
   pageProps: { session, ...pageProps }
 }) {
   const router = useRouter();
-  const showSidebar = router.pathname !== '/';
+  const showSidebar = router.pathname !== '/' && router.pathname !== '/redeem' && !router.pathname.includes('/invite');
   return (
     <>
       <style jsx global>{`
