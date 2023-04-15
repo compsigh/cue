@@ -69,16 +69,23 @@ export async function getServerSideProps(context) {
    * 1) Invalidate the invite code if it exists; and
    * 2) Create a new user.
    */
-  // TODO: handle account restrictions
   if ((!userData && sessionData?.email.includes('@dons.usfca.edu')) || (!userData && invite?.valid)) {
-    if (invite?.valid) {
-      invite.valid = false;
-      await invite.save();
-    }
+    let invitesRemaining = 1;
+    if (invite?.valid)
+      for (const condition of invite.conditions) {
+        if (condition === 'no-invite')
+          invitesRemaining = 0;
+        if (condition === 'use-once') {
+          invite.valid = false;
+          await invite.save();
+        }
+      }
+
     await connect();
     await User.create({
       googleId: result.id,
       cues: [],
+      invitesRemaining
     });
 
     return {
