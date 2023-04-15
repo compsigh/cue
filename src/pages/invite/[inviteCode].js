@@ -1,6 +1,7 @@
 // Function imports
 import connect from '@/functions/db-connect.js';
 import InviteCode from '@/schemas/invite-code-schema.js';
+import { signIn } from 'next-auth/react';
 
 // Component imports
 import Button from '@/components/Button/Button';
@@ -10,6 +11,13 @@ export default function Card({ invite }) {
     return (
       <div>
         <h1>Sorry, that invite code does not exist!</h1>
+      </div>
+    );
+
+  if (!invite?.valid)
+    return (
+      <div>
+        <h1>Sorry, that invite code is no longer valid!</h1>
       </div>
     );
 
@@ -42,7 +50,7 @@ export default function Card({ invite }) {
 
       <Button
         text='Sign in'
-        onClick={() => signIn('google', { callbackUrl: `/profile?invite=${invite.code}` })}
+        onClick={() => signIn('google', { callbackUrl: `/profile?code=${invite.code}` })}
         type='primary'
       />
 
