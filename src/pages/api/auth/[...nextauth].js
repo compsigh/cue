@@ -15,10 +15,4 @@ export default NextAuth({
         };
       }
     }),
-  ],
-  callbacks: {
-    async signIn({ profile }) {
-      return (profile.email_verified && profile.hd === 'dons.usfca.edu'); // TODO: access denied page
-    }
-  }
-});
+  ]});

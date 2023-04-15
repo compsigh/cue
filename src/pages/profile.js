@@ -1,7 +1,12 @@
 // Next imports
 import { signOut } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // Database imports
+import connect from '@/functions/db-connect';
+import InviteCode from '@/schemas/invite-code-schema';
+import User from '@/schemas/user-schema';
 import getUserSessionAndData from '@/functions/get-user-session-and-data.js';
 
 // Style imports
@@ -11,6 +16,12 @@ import styles from '@/styles/Profile.module.scss';
 import ProfileCard from '@/components/ProfileCard/ProfileCard';
 
 export default function Profile({ user }) {
+  // Clear invite code
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('/profile', undefined, { shallow: true });
+  }, []);
+
   return (
     <div className={styles.profileCard}>
       <ProfileCard user={user} signOut={signOut} />
@@ -23,34 +34,78 @@ export async function getServerSideProps(context) {
   const sessionData = result?.sessionData;
   const userData = result?.userData;
 
-  if (!sessionData)
+  /**
+   * If:
+   * The user exists...
+   *
+   * Then:
+   * Associate the user's session data with the user's database data and return as one object.
+   */
+  if (sessionData && userData)
     return {
-      redirect: {
-        destination: '/',
-        permanent: false,
+      props: {
+        user: {
+          ...sessionData,
+          ...userData
+        },
       }
     };
 
-  // If the user doesn't exist, create a new user
-  if (!userData)
-    fetch('/api/manage-user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: result.id,
-        action: 'create'
-      })
+  // Check for valid invite code in params
+  const { query } = context;
+  const inviteCode = query?.code;
+  let invite = null;
+  if (inviteCode) {
+    await connect();
+    invite = await InviteCode.findOne({ inviteCode });
+  }
+
+  /**
+   * If:
+   * 1) The user doesn't exist and is a student at USF; or
+   * 2) The user doesn't exist and has a valid invite code...
+   *
+   * Then:
+   * 1) Invalidate the invite code if it exists; and
+   * 2) Create a new user.
+   */
+  // TODO: handle account restrictions
+  if ((!userData && sessionData?.email.includes('@dons.usfca.edu')) || (!userData && invite?.valid)) {
+    if (invite?.valid) {
+      invite.valid = false;
+      await invite.save();
+    }
+    await connect();
+    await User.create({
+      googleId: result.id,
+      cues: [],
     });
 
-  // Associate the user's session data with the user's database data and return as one object
+    return {
+      props: {
+        user: {
+          ...sessionData,
+          ...userData
+        },
+      }
+    };
+  }
+
+  // If the user doesn't have permission to access the page, redirect them to the access denied page
+  if (sessionData) {
+    return {
+      redirect: {
+        destination: '/api/auth/signin?error=accessDenied',
+        permanent: false
+      }
+    };
+  }
+
+  // Otherwise (there is no user), redirect to the home page
   return {
-    props: {
-      user: {
-        ...sessionData,
-        ...userData
-      },
+    redirect: {
+      destination: '/',
+      permanent: false
     }
   };
 }
