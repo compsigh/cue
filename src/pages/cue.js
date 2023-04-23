@@ -6,7 +6,7 @@ import ImportCard from "@/components/ImportCard/ImportCard"
 import TextCard from "@/components/TextCard/TextCard"
 import ResultCard from "@/components/ResultCard/ResultCard"
 
-export default function Cue() {
+export default function Cue () {
   const { data: session, status } = useSession()
   const [importMethod, setImportMethod] = useState("")
   const [result, setResult] = useState()
@@ -14,11 +14,11 @@ export default function Cue() {
   if (status === 'loading')
     return <p>Loading...</p>
 
-  function handleImportMethod(method) {
+  function handleImportMethod (method) {
     setImportMethod(method)
   }
 
-  function handleResult(result) {
+  function handleResult (result) {
     setResult(result)
   }
 
@@ -45,7 +45,7 @@ export default function Cue() {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   const session = await getServerSession(context.req, context.res)
 
   if (!session)

@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next'
 import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
 
-export default async function handler(req, res) {
+export default async function handler (req, res) {
   try {
     const session = await getServerSession(req, res)
 

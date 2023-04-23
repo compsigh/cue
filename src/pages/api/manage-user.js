@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth/next'
 import connect from '@/functions/db-connect.js'
 import User from '@/schemas/user-schema.js'
 
-export default async function handler(req, res) {
+export default async function handler (req, res) {
   const session = await getServerSession(req, res)
 
   if (!session) {

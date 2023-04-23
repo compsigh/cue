@@ -15,7 +15,7 @@ import styles from '@/styles/Profile.module.scss'
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 
-export default function Profile({ user }) {
+export default function Profile ({ user }) {
   // Clear invite code
   const router = useRouter()
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Profile({ user }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   const result = await getUserSessionAndData(context.req, context.res)
   const sessionData = result?.sessionData
   const userData = result?.userData

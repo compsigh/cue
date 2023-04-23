@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 // Style imports
 import styles from '@/styles/Redeem.module.scss'
 
-export default function Redeem() {
+export default function Redeem () {
 const [inviteCode, setInviteCode] = useState('')
   const router = useRouter()
 
@@ -43,7 +43,7 @@ const [inviteCode, setInviteCode] = useState('')
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   const session = await getServerSession(context.req, context.res)
 
   if (session)

@@ -13,7 +13,7 @@ const patrickHandSC = Patrick_Hand_SC({ subsets: ['latin'], weight: '400' })
 const publicSans = Public_Sans({ subsets: ['latin'], style: ['normal', 'italic'] })
 const robotoMono = Roboto_Mono({ subsets: ['latin'], style: ['normal', 'italic'] })
 
-export default function App({
+export default function App ({
   Component,
   pageProps: { session, ...pageProps }
 }) {

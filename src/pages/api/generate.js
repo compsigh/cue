@@ -5,7 +5,7 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-export default async function handler(req, res) {
+export default async function handler (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
   }
 }
 
-function generatePrompt(notes) {
+function generatePrompt (notes) {
   return `From the notes below, suggest relevant study questions to use as active recall prompts.
   Below are two examples, followed by the requested notes to generate prompts for.
 

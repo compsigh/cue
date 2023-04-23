@@ -8,7 +8,7 @@ import { getServerSession } from 'next-auth/next'
 // Style imports
 import styles from '@/styles/Home.module.scss'
 
-export default function Home() {
+export default function Home () {
   return (
     <>
       <Head>
@@ -36,7 +36,7 @@ export default function Home() {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   const session = await getServerSession(context.req, context.res)
 
   if (session)

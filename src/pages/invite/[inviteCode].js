@@ -9,7 +9,7 @@ import Button from '@/components/Button/Button'
 // Style imports
 import styles from './[inviteCode].module.scss'
 
-export default function Card({ invite }) {
+export default function Card ({ invite }) {
   if (!invite)
     return (
       <div className={styles.invite}>
@@ -63,7 +63,7 @@ export default function Card({ invite }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   const { inviteCode } = context.params
   await connect()
   const invite = await InviteCode.findOne({ code: inviteCode })

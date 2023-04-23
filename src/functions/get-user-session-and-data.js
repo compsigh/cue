@@ -6,7 +6,7 @@ import { getToken } from 'next-auth/jwt'
 import connect from '@/functions/db-connect.js'
 import User from '@/schemas/user-schema.js'
 
-export default async function getUserSessionAndData(req, res) {
+export default async function getUserSessionAndData (req, res) {
   const session = await getServerSession(req, res)
   if (!session) return null
   const sessionData = session?.user

@@ -1,7 +1,7 @@
 import connect from '@/functions/db-connect.js'
 import InviteCode from '@/schemas/invite-code-schema.js'
 
-export default function Card() {
+export default function Card () {
   return (
     <div>
       <h1>Sorry, that card does not exist!</h1>
@@ -9,7 +9,7 @@ export default function Card() {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
   // Get the card from the database
   const { cardId } = context.params
   await connect()

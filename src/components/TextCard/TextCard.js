@@ -8,7 +8,7 @@ const TextCard = ({ onUpdateResult }) => {
     onUpdateResult(result)
   }
 
-  async function onSubmit(event) {
+  async function onSubmit (event) {
     event.preventDefault()
     try {
       const response = await fetch("/api/generate", {

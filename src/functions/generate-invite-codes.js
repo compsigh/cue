@@ -9,7 +9,7 @@ import InviteCode from '../schemas/invite-code-schema.js'
  * @param {array}  conditions An array of conditions to apply to the invite codes.
  * @returns {Promise<array>}  An array of invite codes.
  */
-async function generateInviteCodes(source, count, names, conditions) {
+async function generateInviteCodes (source, count, names, conditions) {
   await connect()
   const inviteCodes = []
   console.log('Names:', names)
@@ -38,7 +38,7 @@ async function generateInviteCodes(source, count, names, conditions) {
  * @param {number} count The number of names to generate.
  * @returns {array}      An array of random Roman names.
  */
-function generateRandomRomanNames(count) {
+function generateRandomRomanNames (count) {
   const praenomens = [
     'Aulus',
     'Appius',

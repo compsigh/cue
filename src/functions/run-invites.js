@@ -9,7 +9,7 @@ import { generateInviteCodes, generateRandomRomanNames } from './generate-invite
  * @param {string} source     The source of the invite codes, e.g. `april-2023-invite-cards`.
  * @param {array}  conditions An array of conditions to apply to the invite codes. If not specified, the default conditions will be used.
  */
-async function generate(count, names, source, conditions) {
+async function generate (count, names, source, conditions) {
   if (!names)
     names = generateRandomRomanNames(count)
   if (!source)
@@ -23,7 +23,7 @@ async function generate(count, names, source, conditions) {
 /**
  * Clears all invite codes from the database.
  */
-async function clear() {
+async function clear () {
   await connect()
   await InviteCode.deleteMany({})
   console.log('Cleared all invite codes.')
