@@ -54,14 +54,14 @@ const Sidebar = () => {
 
         <li className={styles.cue}>
           <Link href='/cue'>
-            {router.pathname === '/cue' ?
-            (<Image
+            {router.pathname === '/cue'
+            ? (<Image
               src="/icons/Cue_Selected.svg"
               alt="Cue"
               width={55}
               height={55}
-            />) :
-            (<Image
+            />)
+            : (<Image
               src="/icons/Cue.svg"
               alt="Cue"
               width={55}
@@ -73,14 +73,14 @@ const Sidebar = () => {
 
         <li className={styles.review}>
           <Link href='#'>
-            {router.pathname === '/review' ?
-            (<Image
+            {router.pathname === '/review'
+            ? (<Image
               src="/icons/Review_Selected.svg"
               alt="Review"
               width={55}
               height={55}
-            />) :
-            (<Image
+            />)
+            : (<Image
               src="/icons/Review.svg"
               alt="Review"
               width={55}
@@ -126,14 +126,14 @@ const Sidebar = () => {
 
         <li className={styles.profile}>
           <Link href='/profile'>
-            {router.pathname === '/profile' ?
-            (<Image
+            {router.pathname === '/profile'
+            ? (<Image
               src="/icons/Profile_Selected.svg"
               alt="Profile"
               width={55}
               height={55}
-            />) :
-            (<Image
+            />)
+            : (<Image
               src="/icons/Profile.svg"
               alt="Profile"
               width={55}
