@@ -99,14 +99,13 @@ export async function getServerSideProps (context) {
   }
 
   // If the user doesn't have permission to access the page, redirect them to the access denied page
-  if (sessionData) {
+  if (sessionData)
     return {
       redirect: {
         destination: '/api/auth/signin?error=accessDenied',
         permanent: false
       }
     }
-  }
 
   // Otherwise (there is no user), redirect to the home page
   return {

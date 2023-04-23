@@ -27,9 +27,8 @@ const Sidebar = () => {
           const data = await res.json()
           setUser(data)
         }
-        else {
+        else
           console.error('Error fetching user')
-        }
       }
       catch (error) {
         console.error(error)
@@ -37,9 +36,8 @@ const Sidebar = () => {
       setLoading(false)
     }
 
-    if (status === 'authenticated' && session) {
+    if (status === 'authenticated' && session)
       fetchUser()
-    }
   }, [session, status])
 
   if (isLoading)
