@@ -12,8 +12,8 @@
   },
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "rm -rf ./next && NODE_ENV=development next dev",
+    "build": "rm -rf ./next && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@typeform/embed-react": "^2.19.0",
+    "@types/react": "^18.0.38",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "mongoose": "^6.9.2",
@@ -41,5 +42,6 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.6",
     "sass": "^1.58.3"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }
