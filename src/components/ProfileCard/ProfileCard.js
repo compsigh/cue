@@ -1,6 +1,6 @@
-import Image from "next/image"
-import Button from "@/components/Button/Button"
-import { useRouter } from "next/router"
+import Image from 'next/image'
+import Button from '@/components/Button/Button'
+import { useRouter } from 'next/router'
 import styles from './ProfileCard.module.scss'
 
 const ProfileCard = ({ user, signOut }) => {

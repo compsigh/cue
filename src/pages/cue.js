@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
-import styles from "@/styles/Cue.module.scss"
-import ImportCard from "@/components/ImportCard/ImportCard"
-import TextCard from "@/components/TextCard/TextCard"
-import ResultCard from "@/components/ResultCard/ResultCard"
+import styles from '@/styles/Cue.module.scss'
+import ImportCard from '@/components/ImportCard/ImportCard'
+import TextCard from '@/components/TextCard/TextCard'
+import ResultCard from '@/components/ResultCard/ResultCard'
 
 export default function Cue () {
   const { data: session, status } = useSession()
-  const [importMethod, setImportMethod] = useState("")
+  const [importMethod, setImportMethod] = useState('')
   const [result, setResult] = useState()
 
   if (status === 'loading')
@@ -22,7 +22,7 @@ export default function Cue () {
     setResult(result)
   }
 
-  if (importMethod === "text" && !result)
+  if (importMethod === 'text' && !result)
     return (
       <div className={styles.textCard}>
         <TextCard onUpdateResult={handleResult} />

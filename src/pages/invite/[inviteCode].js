@@ -25,9 +25,9 @@ export default function Card ({ invite }) {
     )
 
   const conditionExplanations = {
-    'no-invite': `you won't be able to invite others to use Cue just yet.`,
-    'expires': `this invite code will expire on January 1st, 2024. (It's very likely we'll release Cue well before this date.)`,
-    'use-once': `this invite code is valid only once — please make sure you're signing up with the Google account you'd like to use with Cue.`
+    'no-invite': 'you won\'t be able to invite others to use Cue just yet.',
+    'expires': 'this invite code will expire on January 1st, 2024. (It\'s very likely we\'ll release Cue well before this date.)',
+    'use-once': 'this invite code is valid only once — please make sure you\'re signing up with the Google account you\'d like to use with Cue.'
   }
 
   return (

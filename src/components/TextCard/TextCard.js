@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useState } from 'react'
 import styles from './TextCard.module.scss'
 
 const TextCard = ({ onUpdateResult }) => {
-  const [notesInput, setNotesInput] = useState("")
+  const [notesInput, setNotesInput] = useState('')
 
   const handleChange = (result) => {
     onUpdateResult(result)
@@ -11,10 +11,10 @@ const TextCard = ({ onUpdateResult }) => {
   async function onSubmit (event) {
     event.preventDefault()
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
+      const response = await fetch('/api/generate', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({ notes: notesInput })
       })
@@ -24,7 +24,7 @@ const TextCard = ({ onUpdateResult }) => {
         throw data.error || new Error(`Request failed with status ${response.status}`)
 
       handleChange(data.result)
-      setNotesInput("")
+      setNotesInput('')
     }
     catch(error) {
       console.error(error)

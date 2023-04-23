@@ -6,19 +6,19 @@ export default async function handler (req, res) {
   const session = await getServerSession(req, res)
 
   if (!session) {
-    res.status(401).json({ error: "Unauthorized" })
+    res.status(401).json({ error: 'Unauthorized' })
     return
   }
 
   if (req.method !== 'POST') {
-    res.status(405).json({ error: "Method Not Allowed" })
+    res.status(405).json({ error: 'Method Not Allowed' })
     return
   }
 
   const { id, action, data } = req.body
 
   if (!id || !action) {
-    res.status(400).json({ error: "Bad Request" })
+    res.status(400).json({ error: 'Bad Request' })
     return
   }
 
@@ -43,5 +43,5 @@ export default async function handler (req, res) {
     return res.status(200).json(updatedUser)
   }
 
-  return res.status(400).json({ error: "Bad Request" })
+  return res.status(400).json({ error: 'Bad Request' })
 }

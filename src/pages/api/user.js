@@ -6,13 +6,13 @@ export default async function handler (req, res) {
     const session = await getServerSession(req, res)
 
     if (!session) {
-      res.status(401).json({ error: "Unauthorized" })
+      res.status(401).json({ error: 'Unauthorized' })
       return
     }
 
     const userData = await getUserSessionAndData(req, res)
     res.status(200).json(userData)
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" })
+    res.status(500).json({ error: 'Internal Server Error' })
   }
 }
