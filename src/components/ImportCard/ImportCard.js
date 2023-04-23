@@ -17,7 +17,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
             alt="Google"
             width={55}
             height={55}
-            style={{opacity: 0.5, cursor: 'not-allowed'}}
+            style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
         <Link href='#'>
@@ -26,7 +26,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
             alt="Notion"
             width={55}
             height={55}
-            style={{opacity: 0.5, cursor: 'not-allowed'}}
+            style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
         <Link href='#' onClick={handleChange}>

@@ -85,7 +85,7 @@ const Sidebar = () => {
                 alt="Review"
                 width={55}
                 height={55}
-                style={{opacity: 0.5, cursor: 'not-allowed'}}
+                style={{ opacity: 0.5, cursor: 'not-allowed' }}
               />
             )}
           </Link>
@@ -190,7 +190,7 @@ const Sidebar = () => {
               alt="Invite"
               width={55}
               height={55}
-              style={{opacity: 0.5, cursor: 'not-allowed'}}
+              style={{ opacity: 0.5, cursor: 'not-allowed' }}
               />
             </Link>
           )}
