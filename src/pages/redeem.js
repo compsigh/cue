@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import styles from '@/styles/Redeem.module.scss'
 
 export default function Redeem () {
-const [inviteCode, setInviteCode] = useState('')
+  const [inviteCode, setInviteCode] = useState('')
   const router = useRouter()
 
   return (

@@ -55,18 +55,18 @@ const Sidebar = () => {
         <li className={styles.cue}>
           <Link href='/cue'>
             {router.pathname === '/cue'
-            ? (<Image
-              src="/icons/Cue_Selected.svg"
-              alt="Cue"
-              width={55}
-              height={55}
-            />)
-            : (<Image
-              src="/icons/Cue.svg"
-              alt="Cue"
-              width={55}
-              height={55}
-            />)
+              ? (<Image
+                src="/icons/Cue_Selected.svg"
+                alt="Cue"
+                width={55}
+                height={55}
+              />)
+              : (<Image
+                src="/icons/Cue.svg"
+                alt="Cue"
+                width={55}
+                height={55}
+              />)
             }
           </Link>
         </li>
@@ -74,19 +74,19 @@ const Sidebar = () => {
         <li className={styles.review}>
           <Link href='#'>
             {router.pathname === '/review'
-            ? (<Image
-              src="/icons/Review_Selected.svg"
-              alt="Review"
-              width={55}
-              height={55}
-            />)
-            : (<Image
-              src="/icons/Review.svg"
-              alt="Review"
-              width={55}
-              height={55}
-              style={{ opacity: 0.5, cursor: 'not-allowed' }}
-            />)
+              ? (<Image
+                src="/icons/Review_Selected.svg"
+                alt="Review"
+                width={55}
+                height={55}
+              />)
+              : (<Image
+                src="/icons/Review.svg"
+                alt="Review"
+                width={55}
+                height={55}
+                style={{ opacity: 0.5, cursor: 'not-allowed' }}
+              />)
             }
           </Link>
         </li>
@@ -127,18 +127,18 @@ const Sidebar = () => {
         <li className={styles.profile}>
           <Link href='/profile'>
             {router.pathname === '/profile'
-            ? (<Image
-              src="/icons/Profile_Selected.svg"
-              alt="Profile"
-              width={55}
-              height={55}
-            />)
-            : (<Image
-              src="/icons/Profile.svg"
-              alt="Profile"
-              width={55}
-              height={55}
-            />)
+              ? (<Image
+                src="/icons/Profile_Selected.svg"
+                alt="Profile"
+                width={55}
+                height={55}
+              />)
+              : (<Image
+                src="/icons/Profile.svg"
+                alt="Profile"
+                width={55}
+                height={55}
+              />)
             }
           </Link>
         </li>
