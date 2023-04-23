@@ -1,6 +1,6 @@
 // Next imports
 import { signOut } from 'next-auth/react'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 
 // Database imports
@@ -18,9 +18,10 @@ import ProfileCard from '@/components/ProfileCard/ProfileCard'
 export default function Profile ({ user }) {
   // Clear invite code
   const router = useRouter()
+  const routerRef = useRef(router)
   useEffect(() => {
-    router.replace('/profile', undefined, { shallow: true })
-  }, [router])
+    routerRef.current.replace('/profile', undefined, { shallow: true })
+  }, [])
 
   return (
     <div className={styles.profileCard}>
