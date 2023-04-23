@@ -1,5 +1,5 @@
-import ReactMarkdown from 'react-markdown';
-import styles from './ResultCard.module.scss';
+import ReactMarkdown from 'react-markdown'
+import styles from './ResultCard.module.scss'
 
 const ResultsCard = ({ result }) => {
   return (
@@ -9,7 +9,7 @@ const ResultsCard = ({ result }) => {
         <ReactMarkdown>{result}</ReactMarkdown>
       </div>
     </div>
-  );
+  )
 }
 
-export default ResultsCard;
+export default ResultsCard

@@ -1,56 +1,56 @@
-import { Configuration, OpenAIApi } from "openai";
+import { Configuration, OpenAIApi } from 'openai'
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
-});
-const openai = new OpenAIApi(configuration);
+})
+const openai = new OpenAIApi(configuration)
 
-export default async function handler(req, res) {
+export default async function handler (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not found; please notify the developers."
+        message: 'OpenAI API key not found; please notify the developers.'
       }
-    });
-    return;
+    })
+    return
   }
 
-  const notes = req.body.notes || '';
+  const notes = req.body.notes || ''
   if (notes.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter some notes!"
+        message: 'Please enter some notes!'
       }
-    });
-    return;
+    })
+    return
   }
 
   try {
     const completion = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: 'text-davinci-003',
       prompt: generatePrompt(notes),
       temperature: 0.3,
       max_tokens: 100
-    });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    })
+    res.status(200).json({ result: completion.data.choices[0].text })
   }
-  catch(error) {
+  catch (error) {
     if (error.response) {
-      console.error(error.response.status, error.response.data);
-      res.status(error.response.status).json(error.response.data);
+      console.error(error.response.status, error.response.data)
+      res.status(error.response.status).json(error.response.data)
     }
     else {
-      console.error(`Error with OpenAI API request: ${error.message}`);
+      console.error(`Error with OpenAI API request: ${error.message}`)
       res.status(500).json({
         error: {
           message: 'An error occurred during your request.'
         }
-      });
+      })
     }
   }
 }
 
-function generatePrompt(notes) {
+function generatePrompt (notes) {
   return `From the notes below, suggest relevant study questions to use as active recall prompts.
   Below are two examples, followed by the requested notes to generate prompts for.
 
@@ -88,5 +88,5 @@ Requested notes to generate prompts for:
 ${notes}
 
 Suggested active recall prompts:
-`;
+`
 }

@@ -12,27 +12,21 @@
   },
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "rm -rf ./next && NODE_ENV=development next dev",
+    "build": "rm -rf ./next && next build",
     "start": "next start",
     "lint": "next lint"
   },
-  "eslintConfig": {
-    "rules": {
-      "indent": [
-        "error",
-        2
-      ],
-      "semi": [
-        "error",
-        "always"
-      ]
-    }
-  },
   "dependencies": {
     "@typeform/embed-react": "^2.19.0",
+    "@types/react": "^18.0.38",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-standard": "^5.0.0",
     "mongoose": "^6.9.2",
     "next": "13.2.4",
     "next-auth": "^4.20.1",
@@ -41,5 +35,6 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.6",
     "sass": "^1.58.3"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }

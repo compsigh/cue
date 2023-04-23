@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from './ImportCard.module.scss';
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from './ImportCard.module.scss'
 
 const ImportCard = ({ onUpdateImportMethod }) => {
   const handleChange = () => {
-    onUpdateImportMethod('text');
-  };
+    onUpdateImportMethod('text')
+  }
 
   return (
     <div className={styles.importCard}>
@@ -17,7 +17,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
             alt="Google"
             width={55}
             height={55}
-            style={{opacity: 0.5, cursor: 'not-allowed'}}
+            style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
         <Link href='#'>
@@ -26,7 +26,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
             alt="Notion"
             width={55}
             height={55}
-            style={{opacity: 0.5, cursor: 'not-allowed'}}
+            style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
         <Link href='#' onClick={handleChange}>
@@ -39,7 +39,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default ImportCard;
+export default ImportCard

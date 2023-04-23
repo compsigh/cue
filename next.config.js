@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: true
 }
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         protocol: 'https',
         hostname: '**.googleusercontent.com',
         port: '',
-        pathname: '/**',
+        pathname: '/**'
       }
     ]
   }

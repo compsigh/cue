@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const { Schema, model } = mongoose;
+import mongoose from 'mongoose'
+const { Schema, model } = mongoose
 
 const userSchema = new Schema({
   googleId: {
@@ -20,7 +20,7 @@ const userSchema = new Schema({
     answer: {
       type: String,
       required: false
-    },
+    }
   }],
   invitesRemaining: {
     type: Number,
@@ -33,8 +33,8 @@ const userSchema = new Schema({
     immutable: true,
     default: () => Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles' }).format(new Date())
   }
-}, { collection: 'users' });
+}, { collection: 'users' })
 
-const User = mongoose.models.User || model('User', userSchema);
+const User = mongoose.models.User || model('User', userSchema)
 
-export default User;
+export default User

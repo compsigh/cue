@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Button from "@/components/Button/Button";
-import { useRouter } from "next/router";
-import styles from './ProfileCard.module.scss';
+import Image from 'next/image'
+import Button from '@/components/Button/Button'
+import { useRouter } from 'next/router'
+import styles from './ProfileCard.module.scss'
 
 const ProfileCard = ({ user, signOut }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   return (
     <div className={styles.profileCard}>
@@ -25,7 +25,7 @@ const ProfileCard = ({ user, signOut }) => {
       <div className={styles.actions}>
         <Button
           type={'primary'}
-          onClick={() => {router.push('/saved');}}
+          onClick={() => router.push('/saved')}
           text="View saved cues"
         />
         <Button
@@ -35,7 +35,7 @@ const ProfileCard = ({ user, signOut }) => {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfileCard;
+export default ProfileCard

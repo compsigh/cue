@@ -1,5 +1,5 @@
-import connect from './db-connect.js';
-import InviteCode from '../schemas/invite-code-schema.js';
+import connect from './db-connect.js'
+import InviteCode from '../schemas/invite-code-schema.js'
 
 /**
  * Generates a specified number of invite codes, and inserts them into the database.
@@ -9,28 +9,28 @@ import InviteCode from '../schemas/invite-code-schema.js';
  * @param {array}  conditions An array of conditions to apply to the invite codes.
  * @returns {Promise<array>}  An array of invite codes.
  */
-async function generateInviteCodes(source, count, names, conditions) {
-  await connect();
-  const inviteCodes = [];
-  console.log('Names:', names);
+async function generateInviteCodes (source, count, names, conditions) {
+  await connect()
+  const inviteCodes = []
+  console.log('Names:', names)
 
   for (let i = 0; i < count; i++) {
     // If the name is already taken, generate a new one
     while (await InviteCode.findOne({ code: names[i] }))
-      names[i] = generateRandomRomanNames(1)[0];
+      names[i] = generateRandomRomanNames(1)[0]
 
     const inviteCode = {
       inviteId: (await InviteCode.countDocuments({})) + 1,
       code: names[i],
       conditions,
       source
-    };
-    console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`);
-    inviteCodes.push(inviteCode);
-    await InviteCode.create(inviteCode);
+    }
+    console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`)
+    inviteCodes.push(inviteCode)
+    await InviteCode.create(inviteCode)
   }
 
-  return inviteCodes;
+  return inviteCodes
 }
 
 /**
@@ -38,7 +38,7 @@ async function generateInviteCodes(source, count, names, conditions) {
  * @param {number} count The number of names to generate.
  * @returns {array}      An array of random Roman names.
  */
-function generateRandomRomanNames(count) {
+function generateRandomRomanNames (count) {
   const praenomens = [
     'Aulus',
     'Appius',
@@ -58,7 +58,7 @@ function generateRandomRomanNames(count) {
     'Spurius',
     'Titus',
     'Tiberius'
-  ];
+  ]
   const nomens = [
     'Julius',
     'Octavius',
@@ -70,7 +70,7 @@ function generateRandomRomanNames(count) {
     'Severus',
     'Cornelius',
     'Fabius'
-  ];
+  ]
   const cognomens = [
     'Caesar',
     'Augustus',
@@ -82,17 +82,17 @@ function generateRandomRomanNames(count) {
     'Britannicus',
     'Cicero',
     'Crassus'
-  ];
+  ]
 
-  const names = [];
+  const names = []
   for (let i = 0; i < count; i++) {
     const name = praenomens[Math.floor(Math.random() * praenomens.length)].toLowerCase() + '-' +
                  nomens[Math.floor(Math.random() * nomens.length)].toLowerCase() + '-' +
-                 cognomens[Math.floor(Math.random() * cognomens.length)].toLowerCase();
-    names.push(name);
+                 cognomens[Math.floor(Math.random() * cognomens.length)].toLowerCase()
+    names.push(name)
   }
 
-  return names;
+  return names
 }
 
-export { generateInviteCodes, generateRandomRomanNames };
+export { generateInviteCodes, generateRandomRomanNames }
