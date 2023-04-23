@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from './ImportCard.module.scss';
+import Image from "next/image"
+import Link from "next/link"
+import styles from './ImportCard.module.scss'
 
 const ImportCard = ({ onUpdateImportMethod }) => {
   const handleChange = () => {
-    onUpdateImportMethod('text');
-  };
+    onUpdateImportMethod('text')
+  }
 
   return (
     <div className={styles.importCard}>
@@ -39,7 +39,7 @@ const ImportCard = ({ onUpdateImportMethod }) => {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default ImportCard;
+export default ImportCard

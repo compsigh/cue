@@ -1,50 +1,50 @@
 // Next imports
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 
 // Style imports
-import styles from './Sidebar.module.scss';
+import styles from './Sidebar.module.scss'
 
 // Component imports
 import { PopupButton } from '@typeform/embed-react'
 
 const Sidebar = () => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const [user, setUser] = useState(null)
+  const [isLoading, setLoading] = useState(true)
+  const { data: session, status } = useSession()
+  const router = useRouter()
 
   useEffect(() => {
     const fetchUser = async () => {
-      setLoading(true);
+      setLoading(true)
 
       try {
-        const res = await fetch('/api/user');
+        const res = await fetch('/api/user')
         if (res.ok) {
-          const data = await res.json();
-          setUser(data);
+          const data = await res.json()
+          setUser(data)
         } else {
-          console.error('Error fetching user');
+          console.error('Error fetching user')
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-      setLoading(false);
-    };
+      setLoading(false)
+    }
 
     if (status === 'authenticated' && session) {
-      fetchUser();
+      fetchUser()
     }
-  }, [session, status]);
+  }, [session, status])
 
   if (isLoading)
-    return <p>Loading...</p>;
+    return <p>Loading...</p>
 
   if (!user)
-    return <p>No user</p>;
+    return <p>No user</p>
 
   return (
     <nav className={styles.sidebar}>
@@ -172,7 +172,7 @@ const Sidebar = () => {
                       invitesRemaining: user.userData.invitesRemaining - 1
                     }
                   })
-                });
+                })
               }}
               autoClose={5000}
             >
@@ -197,7 +197,7 @@ const Sidebar = () => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

@@ -37,7 +37,7 @@ export default function Home() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res);
+  const session = await getServerSession(context.req, context.res)
 
   if (session)
     return {
@@ -45,11 +45,11 @@ export async function getServerSideProps(context) {
         destination: '/profile',
         permanent: false
       }
-    };
+    }
 
   return {
     props: {
       session
     }
-  };
+  }
 }

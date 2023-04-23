@@ -1,5 +1,5 @@
-import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth/next"
+import GoogleProvider from "next-auth/providers/google"
 
 export default NextAuth({
   providers: [
@@ -12,7 +12,7 @@ export default NextAuth({
           name: profile.name,
           email: profile.email,
           image: profile.picture
-        };
+        }
       }
     })
-  ]});
+  ]})

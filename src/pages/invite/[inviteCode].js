@@ -1,13 +1,13 @@
 // Function imports
-import connect from '@/functions/db-connect.js';
-import InviteCode from '@/schemas/invite-code-schema.js';
-import { signIn } from 'next-auth/react';
+import connect from '@/functions/db-connect.js'
+import InviteCode from '@/schemas/invite-code-schema.js'
+import { signIn } from 'next-auth/react'
 
 // Component imports
-import Button from '@/components/Button/Button';
+import Button from '@/components/Button/Button'
 
 // Style imports
-import styles from './[inviteCode].module.scss';
+import styles from './[inviteCode].module.scss'
 
 export default function Card({ invite }) {
   if (!invite)
@@ -15,20 +15,20 @@ export default function Card({ invite }) {
       <div className={styles.invite}>
         <h1>Sorry, that invite code does not exist!</h1>
       </div>
-    );
+    )
 
   if (!invite?.valid)
     return (
       <div className={styles.invite}>
         <h1>Sorry, that invite code is no longer valid!</h1>
       </div>
-    );
+    )
 
   const conditionExplanations = {
     'no-invite': `you won't be able to invite others to use Cue just yet.`,
     'expires': `this invite code will expire on January 1st, 2024. (It's very likely we'll release Cue well before this date.)`,
     'use-once': `this invite code is valid only once — please make sure you're signing up with the Google account you'd like to use with Cue.`
-  };
+  }
 
   return (
     <div className={styles.invite}>
@@ -60,18 +60,18 @@ export default function Card({ invite }) {
       />
 
     </div>
-  );
+  )
 }
 
 export async function getServerSideProps(context) {
-  const { inviteCode } = context.params;
-  await connect();
-  const invite = await InviteCode.findOne({ code: inviteCode });
-  const inviteJSON = JSON.parse(JSON.stringify(invite));
+  const { inviteCode } = context.params
+  await connect()
+  const invite = await InviteCode.findOne({ code: inviteCode })
+  const inviteJSON = JSON.parse(JSON.stringify(invite))
 
   return {
     props: {
       invite: inviteJSON
     }
-  };
+  }
 }

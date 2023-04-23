@@ -8,8 +8,8 @@ import { useRouter } from 'next/router'
 import styles from '@/styles/Redeem.module.scss'
 
 export default function Redeem() {
-  const [inviteCode, setInviteCode] = useState('');
-  const router = useRouter();
+const [inviteCode, setInviteCode] = useState('')
+  const router = useRouter()
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function Redeem() {
               onChange={(e) => setInviteCode(e.target.value)}
             />
             <button type="submit" onClick={(e) => {
-              e.preventDefault();
+              e.preventDefault()
               router.push(`/invite/${inviteCode}`)}}>
             </button>
           </form>
@@ -44,7 +44,7 @@ export default function Redeem() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res);
+  const session = await getServerSession(context.req, context.res)
 
   if (session)
     return {
@@ -52,11 +52,11 @@ export async function getServerSideProps(context) {
         destination: '/profile',
         permanent: false
       }
-    };
+    }
 
   return {
     props: {
       session
     }
-  };
+  }
 }
