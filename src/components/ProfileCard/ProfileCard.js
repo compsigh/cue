@@ -25,7 +25,7 @@ const ProfileCard = ({ user, signOut }) => {
       <div className={styles.actions}>
         <Button
           type={'primary'}
-          onClick={() => {router.push('/saved')}}
+          onClick={() => router.push('/saved')}
           text="View saved cues"
         />
         <Button

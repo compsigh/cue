@@ -34,7 +34,8 @@ const [inviteCode, setInviteCode] = useState('')
             />
             <button type="submit" onClick={(e) => {
               e.preventDefault()
-              router.push(`/invite/${inviteCode}`)}}>
+              router.push(`/invite/${inviteCode}`)
+            }}>
             </button>
           </form>
         </div>

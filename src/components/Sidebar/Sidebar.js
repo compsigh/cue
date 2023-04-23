@@ -26,10 +26,12 @@ const Sidebar = () => {
         if (res.ok) {
           const data = await res.json()
           setUser(data)
-        } else {
+        }
+        else {
           console.error('Error fetching user')
         }
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error)
       }
       setLoading(false)
