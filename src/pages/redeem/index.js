@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 // Style imports
-import styles from '@/styles/Redeem.module.scss'
+import styles from './Redeem.module.scss'
 
 export default function Redeem () {
   const [inviteCode, setInviteCode] = useState('')

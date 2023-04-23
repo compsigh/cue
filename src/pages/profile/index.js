@@ -10,7 +10,7 @@ import User from '@/schemas/user-schema'
 import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
 
 // Style imports
-import styles from '@/styles/Profile.module.scss'
+import styles from './Profile.module.scss'
 
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard'

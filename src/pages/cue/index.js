@@ -1,7 +1,12 @@
+// Next imports
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
-import styles from '@/styles/Cue.module.scss'
+
+// Style imports
+import styles from './Cue.module.scss'
+
+// Component imports
 import ImportCard from '@/components/ImportCard/ImportCard'
 import TextCard from '@/components/TextCard/TextCard'
 import ResultCard from '@/components/ResultCard/ResultCard'
