@@ -142,8 +142,8 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.invite}>
-          {user.userData.invitesRemaining !== 0 && (
-            <PopupButton
+          {user.userData.invitesRemaining !== 0
+            ? (<PopupButton
               id="httmb9Wo"
               size={80}
               style={{
@@ -179,18 +179,17 @@ const Sidebar = () => {
                 width={55}
                 height={55}
               />
-            </PopupButton>
-          ) || (
-            <Link href='#'>
+            </PopupButton>)
+            : (<Link href='#'>
               <Image
-              src="/icons/Invite.svg"
-              alt="Invite"
-              width={55}
-              height={55}
-              style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                src="/icons/Invite.svg"
+                alt="Invite"
+                width={55}
+                height={55}
+                style={{ opacity: 0.5, cursor: 'not-allowed' }}
               />
-            </Link>
-          )}
+            </Link>)
+          }
         </li>
       </ul>
     </nav>

@@ -26,7 +26,7 @@ const TextCard = ({ onUpdateResult }) => {
       handleChange(data.result)
       setNotesInput('')
     }
-    catch(error) {
+    catch (error) {
       console.error(error)
       alert(error.message)
     }
@@ -50,6 +50,5 @@ const TextCard = ({ onUpdateResult }) => {
     </div>
   )
 }
-
 
 export default TextCard

@@ -20,7 +20,7 @@ export default function Profile ({ user }) {
   const router = useRouter()
   useEffect(() => {
     router.replace('/profile', undefined, { shallow: true })
-  }, [])
+  }, [router])
 
   return (
     <div className={styles.profileCard}>

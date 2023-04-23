@@ -11,6 +11,14 @@
     "curly": [
       "error",
       "multi"
+    ],
+    "camelcase": [
+      "error",
+      {
+        "ignoreImports": true,
+        "ignoreDestructuring": true,
+        "allow": ["max_tokens"]
+      }
     ]
   }
 }

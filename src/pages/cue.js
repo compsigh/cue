@@ -7,7 +7,7 @@ import TextCard from '@/components/TextCard/TextCard'
 import ResultCard from '@/components/ResultCard/ResultCard'
 
 export default function Cue () {
-  const { data: session, status } = useSession()
+  const { data: status } = useSession()
   const [importMethod, setImportMethod] = useState('')
   const [result, setResult] = useState()
 
