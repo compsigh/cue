@@ -20,7 +20,7 @@ const userSchema = new Schema({
     answer: {
       type: String,
       required: false
-    },
+    }
   }],
   invitesRemaining: {
     type: Number,

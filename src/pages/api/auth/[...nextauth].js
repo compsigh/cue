@@ -14,5 +14,5 @@ export default NextAuth({
           image: profile.picture
         };
       }
-    }),
+    })
   ]});

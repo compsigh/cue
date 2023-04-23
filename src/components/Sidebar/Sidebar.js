@@ -111,7 +111,7 @@ const Sidebar = () => {
               background: 'none',
               padding: 0,
               margin: 0,
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
             autoClose={5000}
           >
@@ -154,24 +154,24 @@ const Sidebar = () => {
                 background: 'none',
                 padding: 0,
                 margin: 0,
-                cursor: 'pointer',
+                cursor: 'pointer'
               }}
               hidden={{
-                invites: user.userData.invitesRemaining,
+                invites: user.userData.invitesRemaining
               }}
               onSubmit={() => {
                 fetch('/api/manage-user', {
                   method: 'POST',
                   headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
                     id: user.id,
                     action: 'update',
                     data: {
-                      invitesRemaining: user.userData.invitesRemaining - 1,
-                    },
-                  }),
+                      invitesRemaining: user.userData.invitesRemaining - 1
+                    }
+                  })
                 });
               }}
               autoClose={5000}

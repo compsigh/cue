@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
         user: {
           ...sessionData,
           ...userData
-        },
+        }
       }
     };
 
@@ -93,7 +93,7 @@ export async function getServerSideProps(context) {
         user: {
           ...sessionData,
           ...userData
-        },
+        }
       }
     };
   }

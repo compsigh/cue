@@ -14,9 +14,9 @@ const TextCard = ({ onUpdateResult }) => {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ notes: notesInput }),
+        body: JSON.stringify({ notes: notesInput })
       });
 
       const data = await response.json();

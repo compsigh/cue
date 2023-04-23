@@ -27,7 +27,7 @@ export default async function handler(req, res) {
   if (action === 'create') {
     const newUser = await User.create({
       googleId: id,
-      cues: [],
+      cues: []
       // TODO: figure out invitesRemaining based on whether the user was invited or not
       });
     return res.status(200).json(newUser);
