@@ -59,8 +59,16 @@ export default async function handler (req, res) {
 }
 
 function generatePrompt (notes) {
-  return `From the notes below, suggest relevant study questions to use as active recall prompts.
-  Below are two examples, followed by the requested notes to generate prompts for.
+  return `From the given notes, suggest study questions to use as active recall prompts.
+Keep these in mind to curate your response:
+- Only suggest questions in the context of the given notes, and not what you already know about the topic.
+- Pick only the most relevant and high-level pieces of information to convert into questions.
+- For each suggested question, generate a potential answer. These answers, like your suggested questions, should only be derived from the given notes, and not any prior knowledge of the subject.
+- Format your response as a JSON object, containing the following:
+  - A \`notes_identified\` key indicating the amount of separate notes processed. These may be formatted in the given notes as Markdown bullet points (-), newlines, or some other form of delineation. It is up to you to determine what that is.
+  - A \`cues\` key, whose value is an array of objects, each object containing two properties: \`question\`, for your suggested question, and \`answer\` for your generated potential answer to your suggested question.
+
+Below are two examples of notes and relevant prompts for those notes.
 
 First set of notes:
 - To access knowledge is to access power; distribution of knowledge goes hand-in-hand with distribution of power
@@ -92,7 +100,8 @@ Second set of active recall prompts:
 - What did the arrival of Greek philosophy mean for Rome?
 - How were professional orators a threat for the Roman elite?
 
-Requested notes to generate prompts for:
+Now, below are the given notes to generate prompts for.
+
 ${notes}
 
 Suggested active recall prompts:
