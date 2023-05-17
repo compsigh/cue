@@ -35,7 +35,6 @@ export default function Cue () {
     )
 
   if (result) {
-    console.log(result)
     return (
       <div className={styles.resultCard}>
         <ResultCard result={result} />
