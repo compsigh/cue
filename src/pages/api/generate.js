@@ -44,7 +44,6 @@ export default async function handler (req, res) {
         }
       ],
       temperature: 0.3,
-      max_tokens: 100
     })
     res.status(200).json({ result: completion.data.choices[0].message.content })
   }
