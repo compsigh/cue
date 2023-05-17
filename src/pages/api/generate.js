@@ -34,13 +34,19 @@ export default async function handler (req, res) {
   }
 
   try {
-    const completion = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: generatePrompt(notes),
+    // TODO: stream completion
+    const completion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [
+        {
+          role: 'user',
+          content: generatePrompt(notes)
+        }
+      ],
       temperature: 0.3,
       max_tokens: 100
     })
-    res.status(200).json({ result: completion.data.choices[0].text })
+    res.status(200).json({ result: completion.data.choices[0].message.content })
   }
   catch (error) {
     if (error.response) {
