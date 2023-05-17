@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai'
+import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
@@ -6,6 +7,13 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 
 export default async function handler (req, res) {
+  const user = await getUserSessionAndData(req, res)
+
+  if (!user) {
+    res.status(401).json({ error: 'Unauthorized' })
+    return
+  }
+
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
