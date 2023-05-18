@@ -23,6 +23,7 @@ const TextCard = ({ onUpdateResult }) => {
       if (response.status !== 200)
         throw data.error || new Error(`Request failed with status ${response.status}`)
 
+      // TODO: disable button to indicate loading
       handleChange(data.result)
       setNotesInput('')
     }
