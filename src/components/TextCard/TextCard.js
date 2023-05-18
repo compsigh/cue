@@ -3,6 +3,7 @@ import styles from './TextCard.module.scss'
 
 const TextCard = ({ onUpdateResult }) => {
   const [notesInput, setNotesInput] = useState('')
+  const [isGenerating, setIsGenerating] = useState(false)
 
   const handleChange = (result) => {
     onUpdateResult(result)
@@ -10,6 +11,8 @@ const TextCard = ({ onUpdateResult }) => {
 
   async function onSubmit (event) {
     event.preventDefault()
+    setIsGenerating(true)
+
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -23,13 +26,15 @@ const TextCard = ({ onUpdateResult }) => {
       if (response.status !== 200)
         throw data.error || new Error(`Request failed with status ${response.status}`)
 
-      // TODO: disable button to indicate loading
       handleChange(data.result)
       setNotesInput('')
     }
     catch (error) {
       console.error(error)
       alert(error.message)
+    }
+    finally {
+      setIsGenerating(false)
     }
   }
 
@@ -45,7 +50,7 @@ const TextCard = ({ onUpdateResult }) => {
             value={notesInput}
             onChange={(e) => setNotesInput(e.target.value)}
           />
-          <button type="submit"></button>
+          <button type="submit" disabled={isGenerating}></button>
         </form>
       </main>
     </div>

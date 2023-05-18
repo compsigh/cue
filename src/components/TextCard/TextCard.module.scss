@@ -54,4 +54,11 @@ div.textCard {
   &:active {
     background-image: url(./../../../public/icons/Cue_Selected.svg);
   }
+
+  /* Type=Primary, State=Disabled */
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
