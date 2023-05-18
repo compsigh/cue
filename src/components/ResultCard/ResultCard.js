@@ -9,7 +9,7 @@ const ResultsCard = ({ result }) => {
       <div className={styles.results}>
         {result.cues.map((cue, index) => (
           <div key={index} className={styles.cue}>
-            <ReactMarkdown children={cue.question} />
+            <ReactMarkdown>{cue.question}</ReactMarkdown>
           </div>
         ))}
       </div>
