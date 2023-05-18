@@ -69,7 +69,7 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        <li className={styles.review}>
+        {/* <li className={styles.review}>
           <Link href='#'>
             {router.pathname === '/review'
               ? (<Image
@@ -87,7 +87,7 @@ const Sidebar = () => {
               />)
             }
           </Link>
-        </li>
+        </li> */}
 
         <li className={styles.help}>
           <Link href='https://docs.cue.study'>
