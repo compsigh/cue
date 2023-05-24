@@ -22,4 +22,11 @@ div.cue {
   &:last-child {
     margin-bottom: inherit;
   }
+
+  summary {
+    font-family: var(--font-code);
+    color: colors.$gray;
+    cursor: pointer;
+    width: fit-content;
+  }
 }

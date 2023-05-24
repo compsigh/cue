@@ -10,6 +10,10 @@ const ResultsCard = ({ result }) => {
         {result.cues.map((cue, index) => (
           <div key={index} className={styles.cue}>
             <ReactMarkdown>{cue.question}</ReactMarkdown>
+            <details>
+              <summary>A potential answer</summary>
+              <ReactMarkdown>{cue.answer}</ReactMarkdown>
+            </details>
           </div>
         ))}
       </div>
