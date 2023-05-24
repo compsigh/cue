@@ -34,14 +34,12 @@ export default function Cue () {
       </div>
     )
 
-  if (result) {
-    console.log(result)
+  if (result)
     return (
       <div className={styles.resultCard}>
         <ResultCard result={result} />
       </div>
     )
-  }
 
   return (
       <div className={styles.importCard}>
