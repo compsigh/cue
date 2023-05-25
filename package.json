@@ -27,14 +27,16 @@
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-standard": "^5.0.0",
+    "eventsource-parser": "^1.0.0",
     "mongoose": "^6.9.2",
     "next": "13.2.4",
     "next-auth": "^4.20.1",
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "^8.0.6",
-    "sass": "^1.58.3"
+    "react-loader-spinner": "^5.3.4",
+    "sass": "^1.58.3",
+    "typewriter-effect": "^2.19.0"
   },
   "packageManager": "yarn@3.5.0"
 }
