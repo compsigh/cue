@@ -45,7 +45,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:18.2.0"],\
             ["react-markdown", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:8.0.7"],\
-            ["sass", "npm:1.62.1"]\
+            ["sass", "npm:1.62.1"],\
+            ["typewriter-effect", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:2.19.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -2256,7 +2257,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:18.2.0"],\
             ["react-markdown", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:8.0.7"],\
-            ["sass", "npm:1.62.1"]\
+            ["sass", "npm:1.62.1"],\
+            ["typewriter-effect", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:2.19.0"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -5645,6 +5647,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["performance-now", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/performance-now-npm-2.1.0-45e3ce7e49-534e641aa8.zip/node_modules/performance-now/",\
+          "packageDependencies": [\
+            ["performance-now", "npm:2.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["picocolors", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/picocolors-npm-1.0.0-d81e0b1927-a2e8092dd8.zip/node_modules/picocolors/",\
@@ -5793,6 +5804,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/queue-microtask-npm-1.2.3-fcc98e4e2d-b676f8c040.zip/node_modules/queue-microtask/",\
           "packageDependencies": [\
             ["queue-microtask", "npm:1.2.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["raf", [\
+        ["npm:3.4.1", {\
+          "packageLocation": "./.yarn/cache/raf-npm-3.4.1-c25d48d76e-50ba284e48.zip/node_modules/raf/",\
+          "packageDependencies": [\
+            ["raf", "npm:3.4.1"],\
+            ["performance-now", "npm:2.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6641,6 +6662,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["call-bind", "npm:1.0.2"],\
             ["for-each", "npm:0.3.3"],\
             ["is-typed-array", "npm:1.1.10"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["typewriter-effect", [\
+        ["npm:2.19.0", {\
+          "packageLocation": "./.yarn/cache/typewriter-effect-npm-2.19.0-8570b26022-e1caa8cc9f.zip/node_modules/typewriter-effect/",\
+          "packageDependencies": [\
+            ["typewriter-effect", "npm:2.19.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:2.19.0", {\
+          "packageLocation": "./.yarn/__virtual__/typewriter-effect-virtual-f1fbafa50b/0/cache/typewriter-effect-npm-2.19.0-8570b26022-e1caa8cc9f.zip/node_modules/typewriter-effect/",\
+          "packageDependencies": [\
+            ["typewriter-effect", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:2.19.0"],\
+            ["@types/react", "npm:18.2.7"],\
+            ["@types/react-dom", null],\
+            ["prop-types", "npm:15.8.1"],\
+            ["raf", "npm:3.4.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:c55b0889b6a7912146f6b9edeec171a1f00834ad025a99f5053aff6b50eda9a1e0b3ebd0ac010ea642672e610f66006bdd05b1b0390cc154cb8678a4339eb366#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
