@@ -1,41 +1,13 @@
 import { useState } from 'react'
 import styles from './TextCard.module.scss'
 
-const TextCard = ({ onUpdateResult }) => {
-  const [notesInput, setNotesInput] = useState('')
-  const [isGenerating, setIsGenerating] = useState(false)
-
-  const handleChange = (result) => {
-    onUpdateResult(result)
-  }
+const TextCard = ({ onUpdateNotes, onUpdateSubmitted }) => {
+  const [notes, setNotes] = useState('')
 
   async function onSubmit (event) {
     event.preventDefault()
-    setIsGenerating(true)
-
-    try {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ notes: notesInput })
-      })
-
-      const data = await response.json()
-      if (response.status !== 200)
-        throw data.error || new Error(`Request failed with status ${response.status}`)
-
-      handleChange(data.result)
-      setNotesInput('')
-    }
-    catch (error) {
-      console.error(error)
-      alert(error.message)
-    }
-    finally {
-      setIsGenerating(false)
-    }
+    onUpdateNotes(notes)
+    onUpdateSubmitted(true)
   }
 
   return (
@@ -47,10 +19,10 @@ const TextCard = ({ onUpdateResult }) => {
             type="textarea"
             name="notes"
             placeholder="The Roman Republic..."
-            value={notesInput}
-            onChange={(e) => setNotesInput(e.target.value)}
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
           />
-          <button type="submit" disabled={isGenerating}></button>
+          <button type="submit"></button>
         </form>
       </main>
     </div>
