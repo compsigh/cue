@@ -22,7 +22,6 @@ export default function Cue () {
     const generate = async () => {
       setResult('')
       setLoading(true)
-      console.log('[page] [generate()] calling generate API with notes: ', notes)
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: {

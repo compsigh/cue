@@ -66,8 +66,8 @@ Suggested active recall prompts:
 
 export default async function handler (req, res) {
   try {
-    console.log('[generate] req: ', req)
     // TODO: edge function unprotected
+    // console.log('[generate] req: ', req)
     /*
       const user = await getUserSessionAndData(req, res)
 
