@@ -1,67 +1,11 @@
-import { Configuration, OpenAIApi } from 'openai'
-import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
+// import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
+import { OpenAIStream } from '../../utils/OpenAIStream'
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
-const openai = new OpenAIApi(configuration)
+if (!process.env.OPENAI_API_KEY)
+  throw new Error('Missing OpenAI API key.')
 
-export default async function handler (req, res) {
-  const user = await getUserSessionAndData(req, res)
-
-  if (!user) {
-    res.status(401).json({ error: 'Unauthorized' })
-    return
-  }
-
-  if (!configuration.apiKey) {
-    res.status(500).json({
-      error: {
-        message: 'OpenAI API key not found; please notify the developers.'
-      }
-    })
-    return
-  }
-
-  const notes = req.body.notes || ''
-  if (notes.trim().length === 0) {
-    res.status(400).json({
-      error: {
-        message: 'Please enter some notes!'
-      }
-    })
-    return
-  }
-
-  try {
-    // TODO: stream completion
-    const completion = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [
-        {
-          role: 'user',
-          content: generatePrompt(notes)
-        }
-      ],
-      temperature: 0.3,
-      user: user.id
-    })
-    res.status(200).json({ result: completion.data.choices[0].message.content })
-  }
-  catch (error) {
-    if (error.response) {
-      console.error(error.response.status, error.response.data)
-      res.status(error.response.status).json(error.response.data)
-    }
-    else {
-      console.error(`Error with OpenAI API request: ${error.message}`)
-      res.status(500).json({
-        error: {
-          message: 'An error occurred during your request.'
-        }
-      })
-    }
-  }
+export const config = {
+  runtime: 'edge'
 }
 
 function generatePrompt (notes) {
@@ -113,3 +57,36 @@ ${notes}
 Suggested active recall prompts:
 `
 }
+
+export default async function handler (req, res) {
+  try {
+    console.log('[generate] req: ', req)
+    // TODO: edge function unprotected
+    // const user = await getUserSessionAndData(req, res)
+
+    // if (!user) {
+      //   res.status(401).json({ error: 'Unauthorized' })
+      //   return
+      // }
+
+      const { notes } = await req.json()
+      console.log('[generate] received notes: ', notes)
+
+      if (!notes)
+      return new Response('Missing notes.', { status: 400 })
+
+      const payload = {
+        model: 'gpt-4',
+        messages: [{ role: 'user', content: generatePrompt(notes) }],
+        temperature: 0.3,
+        // user: user.id,
+        stream: true
+      }
+
+      const stream = await OpenAIStream(payload)
+      return new Response(stream)
+
+    } catch (error) {
+      console.error('[generate] error: ', error)
+    }}
+
