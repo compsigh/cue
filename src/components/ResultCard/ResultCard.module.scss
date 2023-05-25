@@ -29,4 +29,9 @@ div.cue {
     cursor: pointer;
     width: fit-content;
   }
+
+  /* Typewriter */
+  span {
+    font-family: var(--font-primary);
+  }
 }
