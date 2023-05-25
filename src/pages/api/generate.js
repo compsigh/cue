@@ -68,31 +68,32 @@ export default async function handler (req, res) {
   try {
     console.log('[generate] req: ', req)
     // TODO: edge function unprotected
-    // const user = await getUserSessionAndData(req, res)
+    /*
+      const user = await getUserSessionAndData(req, res)
 
-    // if (!user) {
-      //   res.status(401).json({ error: 'Unauthorized' })
-      //   return
-      // }
+      if (!user) {
+        res.status(401).json({ error: 'Unauthorized' })
+        return
+      }
+    */
 
-      const { notes } = await req.json()
-      console.log('[generate] received notes: ', notes)
+    const { notes } = await req.json()
 
-      if (!notes)
+    if (!notes)
       return new Response('Missing notes.', { status: 400 })
 
-      const payload = {
-        model: 'gpt-4',
-        messages: [{ role: 'user', content: generatePrompt(notes) }],
-        temperature: 0.3,
-        // user: user.id,
-        stream: true
-      }
+    const payload = {
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: generatePrompt(notes) }],
+      temperature: 0.3,
+      // user: user.id,
+      stream: true
+    }
 
-      const stream = await OpenAIStream(payload)
-      return new Response(stream)
-
-    } catch (error) {
-      console.error('[generate] error: ', error)
-    }}
-
+    const stream = await OpenAIStream(payload)
+    return new Response(stream)
+  }
+  catch (error) {
+    console.error('[generate] error: ', error)
+  }
+}

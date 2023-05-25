@@ -8,7 +8,7 @@ const parseResponse = (result) => {
 
   // Starting from line 1 because line 0 has the $NOTES_IDENTIFIED value
   // TODO: use notes_identified
-  for(let i = 1; i < lines.length; i += 2) {
+  for (let i = 1; i < lines.length; i += 2) {
     const cue = { question: lines[i], answer: lines[i + 1] }
     cues.push(cue)
   }

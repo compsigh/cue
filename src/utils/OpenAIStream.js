@@ -2,7 +2,7 @@
 
 import { createParser } from 'eventsource-parser'
 
-export async function OpenAIStream(payload) {
+export async function OpenAIStream (payload) {
   const encoder = new TextEncoder()
   const decoder = new TextDecoder()
 
@@ -12,15 +12,15 @@ export async function OpenAIStream(payload) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ''}`,
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ''}`
     },
-    body: JSON.stringify(payload),
-  });
+    body: JSON.stringify(payload)
+  })
 
   const stream = new ReadableStream({
-    async start(controller) {
+    async start (controller) {
       // callback
-      function onParse(event) {
+      function onParse (event) {
         if (event.type === 'event') {
           const data = event.data
           // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
@@ -37,7 +37,8 @@ export async function OpenAIStream(payload) {
             const queue = encoder.encode(text)
             controller.enqueue(queue)
             counter++
-          } catch (e) {
+          }
+          catch (e) {
             // maybe parse error
             controller.error(e)
           }
@@ -48,9 +49,8 @@ export async function OpenAIStream(payload) {
       // this ensures we properly read chunks and invoke an event for each SSE event stream
       const parser = createParser(onParse)
       // https://web.dev/streams/#asynchronous-iteration
-      for await (const chunk of res.body) {
+      for await (const chunk of res.body)
         parser.feed(decoder.decode(chunk))
-      }
     }
   })
 

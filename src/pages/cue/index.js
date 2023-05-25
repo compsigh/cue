@@ -18,14 +18,47 @@ export default function Cue () {
   const [notes, setNotes] = useState('')
   const [result, setResult] = useState('')
 
+  useEffect(() => {
+    const generate = async () => {
+      setResult('')
+      setLoading(true)
+      console.log('[page] [generate()] calling generate API with notes: ', notes)
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ notes })
+      })
+
+      if (!response.ok)
+        throw new Error(response.statusText)
+
+      // This data is a ReadableStream
+      const data = response.body
+      if (!data)
+        return
+
+      const reader = data.getReader()
+      const decoder = new TextDecoder()
+      let done = false
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read()
+        done = doneReading
+        const chunkValue = decoder.decode(value)
+        setResult((prev) => prev + chunkValue)
+      }
+      setLoading(false)
+    }
+
+    if (submitted)
+      generate()
+  }, [submitted, notes])
+
   const { data: status } = useSession()
   if (status === 'loading')
     return <p>Loading...</p>
-
-  useEffect(() => {
-    if (submitted)
-      generate()
-  }, [submitted])
 
   function handleImportMethod (method) {
     setImportMethod(method)
@@ -33,39 +66,6 @@ export default function Cue () {
 
   function handleNotes (notes) {
     setNotes(notes)
-  }
-
-  const generate = async () => {
-    setResult('')
-    setLoading(true)
-    console.log('[page] [generate()] calling generate API with notes: ', notes)
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ notes }),
-    })
-
-    if (!response.ok)
-      throw new Error(response.statusText)
-
-    // This data is a ReadableStream
-    const data = response.body
-    if (!data)
-      return
-
-    const reader = data.getReader()
-    const decoder = new TextDecoder()
-    let done = false
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read()
-      done = doneReading
-      const chunkValue = decoder.decode(value)
-      setResult((prev) => prev + chunkValue)
-    }
-    setLoading(false)
   }
 
   function handleSubmitted (submitted) {
