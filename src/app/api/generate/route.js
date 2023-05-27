@@ -12,9 +12,7 @@ import { OpenAIStream } from '../../../utils/OpenAIStream'
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
 
-export const config = {
-  runtime: 'edge'
-}
+export const runtime = 'edge';
 
 function generatePrompt (notes) {
   return `From the given notes, suggest study questions to use as active recall prompts.
