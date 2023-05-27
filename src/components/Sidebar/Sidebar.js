@@ -40,12 +40,6 @@ const Sidebar = () => {
       fetchUser()
   }, [session, status])
 
-  if (isLoading)
-    return <p>Loading...</p>
-
-  if (!user)
-    return <p>No user</p>
-
   return (
     <nav className={styles.sidebar}>
       <ul>
@@ -142,8 +136,21 @@ const Sidebar = () => {
         </li>
 
         <li className={styles.invite}>
-          {user.userData.invitesRemaining !== 0
-            ? (<PopupButton
+          {
+            (!user || isLoading) &&
+            (<Link href='#'>
+              <Image
+                src="/icons/Invite.svg"
+                alt="Invite"
+                width={55}
+                height={55}
+                style={{ opacity: 0.5, cursor: 'not-allowed' }}
+              />
+            </Link>)
+          }
+          {
+            (!isLoading && user && user.userData.invitesRemaining !== 0) &&
+            (<PopupButton
               id="httmb9Wo"
               size={80}
               style={{
@@ -180,15 +187,6 @@ const Sidebar = () => {
                 height={55}
               />
             </PopupButton>)
-            : (<Link href='#'>
-              <Image
-                src="/icons/Invite.svg"
-                alt="Invite"
-                width={55}
-                height={55}
-                style={{ opacity: 0.5, cursor: 'not-allowed' }}
-              />
-            </Link>)
           }
         </li>
       </ul>
