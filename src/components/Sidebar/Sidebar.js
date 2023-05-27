@@ -3,7 +3,7 @@
 // Next imports
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 
@@ -17,7 +17,6 @@ const Sidebar = () => {
   const [user, setUser] = useState(null)
   const [isLoading, setLoading] = useState(true)
   const { data: session, status } = useSession()
-  const router = useRouter()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -48,7 +47,7 @@ const Sidebar = () => {
   if (!user)
     return <p>No user</p>
 
-  const path = router.pathname
+  const path = usePathname()
   const showSidebar = path !== '/' && path !== '/redeem' && !path.includes('/invite')
   if (!showSidebar)
     return <></>
@@ -59,7 +58,7 @@ const Sidebar = () => {
 
         <li className={styles.cue}>
           <Link href='/cue'>
-            {router.pathname === '/cue'
+            {path === '/cue'
               ? (<Image
                 src="/icons/Cue_Selected.svg"
                 alt="Cue"
@@ -78,7 +77,7 @@ const Sidebar = () => {
 
         {/* <li className={styles.review}>
           <Link href='#'>
-            {router.pathname === '/review'
+            {path === '/review'
               ? (<Image
                 src="/icons/Review_Selected.svg"
                 alt="Review"
@@ -131,7 +130,7 @@ const Sidebar = () => {
 
         <li className={styles.profile}>
           <Link href='/profile'>
-            {router.pathname === '/profile'
+            {path === '/profile'
               ? (<Image
                 src="/icons/Profile_Selected.svg"
                 alt="Profile"
