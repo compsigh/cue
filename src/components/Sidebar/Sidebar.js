@@ -1,3 +1,5 @@
+'use client'
+
 // Next imports
 import Image from 'next/image'
 import Link from 'next/link'
@@ -45,6 +47,11 @@ const Sidebar = () => {
 
   if (!user)
     return <p>No user</p>
+
+  const path = router.pathname
+  const showSidebar = path !== '/' && path !== '/redeem' && !path.includes('/invite')
+  if (!showSidebar)
+    return <></>
 
   return (
     <nav className={styles.sidebar}>
