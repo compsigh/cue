@@ -13,7 +13,7 @@ import styles from './Sidebar.module.scss'
 // Component imports
 import { PopupButton } from '@typeform/embed-react'
 
-const Sidebar = () => {
+export default function Sidebar () {
   const [user, setUser] = useState(null)
   const [isLoading, setLoading] = useState(true)
   const { data: session, status } = useSession()
@@ -23,7 +23,7 @@ const Sidebar = () => {
       setLoading(true)
 
       try {
-        const res = await fetch('/api/user')
+        const res = await fetch('/api/user') // TODO: remove self fetch call
         if (res.ok) {
           const data = await res.json()
           setUser(data)
@@ -58,42 +58,14 @@ const Sidebar = () => {
 
         <li className={styles.cue}>
           <Link href='/cue'>
-            {path === '/cue'
-              ? (<Image
-                src="/icons/Cue_Selected.svg"
-                alt="Cue"
-                width={55}
-                height={55}
-              />)
-              : (<Image
-                src="/icons/Cue.svg"
-                alt="Cue"
-                width={55}
-                height={55}
-              />)
-            }
+            <Image
+              src={path === '/cue' ? '/icons/Cue_Selected.svg' : '/icons/Cue.svg'}
+              alt="Cue"
+              width={55}
+              height={55}
+            />
           </Link>
         </li>
-
-        {/* <li className={styles.review}>
-          <Link href='#'>
-            {path === '/review'
-              ? (<Image
-                src="/icons/Review_Selected.svg"
-                alt="Review"
-                width={55}
-                height={55}
-              />)
-              : (<Image
-                src="/icons/Review.svg"
-                alt="Review"
-                width={55}
-                height={55}
-                style={{ opacity: 0.5, cursor: 'not-allowed' }}
-              />)
-            }
-          </Link>
-        </li> */}
 
         <li className={styles.help}>
           <Link href='https://docs.cue.study'>
@@ -130,20 +102,12 @@ const Sidebar = () => {
 
         <li className={styles.profile}>
           <Link href='/profile'>
-            {path === '/profile'
-              ? (<Image
-                src="/icons/Profile_Selected.svg"
-                alt="Profile"
-                width={55}
-                height={55}
-              />)
-              : (<Image
-                src="/icons/Profile.svg"
-                alt="Profile"
-                width={55}
-                height={55}
-              />)
-            }
+            <Image
+              src={path === '/profile' ? '/icons/Profile_Selected.svg' : '/icons/Profile.svg'}
+              alt="Profile"
+              width={55}
+              height={55}
+            />
           </Link>
         </li>
 
@@ -201,5 +165,3 @@ const Sidebar = () => {
     </nav>
   )
 }
-
-export default Sidebar
