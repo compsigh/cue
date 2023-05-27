@@ -1,5 +1,13 @@
-// import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
-import { OpenAIStream } from '../../utils/OpenAIStream'
+// Auth.js
+import { getServerSession } from 'next-auth/next'
+import { getToken } from 'next-auth/jwt'
+
+// Database imports
+import connect from '@/functions/db-connect.js'
+import User from '@/schemas/user-schema.js'
+
+// Utils imports
+import { OpenAIStream } from '../../../utils/OpenAIStream'
 
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
@@ -64,18 +72,17 @@ Suggested active recall prompts:
 `
 }
 
-export default async function handler (req, res) {
+export async function POST (req) {
   try {
-    // TODO: edge function unprotected
-    // console.log('[generate] req: ', req)
-    /*
-      const user = await getUserSessionAndData(req, res)
+    const session = await getServerSession()
 
-      if (!user) {
-        res.status(401).json({ error: 'Unauthorized' })
-        return
-      }
-    */
+    if (!session)
+      return new Response('Unauthorized', { status: 401 })
+
+    // Search the database for the user's ID
+    await connect()
+    const token = await getToken({ req })
+    const user = await User.findOne({ googleId: token.sub })
 
     const { notes } = await req.json()
 
@@ -86,7 +93,7 @@ export default async function handler (req, res) {
       model: 'gpt-4',
       messages: [{ role: 'user', content: generatePrompt(notes) }],
       temperature: 0.3,
-      // user: user.id,
+      user: user.id,
       stream: true
     }
 
