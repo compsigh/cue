@@ -1,13 +1,16 @@
+'use client'
+
 // Next imports
 import { signOut } from 'next-auth/react'
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
+import { redirect } from 'next/navigation'
 
 // Database imports
 import connect from '@/functions/db-connect'
 import InviteCode from '@/schemas/invite-code-schema'
 import User from '@/schemas/user-schema'
-import getUserSessionAndData from '@/functions/get-user-session-and-data.js'
+import { checkAuth } from '@/functions/check-auth'
 
 // Style imports
 import styles from './Profile.module.scss'
@@ -15,7 +18,26 @@ import styles from './Profile.module.scss'
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 
-export default function Profile ({ user }) {
+export default async function Profile ({ params }) {
+  const user = await fetch('/api/user')
+  user = await user.json()
+  if (!user.ok)
+    redirect('/')
+
+  const { query } = params
+  const inviteCode = query?.code
+  let invite = null
+  if (inviteCode) {
+    await connect()
+    invite = await InviteCode.findOne({ inviteCode })
+  }
+  if (invite)
+    user.invite = invite
+
+  const authed = await checkAuth(user)
+  if (!authed)
+    redirect('/api/auth/signin?error=accessDenied')
+
   // Clear invite code
   const router = useRouter()
   const routerRef = useRef(router)
@@ -31,35 +53,6 @@ export default function Profile ({ user }) {
 }
 
 export async function getServerSideProps (context) {
-  const result = await getUserSessionAndData(context.req, context.res)
-  const sessionData = result?.sessionData
-  const userData = result?.userData
-
-  /**
-   * If:
-   * The user exists...
-   *
-   * Then:
-   * Associate the user's session data with the user's database data and return as one object.
-   */
-  if (sessionData && userData)
-    return {
-      props: {
-        user: {
-          ...sessionData,
-          ...userData
-        }
-      }
-    }
-
-  // Check for valid invite code in params
-  const { query } = context
-  const inviteCode = query?.code
-  let invite = null
-  if (inviteCode) {
-    await connect()
-    invite = await InviteCode.findOne({ inviteCode })
-  }
 
   /**
    * If:
@@ -108,11 +101,4 @@ export async function getServerSideProps (context) {
       }
     }
 
-  // Otherwise (there is no user), redirect to the home page
-  return {
-    redirect: {
-      destination: '/',
-      permanent: false
-    }
-  }
 }
