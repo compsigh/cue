@@ -6,17 +6,31 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route.js'
 import connect from '@/functions/db-connect.js'
 import User from '@/schemas/user-schema.js'
 
-export async function getUser () {
+export async function getSessionData () {
   const session = await getServerSession(authOptions)
   if (!session) return null
   const sessionData = session.user
 
+  return sessionData
+}
+
+export async function getUserData () {
+  const sessionData = await getSessionData()
+  if (!sessionData) return null
+
   // Search the database for the user's ID
   await connect()
-  const user = await User.findOne({ googleId: sessionData.id })
+  const userData = await User.findOne({ googleId: sessionData.id })
+
+  return userData
+}
+
+export async function getUser () {
+  const sessionData = await getSessionData()
+  let userData = await getUserData()
+  userData = JSON.parse(JSON.stringify(userData))
 
   // Associate the user's session data with the user's database data and return as one object
-  const userData = JSON.parse(JSON.stringify(user))
   return {
     sessionData: sessionData || null,
     userData: userData || null
@@ -24,7 +38,7 @@ export async function getUser () {
 }
 
 export async function createUser () {
-  const user = await getUser()
+  const user = await getUserData()
   if (!user) return null
 
   await connect()
