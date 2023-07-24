@@ -38,12 +38,12 @@ export async function getUser () {
 }
 
 export async function createUser () {
-  const user = await getUserData()
-  if (!user) return null
+  const { sessionData, userData } = await getUser()
+  if (userData) return null
 
   await connect()
   const newUser = await User.create({
-    googleId: user.sessionData.id,
+    googleId: sessionData.id,
     cues: []
     // TODO: invitesRemaining
   })
