@@ -26,7 +26,7 @@ export const authLevels = {
 export const currentPolicy = 'invite-only'
 export const currentAuthLevel = authLevels[currentPolicy]
 
-export default async function checkAuth (currentAuthLevel, { user, invite }) {
+export default async function checkAuth ({ user, inviteCode }) {
   if (!user)
     return false
 
@@ -39,11 +39,11 @@ export default async function checkAuth (currentAuthLevel, { user, invite }) {
   }
 
   if (currentAuthLevel >= 2)
-    if (invite) {
-      const inviteStatus = await validate(invite)
+    if (inviteCode) {
+      const inviteStatus = await validate(inviteCode)
       if (inviteStatus.valid) {
         const userProperties = {}
-        if (inviteStatus.noInvite)
+        if (inviteStatus.noInviteForwarding)
           userProperties.invitesRemaining = 0
         await createUser(userProperties)
         return true

@@ -13,7 +13,7 @@ export async function validate (inviteCode) {
       await invite.save()
     }
     if (condition === 'no-invite')
-      inviteStatus.noInvite = true
+      inviteStatus.noInviteForwarding = true
   }
   inviteStatus.valid = true
   return inviteStatus
