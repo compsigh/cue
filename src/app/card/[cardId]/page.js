@@ -1,12 +1,12 @@
 import connect from '@/functions/db-connect.js'
-import InviteCode from '@/schemas/invite-code-schema.js'
+import Invite from '@/schemas/invite-schema.js'
 import { redirect } from 'next/navigation'
 
 export default async function Card ({ params }) {
   // Get the card from the database
   const { cardId } = params
   await connect()
-  const card = await InviteCode.findOne({ inviteId: cardId })
+  const card = await Invite.findOne({ inviteId: cardId })
 
   // If the card exists, redirect to the invite code page associated with it
   if (card)

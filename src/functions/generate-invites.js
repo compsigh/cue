@@ -1,36 +1,36 @@
 import connect from './db-connect.js'
-import InviteCode from '../schemas/invite-code-schema.js'
+import Invite from '../schemas/invite-schema.js'
 
 /**
- * Generates a specified number of invite codes, and inserts them into the database.
- * @param {string} source     The source of the invite code, e.g. `april-2023-invite-cards`.
- * @param {number} count      The number of invite codes to generate.
- * @param {array}  names      An array of random Roman names to associate with the invite codes.
- * @param {array}  conditions An array of conditions to apply to the invite codes.
- * @returns {Promise<array>}  An array of invite codes.
+ * Generates a specified number of invites, and inserts them into the database.
+ * @param {string} source     The source of the invite, e.g. `april-2023-invite-cards`.
+ * @param {number} count      The number of invites to generate.
+ * @param {array}  names      An array of random Roman names to associate with the invites.
+ * @param {array}  conditions An array of conditions to apply to the invites.
+ * @returns {Promise<array>}  An array of invites.
  */
-async function generateInviteCodes (source, count, names, conditions) {
+async function generateInvites (source, count, names, conditions) {
   await connect()
-  const inviteCodes = []
+  const invites = []
   console.log('Names:', names)
 
   for (let i = 0; i < count; i++) {
     // If the name is already taken, generate a new one
-    while (await InviteCode.findOne({ code: names[i] }))
+    while (await Invite.findOne({ code: names[i] }))
       names[i] = generateRandomRomanNames(1)[0]
 
-    const inviteCode = {
-      inviteId: (await InviteCode.countDocuments({})) + 1,
+    const invite = {
+      inviteId: (await Invite.countDocuments({})) + 1,
       code: names[i],
       conditions,
       source
     }
-    console.log(`Adding invite code #${inviteCode.inviteId}: ${inviteCode.code}`)
-    inviteCodes.push(inviteCode)
-    await InviteCode.create(inviteCode)
+    console.log(`Adding invite #${invite.inviteId}: ${invite.code}`)
+    invites.push(invite)
+    await Invite.create(invite)
   }
 
-  return inviteCodes
+  return invites
 }
 
 /**
@@ -95,4 +95,4 @@ function generateRandomRomanNames (count) {
   return names
 }
 
-export { generateInviteCodes, generateRandomRomanNames }
+export { generateInvites, generateRandomRomanNames }

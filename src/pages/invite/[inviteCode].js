@@ -1,6 +1,6 @@
 // Function imports
 import connect from '@/functions/db-connect.js'
-import InviteCode from '@/schemas/invite-code-schema.js'
+import Invite from '@/schemas/invite-schema.js'
 import { signIn } from 'next-auth/react'
 
 // Component imports
@@ -66,7 +66,7 @@ export default function Card ({ invite }) {
 export async function getServerSideProps (context) {
   const { inviteCode } = context.params
   await connect()
-  const invite = await InviteCode.findOne({ code: inviteCode })
+  const invite = await Invite.findOne({ code: inviteCode })
   const inviteJSON = JSON.parse(JSON.stringify(invite))
 
   return {

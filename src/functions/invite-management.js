@@ -1,16 +1,16 @@
 import { connect } from '@/functions/db-connect.js'
-import InviteCode from '@/schemas/invite-code-schema'
+import Invite from '@/schemas/invite-schema'
 
-export async function validate (invite) {
+export async function validate (inviteCode) {
   const inviteStatus = {}
   await connect()
-  const inviteCode = await InviteCode.findOne({ code: invite })
-  if (!inviteCode) inviteStatus.valid = false
-  if (!inviteCode?.valid) inviteStatus.valid = false
-  for (const condition of inviteCode?.conditions) {
+  const invite = await Invite.findOne({ code: inviteCode })
+  if (!invite) inviteStatus.valid = false
+  if (!invite?.valid) inviteStatus.valid = false
+  for (const condition of invite?.conditions) {
     if (condition === 'use-once') {
-      inviteCode.valid = false
-      await inviteCode.save()
+      invite.valid = false
+      await invite.save()
     }
     if (condition === 'no-invite')
       inviteStatus.noInvite = true

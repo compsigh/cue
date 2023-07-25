@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema, model } = mongoose
 
-const inviteCodeSchema = new Schema({
+const inviteSchema = new Schema({
   inviteId: {
     type: Number,
     required: true,
@@ -38,8 +38,8 @@ const inviteCodeSchema = new Schema({
     immutable: true,
     default: () => Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles' }).format(new Date())
   }
-}, { collection: 'inviteCodes' })
+}, { collection: 'invites' })
 
-const InviteCode = mongoose.models.InviteCode || model('InviteCode', inviteCodeSchema)
+const Invite = mongoose.models.Invite || model('Invite', inviteSchema)
 
-export default InviteCode
+export default Invite
