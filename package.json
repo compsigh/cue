@@ -37,6 +37,5 @@
     "react-loader-spinner": "^5.3.4",
     "sass": "^1.58.3",
     "typewriter-effect": "^2.19.0"
-  },
-  "packageManager": "yarn@3.5.0"
+  }
 }
