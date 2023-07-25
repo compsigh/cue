@@ -14,6 +14,8 @@
 // Example user:                  edward@dons.usfca.edu | invited.student@gmail.com | rohan@sjsu.edu | student@gmail.com
 // Can access with auth levels:   1, 2, 3, 4            | 2, 3, 4                   | 3, 4           | 4
 
+import { createUser } from './user-management'
+
 export const authLevels = {
   'usf-only': 1,
   'invite-only': 2,
@@ -29,8 +31,10 @@ export default async function checkAuth (currentAuthLevel, user) {
 
   if (currentAuthLevel >= 1) {
     const email = user.email.toLowerCase()
-    if (email.endsWith('@dons.usfca.edu'))
+    if (email.endsWith('@dons.usfca.edu')) {
+      await createUser()
       return true
+    }
   }
 
   if (currentAuthLevel >= 2) {
