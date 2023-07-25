@@ -15,6 +15,7 @@
 // Can access with auth levels:   1, 2, 3, 4            | 2, 3, 4                   | 3, 4           | 4
 
 import { createUser } from './user-management'
+import { validate } from './invite-management'
 
 export const authLevels = {
   'usf-only': 1,
@@ -25,7 +26,7 @@ export const authLevels = {
 export const currentPolicy = 'invite-only'
 export const currentAuthLevel = authLevels[currentPolicy]
 
-export default async function checkAuth (currentAuthLevel, user) {
+export default async function checkAuth (currentAuthLevel, { user, invite }) {
   if (!user)
     return false
 
@@ -37,9 +38,17 @@ export default async function checkAuth (currentAuthLevel, user) {
     }
   }
 
-  if (currentAuthLevel >= 2) {
-    // TODO: invite code logic
-  }
+  if (currentAuthLevel >= 2)
+    if (invite) {
+      const inviteStatus = await validate(invite)
+      if (inviteStatus.valid) {
+        const userProperties = {}
+        if (inviteStatus.noInvite)
+          userProperties.invitesRemaining = 0
+        await createUser(userProperties)
+        return true
+      }
+    }
 
   if (currentAuthLevel >= 3) {
     const email = user.email.toLowerCase()
