@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { redirect } from 'next/navigation'
 
 // Auth imports
+import { getUser } from '@/functions/user-management'
 import { checkAuth } from '@/functions/check-auth'
 
 // Style imports
@@ -16,9 +17,8 @@ import styles from './Profile.module.scss'
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 
 export default async function Profile ({ params }) {
-  const user = await fetch('/api/user')
-  user = await user.json()
-  if (!user.ok)
+  const user = await getUser()
+  if (!user.sessionData || !user.userData)
     redirect('/')
 
   const authRequest = {}

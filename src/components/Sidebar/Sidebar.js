@@ -7,6 +7,9 @@ import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 
+// Auth imports
+import { getUser } from '@/functions/user-management'
+
 // Style imports
 import styles from './Sidebar.module.scss'
 
@@ -23,13 +26,7 @@ export default function Sidebar () {
       setLoading(true)
 
       try {
-        const res = await fetch('/api/user') // TODO: remove self fetch call
-        if (res.ok) {
-          const data = await res.json()
-          setUser(data)
-        }
-        else
-          console.error('Error fetching user')
+        setUser(await getUser())
       }
       catch (error) {
         console.error(error)
