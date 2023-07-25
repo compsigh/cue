@@ -37,15 +37,16 @@ export async function getUser () {
   }
 }
 
-export async function createUser () {
+export async function createUser (properties) {
   const { sessionData, userData } = await getUser()
   if (userData) return null
 
   await connect()
-  const newUser = await User.create({
+  const user = {
     googleId: sessionData.id,
-    cues: []
-    // TODO: invitesRemaining
-  })
+    cues: [],
+    invitesRemaining: properties?.invitesRemaining || 1
+  }
+  const newUser = await User.create(user)
   return newUser
 }
