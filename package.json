@@ -3,18 +3,18 @@
   "author": "compsigh",
   "bugs": "https://github.com/compsigh/cue/issues",
   "homepage": "https://github.com/compsigh/cue",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "license": "UNLICENSED",
-  "description": "Study with AI-powered active recall",
+  "description": "Study with AI-powered Active Recall",
   "repository": {
     "type": "git",
     "url": "https://github.com/compsigh/cue.git"
   },
   "private": true,
   "scripts": {
-    "dev": "rm -rf ./next && NODE_ENV=development next dev",
-    "build": "rm -rf ./next && next build",
-    "start": "next start",
+    "dev": "rm -rf ./next && NODE_ENV=development doppler run -- next dev",
+    "build": "rm -rf ./next && doppler run -- next build",
+    "start": "doppler run -- next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -37,6 +37,5 @@
     "react-loader-spinner": "^5.3.4",
     "sass": "^1.58.3",
     "typewriter-effect": "^2.19.0"
-  },
-  "packageManager": "yarn@3.5.0"
+  }
 }
