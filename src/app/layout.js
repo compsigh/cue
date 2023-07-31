@@ -1,23 +1,20 @@
 // Next imports
 import AuthWrapper from '../components/AuthWrapper'
 
-// Component imports
-import Sidebar from '@/components/Sidebar/Sidebar'
-
 // Style imports
 import '@/styles/globals.scss'
-import { Patrick_Hand, Patrick_Hand_SC, Public_Sans, Roboto_Mono } from 'next/font/google'
-const patrickHand = Patrick_Hand({ subsets: ['latin'], weight: '400' })
-const patrickHandSC = Patrick_Hand_SC({ subsets: ['latin'], weight: '400' })
-const publicSans = Public_Sans({ subsets: ['latin'], style: ['normal', 'italic'] })
-const robotoMono = Roboto_Mono({ subsets: ['latin'], style: ['normal', 'italic'] })
+// import { Patrick_Hand, Patrick_Hand_SC, Public_Sans, Roboto_Mono } from 'next/font/google'
+// const patrickHand = Patrick_Hand({ subsets: ['latin'], weight: '400' })
+// const patrickHandSC = Patrick_Hand_SC({ subsets: ['latin'], weight: '400' })
+// const publicSans = Public_Sans({ subsets: ['latin'], style: ['normal', 'italic'] })
+// const robotoMono = Roboto_Mono({ subsets: ['latin'], style: ['normal', 'italic'] })
 
 export const metadata = {
   title: 'Cue',
-  description: 'Study with AI-powered Active Recall',
+  description: 'Study with AI-powered Active Recall'
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout ({ children }) {
   return (
     <AuthWrapper>
       <html lang="en">
@@ -32,7 +29,6 @@ export default function RootLayout({ children }) {
         </style> */}
         <body>
           <main>
-            <Sidebar />
             {children}
           </main>
         </body>

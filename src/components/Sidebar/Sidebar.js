@@ -38,11 +38,6 @@ export default function Sidebar () {
       fetchUser()
   }, [session, status])
 
-  const path = usePathname()
-  const showSidebar = path !== '/' && path !== '/redeem' && !path.includes('/invite')
-  if (!showSidebar)
-    return <></>
-
   return (
     <nav className={styles.sidebar}>
       <ul>
