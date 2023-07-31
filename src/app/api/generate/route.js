@@ -12,7 +12,7 @@ import { OpenAIStream } from '../../../utils/OpenAIStream'
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 function generatePrompt (notes) {
   return `From the given notes, suggest study questions to use as active recall prompts.
@@ -97,6 +97,7 @@ export async function POST (req) {
 
     const stream = await OpenAIStream(payload)
     return new Response(stream)
+    // TODO: figure out how to get completed response object, for usage tracking (tokens)
   }
   catch (error) {
     console.error('[generate] error: ', error)
