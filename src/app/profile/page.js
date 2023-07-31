@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation'
 
 // Auth imports
 import { getUser } from '@/functions/user-management'
-import { checkAuth } from '@/functions/check-auth'
+import checkAuth from '@/functions/check-auth'
 
 // Style imports
 import styles from './Profile.module.scss'
@@ -18,8 +18,6 @@ import ProfileCard from '@/components/ProfileCard/ProfileCard'
 
 export default async function Profile ({ params }) {
   const user = await getUser()
-  if (!user.sessionData || !user.userData)
-    redirect('/')
 
   const authRequest = {}
   authRequest.user = user
@@ -31,7 +29,7 @@ export default async function Profile ({ params }) {
 
   const authed = await checkAuth(authRequest)
   if (!authed)
-    redirect('/api/auth/signin?error=accessDenied')
+    redirect('/')
 
   // Clear invite code param
   const router = useRouter()
