@@ -1,4 +1,4 @@
-import { connect } from '@/functions/db-connect.js'
+import connect from '@/functions/db-connect.js'
 import Invite from '@/schemas/invite-schema'
 
 export async function validate (inviteCode) {
