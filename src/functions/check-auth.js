@@ -27,11 +27,11 @@ export const currentPolicy = 'invite-only'
 export const currentAuthLevel = authLevels[currentPolicy]
 
 export default async function checkAuth ({ user, inviteCode }) {
-  if (!user)
+  if (!user.sessionData)
     return false
 
   if (currentAuthLevel >= 1) {
-    const email = user.email.toLowerCase()
+    const email = user.sessionData.email.toLowerCase()
     if (email.endsWith('@dons.usfca.edu')) {
       await createUser()
       return true
@@ -51,7 +51,7 @@ export default async function checkAuth ({ user, inviteCode }) {
     }
 
   if (currentAuthLevel >= 3) {
-    const email = user.email.toLowerCase()
+    const email = user.sessionData.email.toLowerCase()
     if (email.endsWith('.edu'))
       return true
   }
