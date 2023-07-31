@@ -1,43 +1,14 @@
-'use client'
-
 // Next imports
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
-
-// Auth imports
-import { getUser } from '@/functions/user-management'
 
 // Style imports
 import styles from './Sidebar.module.scss'
 
 // Component imports
-import { PopupButton } from '@typeform/embed-react'
 
-export default function Sidebar () {
-  const [user, setUser] = useState(null)
-  const [isLoading, setLoading] = useState(true)
-  const { data: session, status } = useSession()
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      setLoading(true)
-
-      try {
-        setUser(await getUser())
-      }
-      catch (error) {
-        console.error(error)
-      }
-      setLoading(false)
-    }
-
-    if (status === 'authenticated' && session)
-      fetchUser()
-  }, [session, status])
-
+export default function Sidebar ({ user, path }) {
+  if (!user || !path) return <></>
   return (
     <nav className={styles.sidebar}>
       <ul>
@@ -98,58 +69,15 @@ export default function Sidebar () {
         </li>
 
         <li className={styles.invite}>
-          {
-            (!user || isLoading) &&
-            (<Link href='#'>
-              <Image
-                src="/icons/Invite.svg"
-                alt="Invite"
-                width={55}
-                height={55}
-                style={{ opacity: 0.5, cursor: 'not-allowed' }}
-              />
-            </Link>)
-          }
-          {
-            (!isLoading && user && user.userData.invitesRemaining !== 0) &&
-            (<PopupButton
-              id="httmb9Wo"
-              size={80}
-              style={{
-                border: 'none',
-                background: 'none',
-                padding: 0,
-                margin: 0,
-                cursor: 'pointer'
-              }}
-              hidden={{
-                invites: user.userData.invitesRemaining
-              }}
-              onSubmit={() => {
-                fetch('/api/manage-user', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                    id: user.id,
-                    action: 'update',
-                    data: {
-                      invitesRemaining: user.userData.invitesRemaining - 1
-                    }
-                  })
-                })
-              }}
-              autoClose={5000}
-            >
-              <Image
-                src="/icons/Invite.svg"
-                alt="Invite"
-                width={55}
-                height={55}
-              />
-            </PopupButton>)
-          }
+          <Link href='#'>
+            <Image
+              src="/icons/Invite.svg"
+              alt="Invites coming soon!"
+              width={55}
+              height={55}
+              style={{ opacity: 0.5, cursor: 'not-allowed' }}
+            />
+          </Link>
         </li>
       </ul>
     </nav>

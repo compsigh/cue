@@ -43,6 +43,7 @@ export default async function Profile ({ params }) {
   return (
     <div className={styles.profileCard}>
       <ProfileCard user={user} signOut={signOut} />
+      <Sidebar user={user} path={'/profile'} />
     </div>
   )
 }
