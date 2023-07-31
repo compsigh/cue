@@ -1,9 +1,6 @@
-'use client'
-
 // Next imports
-import { signOut } from 'next-auth/react'
-import { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
+// import { useEffect, useRef } from 'react'
+// import { useRouter } from 'next/router'
 import { redirect } from 'next/navigation'
 
 // Auth imports
@@ -15,6 +12,7 @@ import styles from './Profile.module.scss'
 
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
+import Sidebar from '@/components/Sidebar/Sidebar'
 
 export default async function Profile ({ params }) {
   const user = await getUser()
@@ -31,17 +29,17 @@ export default async function Profile ({ params }) {
   if (!authed)
     redirect('/')
 
-  // Clear invite code param
-  const router = useRouter()
-  const routerRef = useRef(router)
-  useEffect(() => {
-    routerRef.current.replace('/profile', undefined, { shallow: true })
-  }, [])
+  // TODO: Clear invite code param
+  // const router = useRouter()
+  // const routerRef = useRef(router)
+  // useEffect(() => {
+  //   routerRef.current.replace('/profile', undefined, { shallow: true })
+  // }, [])
 
   return (
     <div className={styles.profileCard}>
-      <ProfileCard user={user} signOut={signOut} />
       <Sidebar user={user} path={'/profile'} />
+      <ProfileCard user={user} />
     </div>
   )
 }
