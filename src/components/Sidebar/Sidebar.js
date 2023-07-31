@@ -6,6 +6,7 @@ import Link from 'next/link'
 import styles from './Sidebar.module.scss'
 
 // Component imports
+import Feedback from '../Feedback'
 
 export default function Sidebar ({ user, path }) {
   if (!user || !path) return <></>
@@ -36,25 +37,7 @@ export default function Sidebar ({ user, path }) {
         </li>
 
         <li className={styles.feedback}>
-          <PopupButton
-            id="kArMPVer"
-            size={80}
-            style={{
-              border: 'none',
-              background: 'none',
-              padding: 0,
-              margin: 0,
-              cursor: 'pointer'
-            }}
-            autoClose={5000}
-          >
-            <Image
-              src="/icons/Feedback.svg"
-              alt="Feedback"
-              width={55}
-              height={55}
-            />
-          </PopupButton>
+          <Feedback />
         </li>
 
         <li className={styles.profile}>
