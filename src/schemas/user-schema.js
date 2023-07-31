@@ -7,6 +7,23 @@ const userSchema = new Schema({
     required: true,
     immutable: true
   },
+  generations: [{
+    id: {
+      type: String,
+      required: true,
+      immutable: true
+    },
+    tokens: {
+      type: Number,
+      required: true
+    },
+    generatedAt: {
+      type: Number,
+      required: true,
+      immutable: true,
+      default: () => Date.now()
+    }
+  }],
   cues: [{
     id: {
       type: Number,
