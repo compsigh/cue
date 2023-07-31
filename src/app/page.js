@@ -1,5 +1,5 @@
 // Next imports
-import { getServerSession } from 'next-auth/next'
+import { getSessionData } from '@/functions/user-management'
 import { redirect } from 'next/navigation'
 
 // Component imports
@@ -9,9 +9,9 @@ import SignInButton from '@/components/Button/SignInButton'
 import styles from '@/styles/Home.module.scss'
 
 export default async function Home () {
-  const session = await getServerSession()
+  const sessionData = await getSessionData()
 
-  if (session)
+  if (sessionData)
     redirect('/profile')
 
   return (

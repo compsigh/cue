@@ -1,5 +1,5 @@
 // Auth.js
-import { getServerSession } from 'next-auth/next'
+import { getSessionData } from '@/functions/user-management'
 import { getToken } from 'next-auth/jwt'
 
 // Database imports
@@ -72,9 +72,9 @@ Suggested active recall prompts:
 
 export async function POST (req) {
   try {
-    const session = await getServerSession()
+    const sessionData = await getSessionData()
 
-    if (!session)
+    if (!sessionData)
       return new Response('Unauthorized', { status: 401 })
 
     // Search the database for the user's ID
