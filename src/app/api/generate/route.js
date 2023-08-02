@@ -1,13 +1,12 @@
 // Auth.js
 import { getSessionData } from '@/functions/user-management'
-import { getToken } from 'next-auth/jwt'
 
 // Database imports
-import connect from '@/functions/db-connect.js'
-import User from '@/schemas/user-schema.js'
+import connect from '@/functions/db-connect'
+import User from '@/schemas/user-schema'
 
 // Utils imports
-import { OpenAIStream } from '../../../utils/OpenAIStream'
+import { OpenAIStream } from '@/utils/OpenAIStream'
 
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
@@ -75,12 +74,14 @@ export async function POST (req) {
     const sessionData = await getSessionData()
 
     if (!sessionData)
-      return new Response('Unauthorized', { status: 401 })
+      return new Response('Unauthorized.', { status: 401 })
 
     // Search the database for the user's ID
     await connect()
-    const token = await getToken({ req })
-    const user = await User.findOne({ googleId: token.sub })
+    const user = await User.findOne({ googleId: sessionData.sub })
+
+    if (!user)
+      return new Response('User not found.', { status: 401 })
 
     const { notes } = await req.json()
 

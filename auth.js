@@ -15,13 +15,7 @@ export const authOptions = {
         }
       }
     })
-  ],
-  callbacks: {
-    async session ({ session, token }) {
-      session.user.id = token.sub
-      return session
-    }
-  }
+  ]
 }
 
 export const { handlers: { GET, POST }, auth } = NextAuth(authOptions)
