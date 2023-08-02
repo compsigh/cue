@@ -21,7 +21,7 @@ const ProfileCard = ({ user }) => {
     <div className={styles.profileCard}>
       <div className={styles.profileCardImage}>
         <Image
-          src={user.sessionData.image}
+          src={user.sessionData.picture}
           alt="Profile Picture"
           width={110}
           height={110}
