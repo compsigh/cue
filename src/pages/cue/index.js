@@ -1,7 +1,7 @@
 // Next imports
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { getServerSession } from 'next-auth/next'
+import { auth } from '@/../auth'
 
 // Style imports
 import styles from './Cue.module.scss'
@@ -93,7 +93,7 @@ export default function Cue () {
 }
 
 export async function getServerSideProps (context) {
-  const session = await getServerSession(context.req, context.res)
+  const session = await auth(context)
 
   if (!session)
     return {
