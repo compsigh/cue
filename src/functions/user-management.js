@@ -1,13 +1,12 @@
-// Next imports
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route.js'
+// NextAuth
+import { auth } from '@/../auth'
 
 // Database imports
 import connect from '@/functions/db-connect.js'
 import User from '@/schemas/user-schema.js'
 
 export async function getSessionData () {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session) return null
   const sessionData = session.user
 
