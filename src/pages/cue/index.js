@@ -1,7 +1,7 @@
 // Next imports
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { auth } from '@/../auth'
+import { getSessionData } from '@/functions/user-management'
 
 // Style imports
 import styles from './Cue.module.scss'
@@ -93,9 +93,9 @@ export default function Cue () {
 }
 
 export async function getServerSideProps (context) {
-  const session = await auth(context)
+  const sessionData = await getSessionData(context)
 
-  if (!session)
+  if (!sessionData)
     return {
       redirect: {
         destination: '/',
@@ -105,7 +105,7 @@ export async function getServerSideProps (context) {
 
   return {
     props: {
-      session
+      sessionData
     }
   }
 }
