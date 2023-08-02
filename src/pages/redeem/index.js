@@ -1,6 +1,6 @@
 // Next imports
 import Head from 'next/head'
-import { getServerSession } from 'next-auth/next'
+import { getSessionData } from '@/functions/user-management'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -45,9 +45,9 @@ export default function Redeem () {
 }
 
 export async function getServerSideProps (context) {
-  const session = await getServerSession(context.req, context.res)
+  const sessionData = await getSessionData(context)
 
-  if (session)
+  if (sessionData)
     return {
       redirect: {
         destination: '/profile',
@@ -57,7 +57,7 @@ export async function getServerSideProps (context) {
 
   return {
     props: {
-      session
+      sessionData
     }
   }
 }
