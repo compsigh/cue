@@ -1,12 +1,16 @@
-// NextAuth
+// Auth.js
 import { auth } from '@/../auth'
 
 // Database imports
 import connect from '@/functions/db-connect.js'
 import User from '@/schemas/user-schema.js'
 
-export async function getSessionData () {
-  const session = await auth()
+export async function getSessionData (authParams) {
+  let session
+  if (authParams)
+    session = await auth(authParams)
+  else
+    session = await auth()
   if (!session) return null
   const sessionData = session.user
 
@@ -19,7 +23,7 @@ export async function getUserData () {
 
   // Search the database for the user's ID
   await connect()
-  const userData = await User.findOne({ googleId: sessionData.id })
+  const userData = await User.findOne({ googleId: sessionData.sub })
 
   return userData
 }

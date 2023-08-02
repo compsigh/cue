@@ -71,7 +71,7 @@ Suggested active recall prompts:
 
 export async function POST (req) {
   try {
-    const sessionData = await getSessionData()
+    const sessionData = await getSessionData(req)
 
     if (!sessionData)
       return new Response('Unauthorized.', { status: 401 })
