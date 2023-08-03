@@ -1,9 +1,6 @@
-// Auth.js
 import { auth } from '@/../auth'
-
-// Database imports
-import connect from '@/functions/db-connect.js'
-import User from '@/schemas/user-schema.js'
+import { kv } from '@vercel/kv'
+// TODO: schema validation
 
 export async function getSessionData (authParams) {
   let session
@@ -13,18 +10,13 @@ export async function getSessionData (authParams) {
     session = await auth()
   if (!session) return null
   const sessionData = session.user
-
   return sessionData
 }
 
 export async function getUserData () {
   const sessionData = await getSessionData()
   if (!sessionData) return null
-
-  // Search the database for the user's ID
-  await connect()
-  const userData = await User.findOne({ googleId: sessionData.sub })
-
+  const userData = await kv.get(sessionData.sub)
   return userData
 }
 
@@ -43,13 +35,10 @@ export async function getUser () {
 export async function createUser (properties) {
   const { sessionData, userData } = await getUser()
   if (userData) return null
-
-  await connect()
-  const user = {
-    googleId: sessionData.id,
+  const newUser = await kv.set(sessionData.sub, {
+    googleId: sessionData.sub,
     cues: [],
     invitesRemaining: properties?.invitesRemaining || 1
-  }
-  const newUser = await User.create(user)
+  })
   return newUser
 }
