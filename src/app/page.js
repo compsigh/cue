@@ -1,5 +1,6 @@
 // Next imports
-import { getSessionData } from '@/functions/user-management'
+import { getUser } from '@/functions/user-management'
+import checkAuth from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
 
 // Component imports
@@ -9,9 +10,10 @@ import SignInButton from '@/components/Button/SignInButton'
 import styles from '@/styles/Home.module.scss'
 
 export default async function Home () {
-  const sessionData = await getSessionData()
+  const user = await getUser()
+  const authed = await checkAuth({ user })
 
-  if (sessionData)
+  if (authed)
     redirect('/profile')
 
   return (

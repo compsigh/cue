@@ -58,4 +58,6 @@ export default async function checkAuth ({ user, inviteCode }) {
 
   if (currentAuthLevel >= 4)
     return true
+
+  return false
 }
