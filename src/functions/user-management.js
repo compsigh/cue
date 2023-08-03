@@ -1,6 +1,7 @@
 import { auth } from '@/../auth'
 import { kv } from '@vercel/kv'
 // TODO: schema validation
+// TODO: remove authParams once transition to App Router is complete
 
 export async function getSessionData (authParams) {
   let session
@@ -13,19 +14,30 @@ export async function getSessionData (authParams) {
   return sessionData
 }
 
-export async function getUserData () {
-  const sessionData = await getSessionData()
+export async function getUserData (authParams) {
+  let sessionData
+  if (authParams)
+    sessionData = await getSessionData(authParams)
+  else
+    sessionData = await getSessionData()
   if (!sessionData) return null
   const userData = await kv.get(sessionData.sub)
   return userData
 }
 
-export async function getUser () {
-  const sessionData = await getSessionData()
-  let userData = await getUserData()
-  userData = JSON.parse(JSON.stringify(userData))
+export async function getUser (authParams) {
+  let sessionData
+  if (authParams)
+    sessionData = await getSessionData(authParams)
+  else
+    sessionData = await getSessionData()
 
-  // Associate the user's session data with the user's database data and return as one object
+  let userData
+  if (authParams)
+    userData = await getUserData(authParams)
+  else
+    userData = await getUserData()
+
   return {
     sessionData: sessionData || null,
     userData: userData || null
