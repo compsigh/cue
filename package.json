@@ -20,6 +20,7 @@
   "dependencies": {
     "@typeform/embed-react": "^2.19.0",
     "@types/react": "^18.0.38",
+    "@vercel/kv": "^0.2.2",
     "eslint": "8.37.0",
     "eslint-config-next": "latest",
     "eslint-config-standard": "^17.0.0",
