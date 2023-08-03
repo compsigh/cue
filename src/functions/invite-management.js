@@ -1,5 +1,6 @@
 import connect from '@/functions/db-connect.js'
 import Invite from '@/schemas/invite-schema'
+// TODO: Migrate invites to Vercel KV
 
 export async function validate (inviteCode) {
   const inviteStatus = {}
