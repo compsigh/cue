@@ -1,9 +1,6 @@
-// Auth.js
-import { getSessionData } from '@/functions/user-management'
-
-// Database imports
-import connect from '@/functions/db-connect'
-import User from '@/schemas/user-schema'
+import { getUser } from '@/functions/user-management'
+import checkAuth from '@/functions/check-auth'
+import { NextResponse } from 'next/server'
 
 // Utils imports
 import { OpenAIStream } from '@/utils/OpenAIStream'
@@ -71,17 +68,9 @@ Suggested active recall prompts:
 
 export async function POST (req) {
   try {
-    const sessionData = await getSessionData(req)
-
-    if (!sessionData)
-      return new Response('Unauthorized.', { status: 401 })
-
-    // Search the database for the user's ID
-    await connect()
-    const user = await User.findOne({ googleId: sessionData.sub })
-
-    if (!user)
-      return new Response('User not found.', { status: 401 })
+    const user = await getUser(req)
+    const authed = await checkAuth(user)
+    if (!authed) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 })
 
     const { notes } = await req.json()
 
@@ -92,7 +81,7 @@ export async function POST (req) {
       model: 'gpt-4',
       messages: [{ role: 'user', content: generatePrompt(notes) }],
       temperature: 0.3,
-      user: user.id,
+      user: user.sessionData.sub,
       stream: true
     }
 
