@@ -2,6 +2,7 @@ import { auth } from '@/../auth'
 import { kv } from '@vercel/kv'
 
 export const schema = {
+  generations: [],
   savedCues: [],
   invitesRemaining: 1
 }

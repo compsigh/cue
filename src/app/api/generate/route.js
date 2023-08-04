@@ -1,14 +1,18 @@
 import { getUser } from '@/functions/user-management'
 import checkAuth from '@/functions/check-auth'
 import { NextResponse } from 'next/server'
-
-// Utils imports
 import { OpenAIStream } from '@/utils/OpenAIStream'
 
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
 
 export const runtime = 'edge'
+
+export const generation = {
+  id: '',
+  tokens: 0,
+  generatedAt: () => Date.now()
+}
 
 function generatePrompt (notes) {
   return `From the given notes, suggest study questions to use as active recall prompts.
