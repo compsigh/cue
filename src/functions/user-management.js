@@ -1,6 +1,11 @@
 import { auth } from '@/../auth'
 import { kv } from '@vercel/kv'
-// TODO: schema validation
+
+export const schema = {
+  savedCues: [],
+  invitesRemaining: 1
+}
+
 // TODO: remove authParams once transition to App Router is complete
 
 export async function getSessionData (authParams) {
