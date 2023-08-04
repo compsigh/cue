@@ -26,7 +26,7 @@ export async function getUserData (authParams) {
   else
     sessionData = await getSessionData()
   if (!sessionData) return null
-  const userData = await kv.get(sessionData.sub)
+  const userData = await kv.hgetall(`user:${sessionData.sub}`)
   return userData
 }
 
@@ -52,10 +52,13 @@ export async function getUser (authParams) {
 export async function createUser (properties) {
   const { sessionData, userData } = await getUser()
   if (userData) return null
-  const newUser = await kv.set(sessionData.sub, {
-    googleId: sessionData.sub,
-    cues: [],
-    invitesRemaining: properties?.invitesRemaining || 1
-  })
+
+  const newUserData = { ...schema }
+  if (properties)
+    Object.keys(properties).forEach(key => {
+      newUserData[key] = properties[key]
+    })
+
+  const newUser = await kv.hset(`user:${sessionData.sub}`, newUserData)
   return newUser
 }
