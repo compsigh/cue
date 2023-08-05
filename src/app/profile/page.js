@@ -37,9 +37,11 @@ export default async function Profile ({ params }) {
   // }, [])
 
   return (
-    <div className={styles.profileCard}>
+    <>
       <Sidebar user={user} path={'/profile'} />
-      <ProfileCard user={user} />
-    </div>
+      <div className={styles.profileCard}>
+        <ProfileCard user={user} />
+      </div>
+    </>
   )
 }

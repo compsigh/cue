@@ -7,6 +7,13 @@
   margin: 0;
 }
 
+html {
+  --font-stack-headers: var(--font-patrick-hand), var(--font-public-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-stack-primary: var(--font-public-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-stack-buttons: var(--font-patrick-hand-sc), var(--font-patrick-hand), var(--font-public-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-stack-code: var(--font-roboto-mono), monospace;
+}
+
 html,
 body {
   max-width: 100vw;
