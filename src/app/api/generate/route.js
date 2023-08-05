@@ -72,8 +72,8 @@ Suggested active recall prompts:
 
 export async function POST (req) {
   try {
-    const user = await getUser(req)
-    const authed = await checkAuth(user)
+    const user = await getUser()
+    const authed = await checkAuth({ user })
     if (!authed) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 })
 
     const { notes } = await req.json()
