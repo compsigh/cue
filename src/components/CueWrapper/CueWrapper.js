@@ -1,9 +1,8 @@
+'use client'
+
 // Next imports
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { getUser } from '@/functions/user-management'
-import checkAuth from '@/functions/check-auth'
-// TODO: Extract middleware
 
 // Style imports
 import styles from './Cue.module.scss'
@@ -13,7 +12,7 @@ import ImportCard from '@/components/ImportCard/ImportCard'
 import TextCard from '@/components/TextCard/TextCard'
 import ResultCard from '@/components/ResultCard/ResultCard'
 
-export default function Cue () {
+export default function CueWrapper () {
   const [importMethod, setImportMethod] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -92,24 +91,4 @@ export default function Cue () {
       <ImportCard onUpdateImportMethod={handleImportMethod} />
     </div>
   )
-}
-
-export async function getServerSideProps (context) {
-  const user = await getUser(context)
-  const authed = await checkAuth({ user })
-
-  if (!authed)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    }
-
-  const sessionData = user.sessionData
-  return {
-    props: {
-      sessionData
-    }
-  }
 }
