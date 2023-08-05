@@ -38,7 +38,7 @@ const inviteSchema = new Schema({
     immutable: true,
     default: () => Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles' }).format(new Date())
   }
-}, { collection: 'invites' })
+}, { collection: 'inviteCodes' })
 
 const Invite = mongoose.models.Invite || model('Invite', inviteSchema)
 
