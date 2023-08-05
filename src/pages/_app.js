@@ -23,10 +23,10 @@ export default function App ({
     <>
       <style jsx global>{`
         :root {
-          --font-primary: ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-          --font-headers: ${patrickHand.style.fontFamily}, ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-          --font-buttons: ${patrickHandSC.style.fontFamily}, ${patrickHand.style.fontFamily}, ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-          --font-code: ${robotoMono.style.fontFamily}, monospace;
+          --font-stack-primary: ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          --font-stack-headers: ${patrickHand.style.fontFamily}, ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          --font-stack-buttons: ${patrickHandSC.style.fontFamily}, ${patrickHand.style.fontFamily}, ${publicSans.style.fontFamily}, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          --font-stack-code: ${robotoMono.style.fontFamily}, monospace;
         }
       `}</style>
       <main>
