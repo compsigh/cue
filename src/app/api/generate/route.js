@@ -104,6 +104,10 @@ export async function POST (req) {
     if (!notes)
       return new Response('Missing notes.', { status: 400 })
 
+    const generations = await getUserGenerations(user)
+    if (generations.length >= 10)
+      return new Response('You have reached the maximum number of cue generations (10) for the week. Please wait a bit before generating more.', { status: 400 })
+
     const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const now = Date.now()
     const generation = constructGeneration({ id, generatedAt: now })
