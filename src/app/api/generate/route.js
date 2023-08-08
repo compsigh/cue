@@ -8,10 +8,19 @@ if (!process.env.OPENAI_API_KEY)
 
 export const runtime = 'edge'
 
-export const generation = {
+export const generationSchema = {
   id: '',
   tokens: 0,
-  generatedAt: () => Date.now()
+  generatedAt: Date.now()
+}
+
+function constructGeneration (generation) {
+  return {
+    ...generationSchema,
+    ...generation
+  }
+}
+
 }
 
 function generatePrompt (notes) {
