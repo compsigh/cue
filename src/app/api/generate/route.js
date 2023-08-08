@@ -31,6 +31,10 @@ async function getUserGenerations (user) {
   return generations
 }
 
+async function addGeneration (user, generation) {
+  const generations = await getUserGenerations(user)
+  generations.push(generation)
+  return await kv.hset(`user:${user.sessionData.sub}`, { generations })
 }
 
 function generatePrompt (notes) {
@@ -99,6 +103,11 @@ export async function POST (req) {
 
     if (!notes)
       return new Response('Missing notes.', { status: 400 })
+
+    const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    const now = Date.now()
+    const generation = constructGeneration({ id, generatedAt: now })
+    await addGeneration(user, generation)
 
     const payload = {
       model: 'gpt-4',
