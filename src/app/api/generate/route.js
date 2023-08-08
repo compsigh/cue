@@ -2,6 +2,7 @@ import { getUser } from '@/functions/user-management'
 import checkAuth from '@/functions/check-auth'
 import { NextResponse } from 'next/server'
 import { OpenAIStream } from '@/utils/OpenAIStream'
+import { kv } from '@vercel/kv'
 
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
@@ -19,6 +20,15 @@ function constructGeneration (generation) {
     ...generationSchema,
     ...generation
   }
+}
+
+async function getUserGenerations (user) {
+  let generations = await kv.hget(`user:${user.sessionData.sub}`, 'generations') || []
+  const now = Date.now()
+  const week = 1000 * 60 * 60 * 24 * 7
+  generations = generations.filter(generation => now - generation.generatedAt < week)
+  await kv.hset(`user:${user.sessionData.sub}`, { generations })
+  return generations
 }
 
 }
