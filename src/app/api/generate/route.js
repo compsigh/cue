@@ -102,11 +102,17 @@ export async function POST (req) {
     const { notes } = await req.json()
 
     if (!notes)
-      return new Response('Missing notes.', { status: 400 })
+      return NextResponse(
+        { error: 'Missing notes.' },
+        { status: 400, statusText: 'Missing notes.' }
+      )
 
     const generations = await getUserGenerations(user)
     if (generations.length >= 10)
-      return new Response('You have reached the maximum number of cue generations (10) for the week. Please wait a bit before generating more.', { status: 400 })
+      return NextResponse.json(
+        { error: 'You have reached the maximum number of cue generations (10) for the week. Please wait a bit before generating more.' },
+        { status: 400, statusText: 'You have reached the maximum number of cue generations (10) for the week. Please wait a bit before generating more.' }
+      )
 
     const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     const now = Date.now()
@@ -122,7 +128,7 @@ export async function POST (req) {
     }
 
     const stream = await OpenAIStream(payload)
-    return new Response(stream)
+    return new NextResponse(stream)
     // TODO: figure out how to get completed response object, for usage tracking (tokens)
   }
   catch (error) {

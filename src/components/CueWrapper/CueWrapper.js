@@ -31,8 +31,19 @@ export default function CueWrapper () {
         body: JSON.stringify({ notes })
       })
 
-      if (!response.ok)
-        throw new Error(response.statusText)
+      if (!response.ok) {
+        console.log(response)
+        const message = `0
+
+Something went wrong!
+
+${response.statusText}
+
+`
+        setResult(message)
+        setLoading(false)
+        return
+      }
 
       // This data is a ReadableStream
       const data = response.body

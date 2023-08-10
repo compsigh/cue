@@ -7,7 +7,7 @@ export async function GET () {
   if (!sessionData) return NextResponse.json({ error: 'You\'re not signed in!' }, { status: 401 })
   const userData = await kv.hgetall(`user:${sessionData.sub}`)
   if (!userData) return NextResponse.json({
-    error: 'You\'re singed in but we couldn\'t find your data! Visit the profile page to have it generated.'
+    error: "You're singed in but we couldn't find your data! Visit the profile page to have it generated."
   }, { status: 401 })
   return NextResponse.json(userData)
 }
