@@ -29,6 +29,15 @@ const ImportCard = ({ onUpdateImportMethod }) => {
             style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
+        <Link href='#'>
+          <Image
+            src="/icons/OCR.svg"
+            alt="OCR"
+            width={55}
+            height={55}
+            style={{ opacity: 0.5, cursor: 'not-allowed' }}
+          />
+        </Link>
         <Link href='#' onClick={handleChange}>
           <Image
             src="/icons/Text.svg"

@@ -9,6 +9,7 @@ import styles from './Sidebar.module.scss'
 import Feedback from '../Feedback'
 
 export default function Sidebar ({ user, path }) {
+  // TODO: include Roadmap (set up a GitHub project or something first)
   if (!user || !path) return <></>
   return (
     <nav className={styles.sidebar}>
