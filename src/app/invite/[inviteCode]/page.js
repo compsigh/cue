@@ -1,10 +1,10 @@
-import { kv } from '@vercel/kv'
 import styles from './Invite.module.scss'
 import SignInButton from '@/components/Button/SignInButton'
+import { validate } from '@/functions/invite-management'
 
 export default async function Card ({ params }) {
   const { inviteCode } = params
-  const invite = await kv.hgetall(`invite:${inviteCode}`)
+  const invite = await validate(inviteCode)
 
   if (!invite)
     return (
@@ -13,7 +13,7 @@ export default async function Card ({ params }) {
       </div>
     )
 
-  if (!invite?.valid)
+  if (!invite.valid)
     return (
       <div className={styles.invite}>
         <h1>Sorry, that invite code is no longer valid!</h1>

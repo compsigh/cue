@@ -40,10 +40,10 @@ export default async function checkAuth ({ user, inviteCode }) {
 
   if (currentAuthLevel >= 2)
     if (inviteCode) {
-      const inviteStatus = await validate(inviteCode)
-      if (inviteStatus.valid) {
+      const invite = await validate(inviteCode)
+      if (invite?.valid) {
         const userProperties = {}
-        if (inviteStatus.noInviteForwarding)
+        if (invite.conditions.includes('use-once'))
           userProperties.invitesRemaining = 0
         await createUser(userProperties)
         return true
