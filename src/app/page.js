@@ -19,7 +19,7 @@ export default async function Home () {
   return (
     <div className={styles.center}>
       <h1>Cue</h1>
-      <SignInButton />
+      <SignInButton callbackUrl='/profile' />
     </div>
   )
 }

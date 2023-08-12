@@ -21,8 +21,13 @@ div.invite {
     margin-bottom: 10px;
   }
 
-  button {
-    width: 30%;
-    margin: 0 auto;
+  img:hover {
+    transform: rotate(7deg);
+  }
+
+  a:active {
+    img {
+      content: url(/icons/Cue_Selected.svg);
+    }
   }
 }
