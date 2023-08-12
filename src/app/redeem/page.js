@@ -1,6 +1,6 @@
+'use client'
+
 // Next imports
-import Head from 'next/head'
-import { getSessionData } from '@/functions/user-management'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -13,13 +13,6 @@ export default function Redeem () {
 
   return (
     <>
-      <Head>
-        <title>Redeem Invite | Cue</title>
-        <meta name="description" content="Redeem an invite to Cue: Study with AI-powered active recall" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <div className={styles.center}>
           <h1>Redeem Cue Invite</h1>
@@ -42,22 +35,4 @@ export default function Redeem () {
       </main>
     </>
   )
-}
-
-export async function getServerSideProps (context) {
-  const sessionData = await getSessionData(context)
-
-  if (sessionData)
-    return {
-      redirect: {
-        destination: '/profile',
-        permanent: false
-      }
-    }
-
-  return {
-    props: {
-      sessionData
-    }
-  }
 }

@@ -1,5 +1,3 @@
-// TODO: implement for /redeem
-
 import { kv } from '@vercel/kv'
 
 export async function getAllCodes () {
