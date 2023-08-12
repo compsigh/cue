@@ -129,7 +129,6 @@ export async function POST (req) {
 
     const stream = await OpenAIStream(payload)
     return new NextResponse(stream)
-    // TODO: figure out how to get completed response object, for usage tracking (tokens)
   }
   catch (error) {
     console.error('[generate] error: ', error)
