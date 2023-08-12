@@ -1,13 +1,13 @@
 import { kv } from '@vercel/kv'
 import { redirect } from 'next/navigation'
+import { getAllCodes } from '@/functions/invite-management'
 
 export default async function Card ({ params }) {
   const { cardId } = params
-  const invites = await kv.keys('invite:*')
-  for (const invite of invites) {
-    const inviteCode = invite.split(':')[1]
-    const inviteData = await kv.hgetall(invite)
-    if (inviteData.cardId === Number(cardId))
+  const inviteCodes = await getAllCodes()
+  for (const inviteCode of inviteCodes) {
+    const inviteCardId = await kv.hget(`invite:${inviteCode}`, 'cardId')
+    if (inviteCardId === Number(cardId))
       return redirect(`/invite/${inviteCode}`)
   }
 
