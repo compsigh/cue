@@ -1,18 +1,16 @@
-import connect from '@/functions/db-connect.js'
-import Invite from '@/schemas/invite-schema.js'
+import { kv } from '@vercel/kv'
 import { redirect } from 'next/navigation'
 
 export default async function Card ({ params }) {
-  // Get the card from the database
   const { cardId } = params
-  await connect()
-  const card = await Invite.findOne({ inviteId: cardId })
+  const invites = await kv.keys('invite:*')
+  for (const invite of invites) {
+    const inviteCode = invite.split(':')[1]
+    const inviteData = await kv.hgetall(invite)
+    if (inviteData.cardId === Number(cardId))
+      return redirect(`/invite/${inviteCode}`)
+  }
 
-  // If the card exists, redirect to the invite code page associated with it
-  if (card)
-    redirect(`/invite/${card.code}`)
-
-  // Otherwise, render that the card doesn't exist
   return (
     <div>
       <h1>Sorry, that card does not exist!</h1>
