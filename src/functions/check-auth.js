@@ -14,7 +14,7 @@
 // Example user:                  invited.student@gmail.com | student@dons.usfca.edu | student@berkeley.edu | student@gmail.com
 // Can access with auth levels:   1, 2, 3, 4                | 2, 3, 4                | 3, 4                 | 4
 
-import { createUser, getUser } from './user-management'
+import { createUser } from './user-management'
 import { validate } from './invite-management'
 
 export const authLevels = {
