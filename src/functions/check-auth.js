@@ -30,7 +30,7 @@ export default async function checkAuth ({ user, inviteCode }) {
   if (!user.sessionData)
     return false
 
-  if (await getUser().userData)
+  if (user.userData)
     return true
 
   if (currentAuthLevel >= 1)
