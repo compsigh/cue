@@ -1,6 +1,4 @@
 // Next imports
-// import { useEffect, useRef } from 'react'
-// import { useRouter } from 'next/router'
 import { redirect } from 'next/navigation'
 
 // Auth imports
@@ -14,27 +12,19 @@ import styles from './Profile.module.scss'
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 import Sidebar from '@/components/Sidebar/Sidebar'
 
-export default async function Profile ({ params }) {
+export default async function Profile ({ searchParams }) {
   const user = await getUser()
 
   const authRequest = {}
   authRequest.user = user
 
-  const { query } = params
-  const inviteCode = query?.code
+  const inviteCode = searchParams?.inviteCode
   if (inviteCode)
     authRequest.inviteCode = inviteCode
 
   const authed = await checkAuth(authRequest)
   if (!authed)
     redirect('/')
-
-  // TODO: Clear invite code param
-  // const router = useRouter()
-  // const routerRef = useRef(router)
-  // useEffect(() => {
-  //   routerRef.current.replace('/profile', undefined, { shallow: true })
-  // }, [])
 
   return (
     <>

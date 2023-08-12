@@ -2,6 +2,8 @@
 
 // Next imports
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 
 // Auth
 import { signOut } from 'next-auth/react'
@@ -13,6 +15,13 @@ import Button from '@/components/Button/Button'
 import styles from './ProfileCard.module.scss'
 
 const ProfileCard = ({ user }) => {
+  // Clear invite code search param
+  const router = useRouter()
+  const routerRef = useRef(router)
+  useEffect(() => {
+    routerRef.current.replace('/profile', { shallow: true })
+  }, [])
+
   const name = user.sessionData.name
   const email = user.sessionData.email
   const invitesRemaining = user.userData.invitesRemaining
