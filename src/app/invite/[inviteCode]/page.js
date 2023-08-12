@@ -1,8 +1,14 @@
-import styles from './Invite.module.scss'
-import SignInButton from '@/components/Button/SignInButton'
+import { getSessionData } from '@/functions/user-management'
+import { redirect } from 'next/navigation'
 import { validate } from '@/functions/invite-management'
+import SignInButton from '@/components/Button/SignInButton'
+import styles from './Invite.module.scss'
 
 export default async function Card ({ params }) {
+  const sessionData = await getSessionData()
+  if (sessionData)
+    return redirect('/profile')
+
   const { inviteCode } = params
   const invite = await validate(inviteCode)
 
