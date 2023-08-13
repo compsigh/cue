@@ -10,11 +10,22 @@ export async function getAllCodes () {
   return inviteCodes
 }
 
-export async function validate (inviteCode) {
+export async function fetch (inviteCode) {
   const invite = await kv.hgetall(`invite:${inviteCode}`)
   if (!invite) return null
-  for (const condition of invite.conditions)
-    if (condition === 'use-once')
-      await kv.hset(`invite:${inviteCode}`, 'valid', false)
+  return invite
+}
+
+export async function invalidate (inviteCode) {
+  const invite = await kv.hgetall(`invite:${inviteCode}`)
+  if (!invite) return null
+  await kv.hset(`invite:${inviteCode}`, { valid: false })
+  return invite
+}
+
+export async function remove (inviteCode) {
+  const invite = await kv.hgetall(`invite:${inviteCode}`)
+  if (!invite) return null
+  await kv.del(`invite:${inviteCode}`)
   return invite
 }
