@@ -22,14 +22,12 @@
 
 ## Stack
 
-- React
-- TypeScript — *soon™*
-- [Sass](https://sass-lang.com) *(will probably migrate to Tailwind CSS)*
-- [Next.js](https://nextjs.org) — *help with App Router migration [here][app-router-pr] much appreciated!*
-- [NextAuth.js](https://github.com/nextauthjs/next-auth) for authentication
-- MongoDB
-- Vercel Edge Functions
-- Vercel AI SDK for streaming chat UI — *soon™*
+- [React](https://react.dev)
+- [Next.js](https://nextjs.org)
+- [Sass](https://sass-lang.com)
+- [NextAuth.js](https://github.com/nextauthjs/next-auth)
+- [Vercel KV](https://vercel.com/docs/storage/vercel-kv)
+- [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions)
 
 ## Contributing
 
@@ -37,23 +35,31 @@ Contributions are welcome and much appreciated! Please see [CONTRIBUTING.md](CON
 
 ### Getting set up
 
-Setting up your own fully-functioning instance of Cue can be done in a few steps. We're working on simplifying this process, and are open to suggestions.
+Setting up your own instance of Cue can be done in a few steps. We're working on simplifying this process, and are open to suggestions.
 
-First, clone the repo. Then, create a `.env.local` file with the following keys:
+First, clone the repo. Then, create a `.env.development.local` file with the following keys:
 
 ```text
+# NextAuth
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET // generate with `openssl rand -base64 32`
+
+# Google OAuth
 GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET
+
+# OpenAI
 OPENAI_API_KEY
-DB_CONNECTION // MongoDB connection string
+
+# Vercel KV
+KV_URL
+KV_REST_API_URL
+KV_REST_API_TOKEN
+KV_REST_API_READ_ONLY_TOKEN
 ```
 
-This will require you to create your own Google OAuth app, generate your own OpenAI API key, and set up your own MongoDB cluster.
+This will require you to create your own Google OAuth app, generate your own OpenAI API key, and set up your own Vercel KV database.
 
-When you're ready, run `yarn run dev` to start the development server.
+When you're ready, run `npm run dev` to start the development server.
 
 Your instance of Cue should now be running on [localhost:3000](http://localhost:3000/).
-
-[app-router-pr]: https://github.com/compsigh/cue/pull/10
