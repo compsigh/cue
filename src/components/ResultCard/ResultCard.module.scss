@@ -24,7 +24,7 @@ div.cue {
   }
 
   summary {
-    font-family: var(--font-code);
+    font-family: var(--font-stack-code);
     color: colors.$gray;
     cursor: pointer;
     width: fit-content;
@@ -32,6 +32,6 @@ div.cue {
 
   /* Typewriter */
   span {
-    font-family: var(--font-primary);
+    font-family: var(--font-stack-primary);
   }
 }
