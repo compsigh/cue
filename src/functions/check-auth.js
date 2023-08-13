@@ -15,7 +15,7 @@
 // Can access with auth levels:   1, 2, 3, 4                | 2, 3, 4                | 3, 4                 | 4
 
 import { createUser } from './user-management'
-import { validate } from './invite-management'
+import { fetch, invalidate } from './invite-management'
 
 export const authLevels = {
   'invite-only': 1,
@@ -35,10 +35,12 @@ export default async function checkAuth ({ user, inviteCode }) {
 
   if (currentAuthLevel >= 1)
     if (inviteCode) {
-      const invite = await validate(inviteCode)
+      const invite = await fetch(inviteCode)
       if (invite?.valid) {
         const userProperties = {}
         if (invite.conditions.includes('use-once'))
+          await invalidate(inviteCode)
+        if (invite.conditions.includes('no-invite'))
           userProperties.invitesRemaining = 0
         await createUser(userProperties)
         return true
