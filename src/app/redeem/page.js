@@ -2,7 +2,7 @@
 
 // Next imports
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 // Style imports
 import styles from './Redeem.module.scss'
