@@ -1,6 +1,6 @@
 import { getSessionData } from '@/functions/user-management'
 import { redirect } from 'next/navigation'
-import { validate } from '@/functions/invite-management'
+import { fetch } from '@/functions/invite-management'
 import SignInButton from '@/components/Button/SignInButton'
 import styles from './Invite.module.scss'
 
@@ -9,8 +9,10 @@ export default async function Card ({ params }) {
   if (sessionData)
     return redirect('/profile')
 
-  const { inviteCode } = params
-  const invite = await validate(inviteCode)
+  let { inviteCode } = params
+  inviteCode = inviteCode.replace(/%2B/g, '+')
+  inviteCode = inviteCode.replace(/%40/g, '@')
+  const invite = await fetch(inviteCode)
 
   if (!invite)
     return (
