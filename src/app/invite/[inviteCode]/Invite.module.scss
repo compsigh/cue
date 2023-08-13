@@ -1,0 +1,33 @@
+@use '@/styles/_colors' as colors;
+@use '@/styles/_typography' as typography;
+
+div.invite {
+  @include typography.body;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+  padding: 60px;
+  gap: 50px;
+  width: 100%;
+
+  & ul,h3 {
+    text-align: left;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  img:hover {
+    transform: rotate(7deg);
+  }
+
+  a:active {
+    img {
+      content: url(/icons/Cue_Selected.svg);
+    }
+  }
+}

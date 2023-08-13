@@ -1,13 +1,13 @@
 import connect from './db-connect.js'
-import InviteCode from '../schemas/invite-code-schema.js'
-import { generateInviteCodes, generateRandomRomanNames } from './generate-invite-codes.js'
+import Invite from '../schemas/invite-schema.js'
+import { generateInvites, generateRandomRomanNames } from './generate-invites.js'
 
 /**
- * Generates a specified number of invite codes, and inserts them into the database.
- * @param {number} count      The number of invite codes to generate.
- * @param {array}  names      An array of names to associate with the invite codes. If not specified, random Roman names will be generated.
- * @param {string} source     The source of the invite codes, e.g. `april-2023-invite-cards`.
- * @param {array}  conditions An array of conditions to apply to the invite codes. If not specified, the default conditions will be used.
+ * Generates a specified number of invites, and inserts them into the database.
+ * @param {number} count      The number of invites to generate.
+ * @param {array}  names      An array of names to associate with the invites. If not specified, random Roman names will be generated.
+ * @param {string} source     The source of the invites, e.g. `april-2023-invite-cards`.
+ * @param {array}  conditions An array of conditions to apply to the invites. If not specified, the default conditions will be used.
  */
 async function generate (count, names, source, conditions) {
   if (!names)
@@ -16,17 +16,17 @@ async function generate (count, names, source, conditions) {
     source = 'april-2023-invite-cards'
   if (!conditions)
     conditions = ['no-invite', 'expires', 'use-once']
-  await generateInviteCodes(source, count, names, conditions)
-  console.log(`Generated ${count} invite codes.`)
+  await generateInvites(source, count, names, conditions)
+  console.log(`Generated ${count} invites.`)
 }
 
 /**
- * Clears all invite codes from the database.
+ * Clears all invites from the database.
  */
 async function clear () {
   await connect()
-  await InviteCode.deleteMany({})
-  console.log('Cleared all invite codes.')
+  await Invite.deleteMany({})
+  console.log('Cleared all invites.')
 }
 
 const flags = process.argv.slice(2)
@@ -67,7 +67,7 @@ if (flags.includes('--generate')) {
     }
   }
 
-  // Otherwise, the next flag is the number of invite codes to generate
+  // Otherwise, the next flag is the number of invites to generate
   if (names)
     count = names.length
   else

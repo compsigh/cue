@@ -1,6 +1,6 @@
 /* Cue/Title */
 @mixin title {
-  font-family: var(--font-headers), sans-serif;
+  font-family: var(--font-stack-headers), sans-serif;
   font-style: normal;
   font-size: 2.5rem;
   font-weight: 400;
@@ -9,7 +9,7 @@
 
 /* Cue/Header 1 */
 @mixin h1 {
-  font-family: var(--font-headers), sans-serif;
+  font-family: var(--font-stack-headers), sans-serif;
   font-style: normal;
   font-size: 1.875rem;
   font-weight: 400;
@@ -18,7 +18,7 @@
 
 /* Cue/Header 2 */
 @mixin h2 {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-stack-primary), sans-serif;
   font-style: normal;
   font-size: 1.5rem;
   font-weight: 600;
@@ -27,7 +27,7 @@
 
 /* Cue/Header 3 */
 @mixin h3 {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-stack-primary), sans-serif;
   font-style: normal;
   font-size: 1.25rem;
   font-weight: 600;
@@ -36,7 +36,7 @@
 
 /* Cue/Body */
 @mixin body {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-stack-primary), sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: 400;
@@ -73,7 +73,7 @@
 
 /* Cue/Code */
 @mixin code {
-  font-family: var(--font-code), sans-serif;
+  font-family: var(--font-stack-code), monospace;
   font-style: normal;
   font-size: inherit;
   font-weight: 700;
@@ -83,7 +83,7 @@
 
 /* Cue/Pre-Title */
 @mixin pretitle {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-stack-primary), sans-serif;
   font-style: normal;
   font-size: 0.75rem;
   font-weight: 800;
@@ -94,7 +94,7 @@
 
 /* Cue/Button Text */
 @mixin buttontext {
-  font-family: var(--font-buttons), sans-serif;
+  font-family: var(--font-stack-buttons), sans-serif;
   font-style: normal;
   font-size: 1rem;
   font-weight: 400;
@@ -104,7 +104,7 @@
 
 /* Cue/Link */
 @mixin link {
-  font-family: var(--font-primary), sans-serif;
+  font-family: var(--font-stack-primary), sans-serif;
   font-size: inherit;
   font-weight: 700;
   line-height: inherit;
