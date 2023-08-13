@@ -9,7 +9,9 @@ export default async function Card ({ params }) {
   if (sessionData)
     return redirect('/profile')
 
-  const { inviteCode } = params
+  let { inviteCode } = params
+  inviteCode = inviteCode.replace(/%2B/g, '+')
+  inviteCode = inviteCode.replace(/%40/g, '@')
   const invite = await fetch(inviteCode)
 
   if (!invite)
