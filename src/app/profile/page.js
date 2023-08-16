@@ -13,7 +13,7 @@ import ProfileCard from '@/components/ProfileCard/ProfileCard'
 import Sidebar from '@/components/Sidebar/Sidebar'
 
 export default async function Profile ({ searchParams }) {
-  const user = await getUser()
+  let user = await getUser()
 
   const authRequest = {}
   authRequest.user = user
@@ -25,6 +25,7 @@ export default async function Profile ({ searchParams }) {
   const authed = await checkAuth(authRequest)
   if (!authed)
     redirect('/')
+  user = await getUser()
 
   return (
     <>
