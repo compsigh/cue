@@ -57,12 +57,16 @@ export default async function checkAuth ({ user, inviteCode }) {
 
   if (currentAuthLevel >= 3) {
     const email = user.sessionData.email.toLowerCase()
-    if (email.endsWith('.edu'))
+    if (email.endsWith('.edu')) {
+      await createUser()
       return true
+    }
   }
 
-  if (currentAuthLevel >= 4)
+  if (currentAuthLevel >= 4) {
+    await createUser()
     return true
+  }
 
   return false
 }
