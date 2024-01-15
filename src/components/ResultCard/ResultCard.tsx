@@ -15,7 +15,7 @@ const parseResponse = (result) => {
   return cues
 }
 
-export async function ResultCard ({ result, loading }) {
+export function ResultCard ({ result, loading }) {
   const cues = parseResponse(result)
 
   return (

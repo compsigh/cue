@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './ImportCard.module.scss'
 
-export async function ImportCard ({ onUpdateImportMethod }) {
+export function ImportCard ({ onUpdateImportMethod }) {
   const handleChange = () => {
     onUpdateImportMethod('text')
   }
