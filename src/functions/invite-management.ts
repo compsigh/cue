@@ -1,5 +1,4 @@
-import { kv } from '@vercel/kv'
-
+/*
 export async function getAllCodes () {
   const inviteKeys = await kv.keys('invite:*')
   const inviteCodes = []
@@ -29,3 +28,4 @@ export async function remove (inviteCode) {
   await kv.del(`invite:${inviteCode}`)
   return invite
 }
+*/

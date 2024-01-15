@@ -1,5 +1,4 @@
-import connect from './db-connect.js'
-import Invite from '../schemas/invite-schema.js'
+// import type { Invite } from '../types/Invite.js'
 
 /**
  * Generates a specified number of invites, and inserts them into the database.
@@ -9,7 +8,9 @@ import Invite from '../schemas/invite-schema.js'
  * @param {array}  conditions An array of conditions to apply to the invites.
  * @returns {Promise<array>}  An array of invites.
  */
-async function generateInvites (source, count, names, conditions) {
+
+/*
+async function generateInvites (source: string, count: number, names: string[], conditions: string[]) {
   await connect()
   const invites = []
   console.log('Names:', names)
@@ -32,13 +33,14 @@ async function generateInvites (source, count, names, conditions) {
 
   return invites
 }
+*/
 
 /**
  * Generates a specified number of random Roman names.
  * @param {number} count The number of names to generate.
  * @returns {array}      An array of random Roman names.
  */
-function generateRandomRomanNames (count) {
+function generateRandomRomanNames (count: number = 1) {
   const praenomens = [
     'Aulus',
     'Appius',
@@ -95,4 +97,5 @@ function generateRandomRomanNames (count) {
   return names
 }
 
-export { generateInvites, generateRandomRomanNames }
+// export { generateInvites, generateRandomRomanNames }
+export { generateRandomRomanNames }

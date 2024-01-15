@@ -1,10 +1,11 @@
 // import { kv } from '@vercel/kv'
-import { redirect } from 'next/navigation'
-import { getAllCodes } from '@/functions/invite-management'
+// import { redirect } from 'next/navigation'
+// import { getAllCodes } from '@/functions/invite-management'
 
 /**
  * @deprecated Do not render this page until we get the invite system back up.
  */
+/*
 export default async function Card ({ params }) {
   const { cardId } = params
   const inviteCodes = await getAllCodes()
@@ -21,3 +22,4 @@ export default async function Card ({ params }) {
     </div>
   )
 }
+*/

@@ -1,6 +1,5 @@
-import connect from './db-connect.js'
-import Invite from '../schemas/invite-schema.js'
-import { generateInvites, generateRandomRomanNames } from './generate-invites.js'
+// import Invite from '../types/Invite.js'
+// import { generateInvites, generateRandomRomanNames } from './generate-invites.js'
 
 /**
  * Generates a specified number of invites, and inserts them into the database.
@@ -9,6 +8,8 @@ import { generateInvites, generateRandomRomanNames } from './generate-invites.js
  * @param {string} source     The source of the invites, e.g. `april-2023-invite-cards`.
  * @param {array}  conditions An array of conditions to apply to the invites. If not specified, the default conditions will be used.
  */
+
+/*
 async function generate (count, names, source, conditions) {
   if (!names)
     names = generateRandomRomanNames(count)
@@ -19,10 +20,12 @@ async function generate (count, names, source, conditions) {
   await generateInvites(source, count, names, conditions)
   console.log(`Generated ${count} invites.`)
 }
+*/
 
 /**
  * Clears all invites from the database.
  */
+/*
 async function clear () {
   await connect()
   await Invite.deleteMany({})
@@ -91,3 +94,4 @@ else
   console.log('No valid flags specified. Usage: `node run-invites.js --generate <count>` or `node run-invites.js --clear`.')
 
 process.exit(0)
+*/
