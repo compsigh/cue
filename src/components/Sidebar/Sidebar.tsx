@@ -8,8 +8,7 @@ import styles from './Sidebar.module.scss'
 // Component imports
 import Feedback from '../Feedback'
 
-export default function Sidebar ({ user, path }) {
-  // TODO: include Roadmap (set up a GitHub project or something first)
+export async function Sidebar ({ user, path }) {
   if (!user || !path) return <></>
   return (
     <nav className={styles.sidebar}>

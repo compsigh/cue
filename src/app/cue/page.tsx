@@ -2,7 +2,7 @@
 import { checkAuth } from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
 import CueWrapper from '@/components/CueWrapper/CueWrapper'
-import Sidebar from '@/components/Sidebar/Sidebar'
+import { Sidebar } from '@/components/Sidebar/Sidebar'
 import { auth } from 'auth'
 
 export default async function Cue () {

@@ -11,7 +11,7 @@ import styles from './Profile.module.scss'
 
 // Component imports
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
-import Sidebar from '@/components/Sidebar/Sidebar'
+import { Sidebar } from '@/components/Sidebar/Sidebar'
 
 export default async function Profile () {
   // let user = await getUser()
