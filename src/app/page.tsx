@@ -4,7 +4,7 @@ import { checkAuth } from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
 
 // Component imports
-import SignInButton from '@/components/Button/SignInButton'
+import { SignInButton } from '@/components/Button/SignInButton'
 
 // Style imports
 import styles from '@/styles/Home.module.scss'

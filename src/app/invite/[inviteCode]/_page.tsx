@@ -1,7 +1,7 @@
 import { getUserData } from '@/functions/user-management'
 import { redirect } from 'next/navigation'
 import { fetch } from '@/functions/invite-management'
-import SignInButton from '@/components/Button/SignInButton'
+import { SignInButton } from '@/components/Button/SignInButton'
 import styles from './Invite.module.scss'
 
 /**

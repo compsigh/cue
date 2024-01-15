@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { signIn } from 'next-auth/react'
 
-export default function SignInButton ({ callbackUrl }) {
+export function SignInButton ({ callbackUrl }: { callbackUrl: string }) {
   return (
     <Link href='#' onClick={() => signIn('google', { callbackUrl })}>
       <Image
