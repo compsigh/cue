@@ -10,7 +10,7 @@ import { checkAuth } from '@/functions/check-auth'
 import styles from './Profile.module.scss'
 
 // Component imports
-import ProfileCard from '@/components/ProfileCard/ProfileCard'
+import { ProfileCard } from '@/components/ProfileCard/ProfileCard'
 import { Sidebar } from '@/components/Sidebar/Sidebar'
 
 export default async function Profile () {

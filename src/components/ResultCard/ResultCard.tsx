@@ -7,7 +7,6 @@ const parseResponse = (result) => {
   const cues = []
 
   // Starting from line 1 because line 0 has the $NOTES_IDENTIFIED value
-  // TODO: use notes_identified
   for (let i = 1; i < lines.length; i += 2) {
     const cue = { question: lines[i], answer: lines[i + 1] }
     cues.push(cue)
@@ -16,7 +15,7 @@ const parseResponse = (result) => {
   return cues
 }
 
-const ResultsCard = ({ result, loading }) => {
+export async function ResultCard ({ result, loading }) {
   const cues = parseResponse(result)
 
   return (
@@ -59,8 +58,8 @@ const ResultsCard = ({ result, loading }) => {
               width="20"
               color="#000000"
               wrapperStyle={{
-                justifyContent: 'center',
-                paddingTop: 10
+                justifyContent: "center",
+                paddingTop: "10"
               }}
             />
           )
@@ -69,5 +68,3 @@ const ResultsCard = ({ result, loading }) => {
     </div>
   )
 }
-
-export default ResultsCard

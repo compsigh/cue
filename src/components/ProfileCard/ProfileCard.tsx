@@ -9,12 +9,12 @@ import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 
 // Component imports
-import Button from '@/components/Button/Button'
+import { Button } from '@/components/Button/Button'
 
 // Style imports
 import styles from './ProfileCard.module.scss'
 
-const ProfileCard = ({ user }) => {
+export function ProfileCard ({ user }) {
   // Clear invite code search param
   const router = useRouter()
   const routerRef = useRef(router)
@@ -57,5 +57,3 @@ const ProfileCard = ({ user }) => {
     </div>
   )
 }
-
-export default ProfileCard

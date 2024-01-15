@@ -1,7 +1,9 @@
+'use client'
+
 import { useState } from 'react'
 import styles from './TextCard.module.scss'
 
-const TextCard = ({ onUpdateNotes, onUpdateSubmitted }) => {
+export function TextCard ({ onUpdateNotes, onUpdateSubmitted }) {
   const [notes, setNotes] = useState('')
 
   async function onSubmit (event) {
@@ -28,5 +30,3 @@ const TextCard = ({ onUpdateNotes, onUpdateSubmitted }) => {
     </div>
   )
 }
-
-export default TextCard
