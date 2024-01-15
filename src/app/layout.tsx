@@ -1,5 +1,5 @@
-// Next imports
-import AuthWrapper from '../components/AuthWrapper'
+// Component imports
+import { AuthWrapper } from '../components/AuthWrapper'
 
 // Style imports
 import '@/styles/globals.scss'
