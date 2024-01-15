@@ -11,9 +11,9 @@ import { encode } from 'gpt-tokenizer'
 import styles from './Cue.module.scss'
 
 // Component imports
-import ImportCard from '@/components/ImportCard/ImportCard'
-import TextCard from '@/components/TextCard/TextCard'
-import ResultCard from '@/components/ResultCard/ResultCard'
+import { ImportCard } from '@/components/ImportCard/ImportCard'
+import { TextCard } from '@/components/TextCard/TextCard'
+import { ResultCard } from '@/components/ResultCard/ResultCard'
 
 export default function CueWrapper () {
   const [importMethod, setImportMethod] = useState('')
@@ -84,9 +84,9 @@ ${response.statusText}
       console.log(`Cost incurred by Cue would be: $${baseCost}`)
       console.log(`Cost to the student for this generation would be: $${costByTwoPlusTwentyPercent}`)
       let studentMonthlyUsage = costByTwoPlusTwentyPercent * 20 * 4
-      studentMonthlyUsage = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(studentMonthlyUsage)
+      studentMonthlyUsage = Number(Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(studentMonthlyUsage))
       let cueMonthlyUsage = baseCost * 20 * 4
-      cueMonthlyUsage = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cueMonthlyUsage)
+      cueMonthlyUsage = Number(Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cueMonthlyUsage))
       console.log(`If the student were to generate these cues up to their limit of 20 per week during the school year, their monthly usage would be approximately: ${studentMonthlyUsage}`)
       console.log(`And it would cost Cue approximately: ${cueMonthlyUsage}`)
 
@@ -98,7 +98,7 @@ ${response.statusText}
   }, [submitted, notes])
 
   const { data: status } = useSession()
-  if (status === 'loading')
+  if (!status)
     return <p>Loading...</p>
 
   function handleImportMethod (method) {
