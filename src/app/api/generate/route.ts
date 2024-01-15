@@ -1,27 +1,15 @@
-import { getUser } from '@/functions/user-management'
+// import { getUser } from '@/functions/user-management'
 import checkAuth from '@/functions/check-auth'
 import { NextResponse } from 'next/server'
 import { OpenAIStream } from '@/utils/OpenAIStream'
-import { kv } from '@vercel/kv'
+import { auth } from 'auth'
 
 if (!process.env.OPENAI_API_KEY)
   throw new Error('Missing OpenAI API key.')
 
 export const runtime = 'edge'
 
-export const generationSchema = {
-  id: '',
-  tokens: 0,
-  generatedAt: Date.now()
-}
-
-function constructGeneration (generation) {
-  return {
-    ...generationSchema,
-    ...generation
-  }
-}
-
+/* TODO: generation tracking
 async function getUserGenerations (user) {
   let generations = await kv.hget(`user:${user.sessionData.sub}`, 'generations') || []
   const now = Date.now()
@@ -36,8 +24,9 @@ async function addGeneration (user, generation) {
   generations.push(generation)
   return await kv.hset(`user:${user.sessionData.sub}`, { generations })
 }
+*/
 
-function generatePrompt (notes) {
+function generatePrompt (notes: string) {
   return `From the given notes, suggest study questions to use as active recall prompts.
 Keep these in mind to curate your response:
 - Only suggest questions in the context of the given notes, and not what you already know about the topic.
@@ -93,20 +82,22 @@ Suggested active recall prompts:
 `
 }
 
-export async function POST (req) {
+export async function POST (req: Request) {
   try {
-    const user = await getUser()
-    const authed = await checkAuth({ user })
+    // const user = await getUser()
+    const session = await auth()
+    const authed = await checkAuth(session)
     if (!authed) return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 })
 
     const { notes } = await req.json()
 
     if (!notes)
-      return NextResponse(
-        { error: 'Missing notes.' },
+      return new NextResponse(
+        JSON.stringify({ error: 'Missing notes.' }),
         { status: 400, statusText: 'Missing notes.' }
       )
 
+    /*
     const generations = await getUserGenerations(user)
     if (generations.length >= 10)
       return NextResponse.json(
@@ -118,12 +109,13 @@ export async function POST (req) {
     const now = Date.now()
     const generation = constructGeneration({ id, generatedAt: now })
     await addGeneration(user, generation)
+    */
 
     const payload = {
       model: 'gpt-4',
       messages: [{ role: 'user', content: generatePrompt(notes) }],
       temperature: 0.3,
-      user: user.sessionData.sub,
+      user: session.user.id,
       stream: true
     }
 
