@@ -1,24 +1,5 @@
 {
   "extends": [
-    "standard",
     "next/core-web-vitals"
-  ],
-  "rules": {
-    "brace-style": [
-      "error",
-      "stroustrup"
-    ],
-    "curly": [
-      "error",
-      "multi"
-    ],
-    "camelcase": [
-      "error",
-      {
-        "ignoreImports": true,
-        "ignoreDestructuring": true,
-        "allow": ["max_tokens"]
-      }
-    ]
-  }
+  ]
 }
