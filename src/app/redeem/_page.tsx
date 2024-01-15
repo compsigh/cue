@@ -3,6 +3,7 @@
 // Next imports
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import type { Route } from 'next'
 
 // Style imports
 import styles from './Redeem.module.scss'
@@ -30,7 +31,7 @@ export default function Redeem () {
             />
             <button type="submit" onClick={(e) => {
               e.preventDefault()
-              router.push(`/invite/${inviteCode}`)
+              router.push(`/invite/${inviteCode}` as Route)
             }}>
             </button>
           </form>

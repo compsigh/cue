@@ -19,7 +19,7 @@ export function ProfileCard ({ user }) {
   const router = useRouter()
   const routerRef = useRef(router)
   useEffect(() => {
-    routerRef.current.replace('/profile', { shallow: true })
+    routerRef.current.replace('/profile')
   }, [])
 
   const name = user.sessionData.name
