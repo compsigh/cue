@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 
 // Auth
 import { signOut } from 'next-auth/react'
+import type { User } from 'next-auth'
 
 // Component imports
 import { Button } from '@/components/Button/Button'
@@ -14,7 +15,7 @@ import { Button } from '@/components/Button/Button'
 // Style imports
 import styles from './ProfileCard.module.scss'
 
-export function ProfileCard ({ user }) {
+export function ProfileCard ({ user }: { user: User }) {
   // Clear invite code search param
   const router = useRouter()
   const routerRef = useRef(router)
@@ -22,15 +23,15 @@ export function ProfileCard ({ user }) {
     routerRef.current.replace('/profile')
   }, [])
 
-  const name = user.sessionData.name
-  const email = user.sessionData.email
-  const invitesRemaining = user.userData.invitesRemaining
+  const name = user.name
+  const email = user.email
+  // const invitesRemaining = user.userData.invitesRemaining
 
   return (
     <div className={styles.profileCard}>
       <div className={styles.profileCardImage}>
         <Image
-          src={user.sessionData.picture}
+          src={user.image}
           alt="Profile Picture"
           width={110}
           height={110}
@@ -39,7 +40,7 @@ export function ProfileCard ({ user }) {
       <div className={styles.profileCardInfo}>
         <h1 className={styles.name}>{name}</h1>
         <p className={styles.email}>{email}</p>
-        <p className={styles.invitesRemaining}>{invitesRemaining} {invitesRemaining === 1 ? 'invite' : 'invites'} remaining</p>
+        {/* <p className={styles.invitesRemaining}>{invitesRemaining} {invitesRemaining === 1 ? 'invite' : 'invites'} remaining</p> */}
       </div>
 
       <div className={styles.actions}>
