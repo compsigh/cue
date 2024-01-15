@@ -1,10 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import { PopupButton } from '@typeform/embed-react'
+// import Image from 'next/image'
 
 export default function Feedback () {
   return (
+    <></>
+    /*
     <PopupButton
     id="kArMPVer"
     size={80}
@@ -24,5 +25,6 @@ export default function Feedback () {
         height={55}
       />
     </PopupButton>
+    */
   )
 }

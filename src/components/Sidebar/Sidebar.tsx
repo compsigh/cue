@@ -36,9 +36,9 @@ export async function Sidebar ({ user, path }) {
           </Link>
         </li>
 
-        <li className={styles.feedback}>
+        {/* <li className={styles.feedback}>
           <Feedback />
-        </li>
+        </li> */}
 
         <li className={styles.profile}>
           <Link href='/profile'>
