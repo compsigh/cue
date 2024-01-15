@@ -24,7 +24,7 @@ export enum policies {
   EDU_ONLY = 3,
   PUBLIC = 4
 }
-export const currentPolicy = policies.INVITE_ONLY
+export const currentPolicy = policies.USF_ONLY
 
 export async function checkAuth (session: Session) {
   if (!session) return false
