@@ -16,7 +16,7 @@
 
 // import { createUser } from './user-management'
 // import { fetch, invalidate } from './invite-management'
-import type { User } from 'next-auth'
+import type { Session } from 'next-auth'
 
 export enum policies {
   INVITE_ONLY = 1,
@@ -26,8 +26,9 @@ export enum policies {
 }
 export const currentPolicy = policies.INVITE_ONLY
 
-export default async function checkAuth (user: User) {
-  if (!user) return false
+export default async function checkAuth (session: Session) {
+  if (!session) return false
+  const user = session.user
 
   /*
   if (currentPolicy >= policies.INVITE_ONLY)
