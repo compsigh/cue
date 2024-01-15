@@ -2,7 +2,7 @@
 
 // import Image from 'next/image'
 
-export default function Feedback () {
+export function Feedback () {
   return (
     <></>
     /*

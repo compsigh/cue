@@ -6,7 +6,7 @@ import Link from 'next/link'
 import styles from './Sidebar.module.scss'
 
 // Component imports
-import Feedback from '../Feedback'
+import { Feedback } from '../Feedback'
 
 export async function Sidebar ({ user, path }) {
   if (!user || !path) return <></>
