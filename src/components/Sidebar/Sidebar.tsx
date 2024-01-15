@@ -51,7 +51,7 @@ export async function Sidebar ({ user, path }) {
           </Link>
         </li>
 
-        <li className={styles.invite}>
+        {/* <li className={styles.invite}>
           <Link href='#'>
             <Image
               src="/icons/Invite.svg"
@@ -61,7 +61,7 @@ export async function Sidebar ({ user, path }) {
               style={{ opacity: 0.5, cursor: 'not-allowed' }}
             />
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )
