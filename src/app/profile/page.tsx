@@ -2,8 +2,9 @@
 import { redirect } from 'next/navigation'
 
 // Auth imports
-import { getUser } from '@/functions/user-management'
-import checkAuth from '@/functions/check-auth'
+// import { getUser } from '@/functions/user-management'
+import { auth } from 'auth'
+import { checkAuth } from '@/functions/check-auth'
 
 // Style imports
 import styles from './Profile.module.scss'
@@ -12,20 +13,14 @@ import styles from './Profile.module.scss'
 import ProfileCard from '@/components/ProfileCard/ProfileCard'
 import Sidebar from '@/components/Sidebar/Sidebar'
 
-export default async function Profile ({ searchParams }) {
-  let user = await getUser()
+export default async function Profile () {
+  // let user = await getUser()
+  const session = await auth()
 
-  const authRequest = {}
-  authRequest.user = user
-
-  const inviteCode = searchParams?.inviteCode
-  if (inviteCode)
-    authRequest.inviteCode = inviteCode
-
-  const authed = await checkAuth(authRequest)
+  const authed = await checkAuth(session)
   if (!authed)
     redirect('/')
-  user = await getUser()
+  const user = session.user
 
   return (
     <>

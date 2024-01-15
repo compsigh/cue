@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation'
 // Style imports
 import styles from './Redeem.module.scss'
 
+/**
+ * @deprecated Do not render this page until we get the invite system back up.
+ */
 export default function Redeem () {
   const [inviteCode, setInviteCode] = useState('')
   const router = useRouter()

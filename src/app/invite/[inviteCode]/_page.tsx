@@ -4,6 +4,9 @@ import { fetch } from '@/functions/invite-management'
 import SignInButton from '@/components/Button/SignInButton'
 import styles from './Invite.module.scss'
 
+/**
+ * @deprecated Do not render this page until we get the invite system back up.
+ */
 export default async function Card ({ params }) {
   const userData = await getUserData()
   if (userData)
