@@ -26,7 +26,7 @@ export enum policies {
 }
 export const currentPolicy = policies.INVITE_ONLY
 
-export default async function checkAuth (session: Session) {
+export async function checkAuth (session: Session) {
   if (!session) return false
   const user = session.user
 

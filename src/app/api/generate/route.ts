@@ -1,5 +1,5 @@
 // import { getUser } from '@/functions/user-management'
-import checkAuth from '@/functions/check-auth'
+import { checkAuth } from '@/functions/check-auth'
 import { NextResponse } from 'next/server'
 import { OpenAIStream } from '@/utils/OpenAIStream'
 import { auth } from 'auth'

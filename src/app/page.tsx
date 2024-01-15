@@ -1,6 +1,6 @@
 // Next imports
 // import { getUser } from '@/functions/user-management'
-import checkAuth from '@/functions/check-auth'
+import { checkAuth } from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
 
 // Component imports
