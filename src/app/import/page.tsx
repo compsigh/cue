@@ -1,12 +1,10 @@
-// import { getUser } from '@/functions/user-management'
+import { auth } from 'auth'
 import { checkAuth } from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
-import CueWrapper from '@/components/CueWrapper/CueWrapper'
 import { Sidebar } from '@/components/Sidebar/Sidebar'
-import { auth } from 'auth'
+import { ImportCard } from '@/components/ImportCard/ImportCard'
 
-export default async function Cue () {
-  // const user = await getUser()
+export default async function Import () {
   const session = await auth()
   const authed = await checkAuth(session)
 
@@ -15,8 +13,8 @@ export default async function Cue () {
 
   return (
     <>
-    <Sidebar user={session.user} path={'/cue'} />
-    <CueWrapper />
+    <Sidebar user={session.user} path={'/import'} />
+    <ImportCard />
     </>
   )
 }

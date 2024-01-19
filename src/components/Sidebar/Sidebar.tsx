@@ -5,9 +5,6 @@ import Link from 'next/link'
 // Style imports
 import styles from './Sidebar.module.scss'
 
-// Component imports
-import { Feedback } from '../Feedback'
-
 export async function Sidebar ({ user, path }) {
   if (!user || !path) return <></>
   return (
@@ -15,9 +12,9 @@ export async function Sidebar ({ user, path }) {
       <ul>
 
         <li className={styles.cue}>
-          <Link href='/cue'>
+          <Link href='/import'>
             <Image
-              src={path === '/cue' ? '/icons/Cue_Selected.svg' : '/icons/Cue.svg'}
+              src={path === '/import' ? '/icons/Cue_Selected.svg' : '/icons/Cue.svg'}
               alt="Cue"
               width={55}
               height={55}
