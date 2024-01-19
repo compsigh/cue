@@ -1,3 +1,8 @@
+// TODO: unwrap CueWrapper into ImportCard
+// TODO: move generate function to server
+// TODO: use Server Actions to call generate function
+
+
 'use client'
 
 // Next imports
@@ -16,7 +21,6 @@ import { TextCard } from '@/components/TextCard/TextCard'
 import { ResultCard } from '@/components/ResultCard/ResultCard'
 
 export default function CueWrapper () {
-  const [importMethod, setImportMethod] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [notes, setNotes] = useState('')
@@ -101,10 +105,6 @@ ${response.statusText}
   if (!status)
     return <p>Loading...</p>
 
-  function handleImportMethod (method) {
-    setImportMethod(method)
-  }
-
   function handleNotes (notes) {
     setNotes(notes)
   }
@@ -129,7 +129,7 @@ ${response.statusText}
 
   return (
     <div className={styles.importCard}>
-      <ImportCard onUpdateImportMethod={handleImportMethod} />
+      <ImportCard />
     </div>
   )
 }
