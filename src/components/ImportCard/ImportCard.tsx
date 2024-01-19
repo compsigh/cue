@@ -2,11 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './ImportCard.module.scss'
 
-export function ImportCard ({ onUpdateImportMethod }) {
-  const handleChange = () => {
-    onUpdateImportMethod('text')
-  }
-
+export function ImportCard () {
   return (
     <div className={styles.importCard}>
       <h2>Import your notes to get started:</h2>
@@ -38,7 +34,7 @@ export function ImportCard ({ onUpdateImportMethod }) {
             style={{ opacity: 0.5, cursor: 'not-allowed' }}
           />
         </Link>
-        <Link href='#' onClick={handleChange}>
+        <Link href='/import/text'>
           <Image
             src="/icons/Text.svg"
             alt="Text"
