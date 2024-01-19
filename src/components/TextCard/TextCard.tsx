@@ -7,6 +7,7 @@ export async function TextCard () {
     const notes = formData.get('notes').toString()
     const result = await generate(notes)
     return result
+    // TODO: figure out how to get the result to the user & render ResultCard
   }
 
   return (
