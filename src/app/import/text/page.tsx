@@ -2,9 +2,9 @@ import { auth } from 'auth'
 import { checkAuth } from '@/functions/check-auth'
 import { redirect } from 'next/navigation'
 import { Sidebar } from '@/components/Sidebar/Sidebar'
-import { ImportCard } from '@/components/ImportCard/ImportCard'
+import { TextCard } from '@/components/TextCard/TextCard'
 
-export default async function Import () {
+export default async function TextImport () {
   const session = await auth()
   const authed = await checkAuth(session)
 
@@ -14,7 +14,7 @@ export default async function Import () {
   return (
     <>
       <Sidebar user={session.user} path={'/import'} />
-      <ImportCard />
+      <TextCard />
     </>
   )
 }
