@@ -1,6 +1,4 @@
 // TODO: unwrap CueWrapper into ImportCard
-// TODO: use Server Actions to call generate function
-
 
 'use client'
 

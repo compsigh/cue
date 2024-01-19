@@ -1,28 +1,23 @@
-'use client'
-
-import { useState } from 'react'
+import { generate } from '@/functions/generate'
 import styles from './TextCard.module.scss'
 
-export function TextCard ({ onUpdateNotes, onUpdateSubmitted }) {
-  const [notes, setNotes] = useState('')
-
-  async function onSubmit (event) {
-    event.preventDefault()
-    onUpdateNotes(notes)
-    onUpdateSubmitted(true)
+export async function TextCard () {
+  async function callGenerate (formData: FormData) {
+    'use server'
+    const notes = formData.get('notes').toString()
+    const result = await generate(notes)
+    return result
   }
 
   return (
     <div className={styles.textCard}>
       <main className={styles.main}>
         <h2>Paste your notes here:</h2>
-        <form onSubmit={onSubmit}>
+        <form action={callGenerate}>
           <input
             type="textarea"
             name="notes"
             placeholder="The Roman Republic..."
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
           />
           <button type="submit"></button>
         </form>
