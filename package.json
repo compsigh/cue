@@ -3,7 +3,7 @@
   "author": "compsigh",
   "bugs": "https://github.com/compsigh/cue/issues",
   "homepage": "https://github.com/compsigh/cue",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "UNLICENSED",
   "description": "Study with AI-powered Active Recall",
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "eventsource-parser": "^1.0.0",
     "gpt-tokenizer": "^2.1.1",
+    "jotai": "^2.6.2",
     "next": "14.0.4",
     "next-auth": "5.0.0-beta.4",
     "openai": "4.24.7",
@@ -30,6 +31,7 @@
     "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
+    "@swc-jotai/react-refresh": "^0.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
