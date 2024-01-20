@@ -15,11 +15,12 @@ export async function TextCard () {
       <main className={styles.main}>
         <h2>Paste your notes here:</h2>
         <form action={callGenerate}>
-          <input
-            type="textarea"
+          <textarea
             name="notes"
             placeholder="The Roman Republic..."
-          />
+            rows={10}
+            cols={55}
+          ></textarea>
           <button type="submit"></button>
         </form>
       </main>
