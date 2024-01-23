@@ -34,7 +34,12 @@ export const metadata = {
   description: 'Study with AI-powered Active Recall'
 }
 
-export default function RootLayout ({ children }) {
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode
+})
+{
   return (
     <AuthWrapper>
       <html lang="en" className={`${patrickHand.variable} ${patrickHandSC.variable} ${publicSans.variable} ${robotoMono.variable}`}>
